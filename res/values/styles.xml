@@ -17,4 +17,9 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+	<style name="drag_text">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">#333333</item>
+	</style>
+
 </resources>

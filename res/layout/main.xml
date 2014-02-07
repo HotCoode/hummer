@@ -16,14 +16,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1"
-			android:background="@android:color/holo_green_light"
+			android:background="@color/holo_green_light"
 			android:layout_marginBottom="10dp"
 			/>
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1"
-			android:background="@android:color/holo_red_light"
+			android:background="@color/holo_red_light"
 			android:layout_marginTop="10dp"
 			/>
 	</LinearLayout>
@@ -36,6 +36,16 @@
 		android:layout_marginRight="@dimen/range_width"
 		android:layout_gravity="center_horizontal"
 		>
+
+		<com.rise.component.DragListView
+			android:id="@+id/drag_list_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:cacheColorHint="@android:color/transparent"
+			android:paddingLeft="10dp"
+			android:paddingRight="10dp"
+			android:scrollbars="none"
+			/>
 
 	</LinearLayout>
 
@@ -52,14 +62,14 @@
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1"
-			android:background="@android:color/holo_green_light"
+			android:background="@color/holo_green_light"
 			android:layout_marginBottom="10dp"
 			/>
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1"
-			android:background="@android:color/holo_red_light"
+			android:background="@color/holo_red_light"
 			android:layout_marginTop="10dp"
 			/>
 	</LinearLayout>
