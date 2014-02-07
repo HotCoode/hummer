@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.rise.R;
+import com.rise.component.DragView;
 
 
 /**
@@ -43,7 +44,7 @@ public class DragListAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.drag_view_item,null);
         }
-        ((TextView)convertView).setText(things[position]);
+        ((DragView)convertView).setText(things[position]);
         return convertView;
     }
 }
