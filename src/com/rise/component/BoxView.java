@@ -16,9 +16,9 @@ import com.base.L;
  */
 public class BoxView extends TextView {
     // 进入中
-    private boolean entering = false;
+    private boolean entered = false;
     // 退出中
-    private boolean exiting = false;
+    private boolean exited = false;
 
     private BoxListener boxListener;
 
@@ -32,6 +32,8 @@ public class BoxView extends TextView {
          * puts in
          */
         void onPut(BoxView view, ClipData data);
+
+        void onExit(BoxView view);
     }
 
     public BoxView(Context context, AttributeSet attrs) {
@@ -44,10 +46,6 @@ public class BoxView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (entering) {
-        } else if (exiting) {
-
-        }
         super.onDraw(canvas);
     }
 
@@ -68,6 +66,7 @@ public class BoxView extends TextView {
             break;
 
             case DragEvent.ACTION_DRAG_ENTERED: {
+                exited = false;
                 L.i("box 123123 Entered dot @ " + this);
                 if (boxListener != null) boxListener.onEnter(this);
             }
@@ -75,12 +74,16 @@ public class BoxView extends TextView {
 
             case DragEvent.ACTION_DRAG_EXITED: {
                 L.i("box Exited dot @ " + this);
+                exited = true;
+                if (boxListener != null) boxListener.onExit(this);
             }
             case DragEvent.ACTION_DROP: {
                 L.i("box drop @ " + this);
-                ClipData data = event.getClipData();
                 result = true;
-                if (boxListener != null) boxListener.onPut(this, data);
+                if(!exited){
+                    ClipData data = event.getClipData();
+                    if (boxListener != null) boxListener.onPut(this, data);
+                }
             }
             break;
 

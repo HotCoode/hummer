@@ -60,6 +60,11 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
         }
     }
 
+    @Override
+    public void onExit(BoxView view) {
+        setMargin(view, false);
+    }
+
     /**
      * 设置hover画面响应
      *
