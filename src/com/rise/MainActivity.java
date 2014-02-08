@@ -1,6 +1,7 @@
 package com.rise;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -53,16 +54,35 @@ public class MainActivity extends Activity implements BoxView.BoxListener{
 
     @Override
     public void onEnter(BoxView view) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-        params.setMargins(80,0,0,0);
-        view.setLayoutParams(params);
+        setMargin(view,true);
         Toast.makeText(this,"Enter",Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onPut(BoxView view) {
-        view.setPadding(0,0,0,0);
-        Toast.makeText(this,"Put",Toast.LENGTH_SHORT).show();
+    public void onPut(BoxView view,ClipData data) {
+        setMargin(view,false);
+        Toast.makeText(this,"Put:"+data.getItemAt(0).getText(),Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 设置hover画面响应
+     * @param view
+     * @param isEnter
+     */
+    private void setMargin(BoxView view,boolean isEnter){
+        if(isEnter){
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+            if(view.getId() == R.id.quick_box || view.getId() == R.id.bad_box){
+                params.setMargins(20,0,0,0);
+            }else{
+                params.setMargins(0,0,20,0);
+            }
+            view.setLayoutParams(params);
+        }else{
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+            params.setMargins(0,0,0,0);
+            view.setLayoutParams(params);
+        }
     }
 
     private String[] things = {

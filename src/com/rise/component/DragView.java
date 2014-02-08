@@ -21,7 +21,8 @@ public class DragView extends TextView {
 //        setClickable(true);
         setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                ClipData data = ClipData.newPlainText("dot", "Dot : " + v.toString());
+                ClipData data = ClipData.newPlainText("text", ((TextView) v).getText());
+                data.addItem(new ClipData.Item(v.getTag().toString()));
                 v.startDrag(data, new ShadowBuilder(v), (Object) v, 0);
                 return true;
             }

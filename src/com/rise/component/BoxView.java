@@ -1,10 +1,10 @@
 package com.rise.component;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.DragEvent;
-import android.view.View;
 import android.widget.TextView;
 
 import com.base.L;
@@ -14,7 +14,7 @@ import com.base.L;
  * <p/>
  * box
  */
-public class BoxView extends View {
+public class BoxView extends TextView {
     // 进入中
     private boolean entering = false;
     // 退出中
@@ -23,11 +23,15 @@ public class BoxView extends View {
     private BoxListener boxListener;
 
     public interface BoxListener {
-        /** hover */
+        /**
+         * hover
+         */
         void onEnter(BoxView view);
 
-        /** puts in */
-        void onPut(BoxView view);
+        /**
+         * puts in
+         */
+        void onPut(BoxView view, ClipData data);
     }
 
     public BoxView(Context context, AttributeSet attrs) {
@@ -74,8 +78,9 @@ public class BoxView extends View {
             }
             case DragEvent.ACTION_DROP: {
                 L.i("box drop @ " + this);
+                ClipData data = event.getClipData();
                 result = true;
-                if (boxListener != null) boxListener.onPut(this);
+                if (boxListener != null) boxListener.onPut(this, data);
             }
             break;
 

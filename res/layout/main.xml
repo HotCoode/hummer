@@ -21,17 +21,22 @@
 
 			<com.rise.component.BoxView
 				android:id="@+id/perfect_box"
-				android:layout_width="match_parent"
+				android:layout_width="@dimen/range_width"
 				android:layout_height="match_parent" />
 		</LinearLayout>
 
-		<com.rise.component.BoxView
-			android:id="@+id/uphold_box"
-			android:layout_width="@dimen/range_width"
+		<LinearLayout
+			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:layout_weight="1"
 			android:background="@color/holo_red_light"
-			android:layout_marginTop="10dp" />
+			android:layout_marginTop="10dp">
+
+			<com.rise.component.BoxView
+				android:id="@+id/uphold_box"
+				android:layout_width="@dimen/range_width"
+				android:layout_height="match_parent" />
+		</LinearLayout>
 	</LinearLayout>
 
 	<!-- 列表 -->
@@ -60,10 +65,11 @@
 		android:paddingTop="@dimen/range_padding"
 		android:paddingBottom="@dimen/range_padding"
 		android:orientation="vertical"
+		android:gravity="right"
 		android:layout_gravity="right">
 
 		<LinearLayout
-			android:layout_width="@dimen/range_width"
+			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:layout_weight="1"
 			android:background="@color/holo_green_light"
@@ -71,17 +77,23 @@
 
 			<com.rise.component.BoxView
 				android:id="@+id/quick_box"
-				android:layout_width="match_parent"
+				android:layout_width="@dimen/range_width"
 				android:layout_height="match_parent" />
 		</LinearLayout>
 
-		<com.rise.component.BoxView
-			android:id="@+id/bad_box"
-			android:layout_width="@dimen/range_width"
+		<LinearLayout
+			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:layout_weight="1"
 			android:background="@color/holo_red_light"
-			android:layout_marginTop="10dp" />
+			android:layout_marginTop="10dp">
+
+			<com.rise.component.BoxView
+				android:id="@+id/bad_box"
+				android:layout_width="@dimen/range_width"
+				android:layout_height="match_parent" />
+		</LinearLayout>
+
 	</LinearLayout>
 </FrameLayout>
 
