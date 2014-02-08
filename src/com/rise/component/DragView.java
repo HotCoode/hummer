@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.DragEvent;
 import android.view.View;
@@ -15,7 +14,7 @@ import com.base.L;
 /**
  * Created by kai.wang on 2/7/14.
  */
-public class DragView extends TextView{
+public class DragView extends TextView {
     public DragView(Context context, AttributeSet attrs) {
         super(context, attrs);
 //        setFocusable(true);
@@ -40,65 +39,40 @@ public class DragView extends TextView{
     @Override
     public boolean onDragEvent(DragEvent event) {
         boolean result = false;
-//        switch (event.getAction()) {
-//            case DragEvent.ACTION_DRAG_STARTED: {
-//                // claim to accept any dragged content
-//                L.i("ACTION_DRAG_STARTED, event=" + event);
-////                // cache whether we accept the drag to return for LOCATION events
-////                mDragInProgress = true;
-////                mAcceptsDrag = result = true;
-////                // Redraw in the new visual state if we are a potential drop target
-////                if (mAcceptsDrag) {
-////                    invalidate();
-////                }
-////                if (getBackground() != null)
-////                    getBackground().setColorFilter(Color.LTGRAY, PorterDuff.Mode.ADD);
-////                invalidate();
-//                result = true;
-//            }
-//            break;
-//
-//            case DragEvent.ACTION_DRAG_ENDED: {
-//                L.i("ACTION_DRAG_ENDED.");
-////                if (mAcceptsDrag) {
-////                    invalidate();
-////                }
-////                mDragInProgress = false;
-////                mHovering = false;
-////                if (getBackground() != null)
-////                    getBackground().clearColorFilter();
-////                invalidate();
-//            }
-//            break;
-//
-//            case DragEvent.ACTION_DRAG_LOCATION: {
-//                // we returned true to DRAG_STARTED, so return true here
-//                L.i("ACTION_DRAG_LOCATION");
-////                result = mAcceptsDrag;
-//            }
-//            break;
-//
-//            case DragEvent.ACTION_DROP: {
-//                L.i("ACTION_DROP! dot=" + this + " event=" + event);
-////                processDrop(event);
-//                result = true;
-//            }
-//            break;
-//
-//            case DragEvent.ACTION_DRAG_ENTERED: {
-//                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
-////                mHovering = true;
-////                invalidate();
-//            }
-//            break;
-//
-//            default:
-//                L.i("other drag event: " + event);
-////                result = mAcceptsDrag;
-//                break;
-//        }
+        switch (event.getAction()) {
+            case DragEvent.ACTION_DRAG_STARTED: {
+                L.i("ACTION_DRAG_STARTED, event=" + event);
+                result = true;
+            }
+            break;
 
-        return super.onDragEvent(event);
+            case DragEvent.ACTION_DRAG_ENDED: {
+                L.i("ACTION_DRAG_ENDED.");
+            }
+            break;
+
+            case DragEvent.ACTION_DRAG_LOCATION: {
+                // we returned true to DRAG_STARTED, so return true here
+                L.i("ACTION_DRAG_LOCATION");
+            }
+            break;
+
+            case DragEvent.ACTION_DROP: {
+                L.i("ACTION_DROP! dot=" + this + " event=" + event);
+                result = true;
+            }
+            break;
+
+            case DragEvent.ACTION_DRAG_ENTERED: {
+                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
+            }
+            break;
+
+            default:
+                break;
+        }
+
+        return result;
     }
 
 
