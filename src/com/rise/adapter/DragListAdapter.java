@@ -45,6 +45,7 @@ public class DragListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.drag_view_item,null);
         }
         ((DragView)convertView).setText(things[position]);
+        convertView.setTag(position);
         return convertView;
     }
 }

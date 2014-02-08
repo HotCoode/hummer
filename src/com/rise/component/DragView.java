@@ -9,20 +9,19 @@ import android.view.DragEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.base.L;
-
 /**
  * Created by kai.wang on 2/7/14.
  */
 public class DragView extends TextView {
     public DragView(Context context, AttributeSet attrs) {
         super(context, attrs);
-//        setFocusable(true);
-//        setClickable(true);
         setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
                 ClipData data = ClipData.newPlainText("text", ((TextView) v).getText());
-                data.addItem(new ClipData.Item(v.getTag().toString()));
+                Object tag = v.getTag();
+                if (tag != null) {
+                    data.addItem(new ClipData.Item(tag.toString()));
+                }
                 v.startDrag(data, new ShadowBuilder(v), (Object) v, 0);
                 return true;
             }
@@ -42,30 +41,24 @@ public class DragView extends TextView {
         boolean result = false;
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED: {
-                L.i("ACTION_DRAG_STARTED, event=" + event);
+//                L.i("ACTION_DRAG_STARTED, event=" + event);
                 result = true;
             }
             break;
 
             case DragEvent.ACTION_DRAG_ENDED: {
-                L.i("ACTION_DRAG_ENDED.");
-            }
-            break;
-
-            case DragEvent.ACTION_DRAG_LOCATION: {
-                // we returned true to DRAG_STARTED, so return true here
-                L.i("ACTION_DRAG_LOCATION");
+//                L.i("ACTION_DRAG_ENDED.");
             }
             break;
 
             case DragEvent.ACTION_DROP: {
-                L.i("ACTION_DROP! dot=" + this + " event=" + event);
+//                L.i("ACTION_DROP! dot=" + this + " event=" + event);
                 result = true;
             }
             break;
 
             case DragEvent.ACTION_DRAG_ENTERED: {
-                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
+//                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
             }
             break;
 
