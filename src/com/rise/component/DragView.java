@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.DragEvent;
 import android.view.View;
@@ -14,11 +15,11 @@ import com.base.L;
 /**
  * Created by kai.wang on 2/7/14.
  */
-public class DragView extends TextView {
+public class DragView extends TextView{
     public DragView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setFocusable(true);
-        setClickable(true);
+//        setFocusable(true);
+//        setClickable(true);
         setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
                 ClipData data = ClipData.newPlainText("dot", "Dot : " + v.toString());
@@ -39,59 +40,67 @@ public class DragView extends TextView {
     @Override
     public boolean onDragEvent(DragEvent event) {
         boolean result = false;
-        switch (event.getAction()) {
-            case DragEvent.ACTION_DRAG_STARTED: {
-                // claim to accept any dragged content
-                L.i("ACTION_DRAG_STARTED, event=" + event);
-//                // cache whether we accept the drag to return for LOCATION events
-//                mDragInProgress = true;
-//                mAcceptsDrag = result = true;
-//                // Redraw in the new visual state if we are a potential drop target
-//                if (mAcceptsDrag) {
-//                    invalidate();
-//                }
-            }
-            break;
-
-            case DragEvent.ACTION_DRAG_ENDED: {
-                L.i("ACTION_DRAG_ENDED.");
-//                if (mAcceptsDrag) {
-//                    invalidate();
-//                }
-//                mDragInProgress = false;
-//                mHovering = false;
-            }
-            break;
-
-            case DragEvent.ACTION_DRAG_LOCATION: {
-                // we returned true to DRAG_STARTED, so return true here
-                L.i("ACTION_DRAG_LOCATION");
-//                result = mAcceptsDrag;
-            }
-            break;
-
-            case DragEvent.ACTION_DROP: {
-                L.i("ACTION_DROP! dot=" + this + " event=" + event);
-//                processDrop(event);
+//        switch (event.getAction()) {
+//            case DragEvent.ACTION_DRAG_STARTED: {
+//                // claim to accept any dragged content
+//                L.i("ACTION_DRAG_STARTED, event=" + event);
+////                // cache whether we accept the drag to return for LOCATION events
+////                mDragInProgress = true;
+////                mAcceptsDrag = result = true;
+////                // Redraw in the new visual state if we are a potential drop target
+////                if (mAcceptsDrag) {
+////                    invalidate();
+////                }
+////                if (getBackground() != null)
+////                    getBackground().setColorFilter(Color.LTGRAY, PorterDuff.Mode.ADD);
+////                invalidate();
 //                result = true;
-            }
-            break;
+//            }
+//            break;
+//
+//            case DragEvent.ACTION_DRAG_ENDED: {
+//                L.i("ACTION_DRAG_ENDED.");
+////                if (mAcceptsDrag) {
+////                    invalidate();
+////                }
+////                mDragInProgress = false;
+////                mHovering = false;
+////                if (getBackground() != null)
+////                    getBackground().clearColorFilter();
+////                invalidate();
+//            }
+//            break;
+//
+//            case DragEvent.ACTION_DRAG_LOCATION: {
+//                // we returned true to DRAG_STARTED, so return true here
+//                L.i("ACTION_DRAG_LOCATION");
+////                result = mAcceptsDrag;
+//            }
+//            break;
+//
+//            case DragEvent.ACTION_DROP: {
+//                L.i("ACTION_DROP! dot=" + this + " event=" + event);
+////                processDrop(event);
+//                result = true;
+//            }
+//            break;
+//
+//            case DragEvent.ACTION_DRAG_ENTERED: {
+//                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
+////                mHovering = true;
+////                invalidate();
+//            }
+//            break;
+//
+//            default:
+//                L.i("other drag event: " + event);
+////                result = mAcceptsDrag;
+//                break;
+//        }
 
-            case DragEvent.ACTION_DRAG_ENTERED: {
-                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
-//                mHovering = true;
-//                invalidate();
-            }
-            break;
-
-            default:
-                L.i("other drag event: " + event);
-//                result = mAcceptsDrag;
-                break;
-        }
-
-        return result;
+        return super.onDragEvent(event);
     }
+
 
     // Shadow builder that can ANR if desired
     class ShadowBuilder extends DragShadowBuilder {
