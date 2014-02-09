@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="perfect">#ff99cc00</color>
-	<color name="uphold">#ffff4444</color>
+	<color name="perfect">#690</color>
+	<color name="uphold">#09c</color>
+	<color name="quick">#f80</color>
+	<color name="bad">#c00</color>
 	<!-- A dark Holo shade of blue -->
 	<color name="holo_blue_dark">#ff0099cc</color>
 </resources>

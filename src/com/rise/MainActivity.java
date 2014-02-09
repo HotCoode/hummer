@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -46,13 +48,13 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
 
     @Override
     public void onEnter(BoxView view) {
-        setMargin(view, true);
+        hover(view, true);
 //        Toast.makeText(this, "Enter", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onPut(BoxView view, ClipData data) {
-        setMargin(view, false);
+        hover(view, false);
         if(data != null && data.getItemCount() == 2){
             Toast.makeText(this, "Put:" + data.getItemAt(0).getText(), Toast.LENGTH_SHORT).show();
         }else{
@@ -62,7 +64,7 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
 
     @Override
     public void onExit(BoxView view) {
-        setMargin(view, false);
+        hover(view, false);
     }
 
     /**
@@ -71,19 +73,18 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
      * @param view
      * @param isEnter
      */
-    private void setMargin(BoxView view, boolean isEnter) {
+    private void hover(BoxView view, boolean isEnter) {
+	    View answerView = ((ViewGroup)view.getParent()).getChildAt(0);
         if (isEnter) {
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-            if (view.getId() == R.id.quick_box || view.getId() == R.id.bad_box) {
-                params.setMargins(20, 0, 0, 0);
-            } else {
-                params.setMargins(0, 0, 20, 0);
-            }
-            view.setLayoutParams(params);
+	        int width = getResources().getDimensionPixelSize(R.dimen.hover_width);
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) answerView.getLayoutParams();
+            params.width = width;
+	        answerView.setLayoutParams(params);
         } else {
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-            params.setMargins(0, 0, 0, 0);
-            view.setLayoutParams(params);
+	        int width = getResources().getDimensionPixelSize(R.dimen.hover_show_width);
+	        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) answerView.getLayoutParams();
+	        params.width = width;
+	        answerView.setLayoutParams(params);
         }
     }
 
