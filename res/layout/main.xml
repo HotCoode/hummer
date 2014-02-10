@@ -12,7 +12,7 @@
 			android:layout_marginRight="@dimen/hover_show_width"
 			>
 
-		<com.rise.component.DragListView
+		<com.rise.view.DragListView
 				android:id="@+id/drag_list_view"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
@@ -43,7 +43,7 @@
 					android:background="@color/perfect"
 					/>
 
-			<com.rise.component.BoxView
+			<com.rise.view.BoxView
 					android:id="@+id/perfect_box"
 					android:layout_width="@dimen/hover_width"
 					android:layout_height="match_parent"
@@ -63,7 +63,7 @@
 					android:background="@color/uphold"
 					/>
 
-			<com.rise.component.BoxView
+			<com.rise.view.BoxView
 					android:id="@+id/uphold_box"
 					android:layout_width="@dimen/hover_width"
 					android:layout_height="match_parent"
@@ -95,7 +95,7 @@
 					android:layout_gravity="right"
 					/>
 
-			<com.rise.component.BoxView
+			<com.rise.view.BoxView
 					android:id="@+id/quick_box"
 					android:layout_width="@dimen/hover_width"
 					android:layout_height="match_parent"
@@ -114,7 +114,7 @@
 					android:background="@color/bad"
 					android:layout_gravity="right"
 					/>
-			<com.rise.component.BoxView
+			<com.rise.view.BoxView
 					android:id="@+id/bad_box"
 					android:layout_width="@dimen/hover_width"
 					android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.rise.component;
+package com.rise.view;
 
 import android.content.ClipData;
 import android.content.Context;

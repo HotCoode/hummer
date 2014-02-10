@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.base.inject.InjectView;
 import com.base.inject.Injector;
 import com.rise.adapter.DragListAdapter;
-import com.rise.component.BoxView;
-import com.rise.component.DragListView;
+import com.rise.view.BoxView;
+import com.rise.view.DragListView;
 
 public class MainActivity extends Activity implements BoxView.BoxListener, View.OnClickListener {
 
