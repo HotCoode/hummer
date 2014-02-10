@@ -4,7 +4,7 @@
 			 android:layout_height="fill_parent">
 
 	<!-- 列表 -->
-	<com.rise.view.PullableListView
+	<com.rise.view.PullHeaderView
 		android:id="@+id/pullable_listview"
 		android:orientation="vertical"
 		android:layout_width="match_parent"

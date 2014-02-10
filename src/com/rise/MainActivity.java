@@ -13,12 +13,12 @@ import com.base.inject.InjectView;
 import com.base.inject.Injector;
 import com.rise.adapter.MainListAdapter;
 import com.rise.view.BoxView;
-import com.rise.view.PullableListView;
+import com.rise.view.PullHeaderView;
 
 public class MainActivity extends Activity implements BoxView.BoxListener, View.OnClickListener {
 
     @InjectView(R.id.pullable_listview)
-    private PullableListView pullableListView;
+    private PullHeaderView pullableListView;
 
     private ListView actualListView;
 
@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
         setContentView(R.layout.main);
         Injector.get(this).inject();
 
-        actualListView = (ListView) getLayoutInflater().inflate(R.layout.pull_more_list_view,null);
+        actualListView = (ListView) getLayoutInflater().inflate(R.layout.main_list_view,null);
         pullableListView.createListView(actualListView);
         dragListAdapter = new MainListAdapter(this, things);
         actualListView.setAdapter(dragListAdapter);

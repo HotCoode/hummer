@@ -17,7 +17,7 @@ import com.rise.R;
  * <p/>
  * 下拉显示Header
  */
-public class PullableListView extends LinearLayout {
+public class PullHeaderView extends LinearLayout {
 
     private float downY = 0.0f;
     private View headerView;
@@ -26,14 +26,14 @@ public class PullableListView extends LinearLayout {
     private boolean headerShowing = false;
     private int currentHeaderMargin = 0;
 
-    public PullableListView(Context context, AttributeSet attrs) {
+    public PullHeaderView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
-        headerView = LayoutInflater.from(context).inflate(R.layout.pull_more_list_view_header, null);
+        headerView = LayoutInflater.from(context).inflate(R.layout.main_list_view_header, null);
         addHeaderView(headerView);
     }
 
-    private void addHeaderView(View headerView) {
+    public void addHeaderView(View headerView) {
         addView(headerView);
         measureView(headerView);
         headerViewHeight = headerView.getMeasuredHeight();
@@ -42,6 +42,11 @@ public class PullableListView extends LinearLayout {
         currentHeaderMargin = -headerViewHeight;
     }
 
+    /**
+     * 設置header view 的 margin
+     *
+     * @param margin
+     */
     private void adjustHeaderView(int margin) {
         LayoutParams p = (LayoutParams) headerView.getLayoutParams();
         p.topMargin = margin;
@@ -55,7 +60,11 @@ public class PullableListView extends LinearLayout {
         }
     }
 
-    // 估算headview的width和height
+    /**
+     * 估算headview的width和height
+     *
+     * @param headerView
+     */
     private void measureView(View headerView) {
         LayoutParams p = (LayoutParams) headerView.getLayoutParams();
         if (p == null) {
@@ -77,6 +86,11 @@ public class PullableListView extends LinearLayout {
         return listView;
     }
 
+    /**
+     * 添加ListView
+     *
+     * @param listView
+     */
     public void createListView(ListView listView) {
         this.listView = listView;
         addView(listView);
@@ -85,13 +99,9 @@ public class PullableListView extends LinearLayout {
     private void applyHeaderPadding(MotionEvent ev) {
         float movingY = ev.getRawY();
         int marginTop = (int) ((movingY - downY) / 2);
-//        L.i("headerViewHeight:" + headerViewHeight);
-//        L.i("movingY:" + movingY);
-//        L.i("downY:" + downY);
-//        L.i("marginTop:" + marginTop);
         // 上滑
         if (marginTop < 0) {
-            L.i("上滑,marginTop:" + marginTop);
+//            L.i("上滑,marginTop:" + marginTop);
             int i = currentHeaderMargin + marginTop;
             if (i < -headerViewHeight) {
                 adjustHeaderView(-headerViewHeight);
@@ -103,7 +113,7 @@ public class PullableListView extends LinearLayout {
                 adjustHeaderView(i);
             }
         } else { // 下拉
-            L.i("下拉,marginTop:" + marginTop);
+//            L.i("下拉,marginTop:" + marginTop);
             int i = currentHeaderMargin + marginTop;
             if (i > 0) {
                 adjustHeaderView(0);
