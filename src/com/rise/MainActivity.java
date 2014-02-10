@@ -6,18 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.base.inject.InjectView;
 import com.base.inject.Injector;
-import com.rise.adapter.DragListAdapter;
+import com.rise.adapter.MainListAdapter;
 import com.rise.view.BoxView;
-import com.rise.view.DragListView;
+import com.rise.view.PullableListView;
 
 public class MainActivity extends Activity implements BoxView.BoxListener, View.OnClickListener {
 
-    @InjectView(R.id.drag_list_view)
-    private DragListView dragListView;
+    @InjectView(R.id.pullable_listview)
+    private PullableListView pullableListView;
+
+    private ListView actualListView;
 
     @InjectView(R.id.perfect_box)
     private BoxView perfectBox;
@@ -28,7 +31,7 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
     @InjectView(R.id.bad_box)
     private BoxView badBox;
 
-    private DragListAdapter dragListAdapter;
+    private MainListAdapter dragListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,10 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
         setContentView(R.layout.main);
         Injector.get(this).inject();
 
-        dragListAdapter = new DragListAdapter(this, things);
-        dragListView.setAdapter(dragListAdapter);
+        actualListView = (ListView) getLayoutInflater().inflate(R.layout.pull_more_list_view,null);
+        pullableListView.createListView(actualListView);
+        dragListAdapter = new MainListAdapter(this, things);
+        actualListView.setAdapter(dragListAdapter);
 
         perfectBox.setBoxListener(this);
         upholdBox.setBoxListener(this);
@@ -54,9 +59,9 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
     @Override
     public void onPut(BoxView view, ClipData data) {
         hover(view, false);
-        if(data != null && data.getItemCount() == 2){
+        if (data != null && data.getItemCount() == 2) {
             Toast.makeText(this, "Put:" + data.getItemAt(0).getText(), Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(this, "Put fail", Toast.LENGTH_SHORT).show();
         }
     }
@@ -73,23 +78,21 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
      * @param isEnter
      */
     private void hover(BoxView view, boolean isEnter) {
-	    View answerView = ((ViewGroup)view.getParent()).getChildAt(0);
+        View answerView = ((ViewGroup) view.getParent()).getChildAt(0);
+        int width;
         if (isEnter) {
-	        int width = getResources().getDimensionPixelSize(R.dimen.hover_width);
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) answerView.getLayoutParams();
-            params.width = width;
-	        answerView.setLayoutParams(params);
+            width = getResources().getDimensionPixelSize(R.dimen.hover_width);
         } else {
-	        int width = getResources().getDimensionPixelSize(R.dimen.hover_show_width);
-	        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) answerView.getLayoutParams();
-	        params.width = width;
-	        answerView.setLayoutParams(params);
+            width = getResources().getDimensionPixelSize(R.dimen.hover_show_width);
         }
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) answerView.getLayoutParams();
+        params.width = width;
+        answerView.setLayoutParams(params);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.perfect_box:
                 break;
             case R.id.uphold_box:
@@ -103,6 +106,6 @@ public class MainActivity extends Activity implements BoxView.BoxListener, View.
         }
     }
 
-    private String[] things = {"吃饭", "上班", "学习英语", "看了两小时电影", "译言网 | 怎样在一小时内学会（但不是精通）任何一种语言（加上兴趣） & 译言网 | 怎样在一小时内学会（但不精通）一门语言（附实例）", "高收益，长半衰期", "低收益，短半衰期", "高收益，短半衰期", "低收益，长半衰期", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
+    private String[] things = {"吃饭", "上班", "学习英语", "看了两小时电影", "译言网 | 怎样在一小时内学会（但不是精通）任何一种语言（加上兴趣） & 译言网 | 怎样在一小时内学会（但不精通）一门语言（附实例）", "高收益，长半衰期", "低收益，短半衰期", "高收益，短半衰期", "低收益，长半衰期", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
 
 }

@@ -4,122 +4,106 @@
 			 android:layout_height="fill_parent">
 
 	<!-- 列表 -->
-	<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginLeft="@dimen/hover_show_width"
-			android:layout_marginRight="@dimen/hover_show_width"
-			>
-
-		<com.rise.view.DragListView
-				android:id="@+id/drag_list_view"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:cacheColorHint="@android:color/transparent"
-				android:scrollbars="none"/>
-
-	</LinearLayout>
+	<com.rise.view.PullableListView
+		android:id="@+id/pullable_listview"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginLeft="@dimen/hover_show_width"
+		android:layout_marginRight="@dimen/hover_show_width" />
 
 	<!-- 左侧区域 -->
 	<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:paddingTop="@dimen/range_padding"
-			android:paddingBottom="@dimen/range_padding"
-			android:orientation="vertical"
-			android:layout_gravity="left"
-			>
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:paddingTop="@dimen/range_padding"
+		android:paddingBottom="@dimen/range_padding"
+		android:orientation="vertical"
+		android:layout_gravity="left">
 
 		<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				android:layout_marginBottom="10dp">
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:layout_marginBottom="10dp">
 
 			<View
-					android:layout_width="@dimen/hover_show_width"
-					android:layout_height="match_parent"
-					android:background="@color/perfect"
-					/>
+				android:layout_width="@dimen/hover_show_width"
+				android:layout_height="match_parent"
+				android:background="@color/perfect" />
 
 			<com.rise.view.BoxView
-					android:id="@+id/perfect_box"
-					android:layout_width="@dimen/hover_width"
-					android:layout_height="match_parent"
-					android:layout_gravity="left"
-					/>
+				android:id="@+id/perfect_box"
+				android:layout_width="@dimen/hover_width"
+				android:layout_height="match_parent"
+				android:layout_gravity="left" />
 		</FrameLayout>
 
 		<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				android:layout_marginTop="10dp">
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:layout_marginTop="10dp">
 
 			<View
-					android:layout_width="@dimen/hover_show_width"
-					android:layout_height="match_parent"
-					android:background="@color/uphold"
-					/>
+				android:layout_width="@dimen/hover_show_width"
+				android:layout_height="match_parent"
+				android:background="@color/uphold" />
 
 			<com.rise.view.BoxView
-					android:id="@+id/uphold_box"
-					android:layout_width="@dimen/hover_width"
-					android:layout_height="match_parent"
-					android:layout_gravity="left"
-					/>
+				android:id="@+id/uphold_box"
+				android:layout_width="@dimen/hover_width"
+				android:layout_height="match_parent"
+				android:layout_gravity="left" />
 		</FrameLayout>
 	</LinearLayout>
 
 	<!-- 右侧区域 -->
 	<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:paddingTop="@dimen/range_padding"
-			android:paddingBottom="@dimen/range_padding"
-			android:orientation="vertical"
-			android:gravity="right"
-			android:layout_gravity="right">
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:paddingTop="@dimen/range_padding"
+		android:paddingBottom="@dimen/range_padding"
+		android:orientation="vertical"
+		android:gravity="right"
+		android:layout_gravity="right">
 
 		<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				android:layout_marginBottom="10dp">
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:layout_marginBottom="10dp">
 
 			<View
-					android:layout_width="@dimen/hover_show_width"
-					android:layout_height="match_parent"
-					android:background="@color/quick"
-					android:layout_gravity="right"
-					/>
+				android:layout_width="@dimen/hover_show_width"
+				android:layout_height="match_parent"
+				android:background="@color/quick"
+				android:layout_gravity="right" />
 
 			<com.rise.view.BoxView
-					android:id="@+id/quick_box"
-					android:layout_width="@dimen/hover_width"
-					android:layout_height="match_parent"
-					android:layout_gravity="right"
-					/>
+				android:id="@+id/quick_box"
+				android:layout_width="@dimen/hover_width"
+				android:layout_height="match_parent"
+				android:layout_gravity="right" />
 		</FrameLayout>
 
 		<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				android:layout_marginTop="10dp">
+			android:layout_width="wrap_content"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:layout_marginTop="10dp">
+
 			<View
-					android:layout_width="@dimen/hover_show_width"
-					android:layout_height="match_parent"
-					android:background="@color/bad"
-					android:layout_gravity="right"
-					/>
+				android:layout_width="@dimen/hover_show_width"
+				android:layout_height="match_parent"
+				android:background="@color/bad"
+				android:layout_gravity="right" />
+
 			<com.rise.view.BoxView
-					android:id="@+id/bad_box"
-					android:layout_width="@dimen/hover_width"
-					android:layout_height="match_parent"
-					android:layout_gravity="right"
-					/>
+				android:id="@+id/bad_box"
+				android:layout_width="@dimen/hover_width"
+				android:layout_height="match_parent"
+				android:layout_gravity="right" />
 		</FrameLayout>
 
 	</LinearLayout>

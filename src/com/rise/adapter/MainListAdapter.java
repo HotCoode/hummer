@@ -13,12 +13,12 @@ import com.rise.view.DragView;
 /**
  * Created by kai.wang on 2/7/14.
  */
-public class DragListAdapter extends BaseAdapter {
+public class MainListAdapter extends BaseAdapter {
     private String[] things;
 
     private LayoutInflater inflater;
 
-    public DragListAdapter(Context context, String[] things) {
+    public MainListAdapter(Context context, String[] things) {
         this.things = things;
         inflater = LayoutInflater.from(context);
     }
