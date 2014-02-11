@@ -62,11 +62,7 @@ public class PullHeaderView extends LinearLayout {
         headerView.setLayoutParams(p);
         currentHeaderMargin = margin;
         L.i("currentHeaderMargin:" + currentHeaderMargin);
-        if (margin == -headerViewHeight) {
-            headerShowing = false;
-        } else {
-            headerShowing = true;
-        }
+        headerShowing = margin != -headerViewHeight;
     }
 
     /**
@@ -80,7 +76,7 @@ public class PullHeaderView extends LinearLayout {
             p = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
         headerView.setLayoutParams(p);
-        int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0 + 0, p.width);
+        int childWidthSpec = ViewGroup.getChildMeasureSpec(0, 0, p.width);
         int lpHeight = p.height;
         int childHeightSpec;
         if (lpHeight > 0) {
