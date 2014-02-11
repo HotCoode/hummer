@@ -28,7 +28,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     private BoxView quickBox;
     private BoxView badBox;
 
-    private MainListAdapter dragListAdapter;
+    private MainListAdapter mainListAdapter;
     private Activity activity;
 
     @Override
@@ -50,8 +50,8 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
         actualListView = (ListView) activity.getLayoutInflater().inflate(R.layout.main_list_view, null);
         pullableView.createListView(actualListView);
-        dragListAdapter = new MainListAdapter(activity, things);
-        actualListView.setAdapter(dragListAdapter);
+        mainListAdapter = new MainListAdapter(activity, things);
+        actualListView.setAdapter(mainListAdapter);
 
         pullableView.findViewById(R.id.header_add).setOnClickListener(this);
         pullableView.findViewById(R.id.header_delete).setOnClickListener(this);
