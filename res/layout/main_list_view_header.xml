@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			 android:layout_width="match_parent"
-			 android:layout_height="wrap_content"
-			 android:background="@color/darker_gray">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:layout_height="wrap_content"
+			  android:paddingTop="@dimen/hover_show_width"
+			  android:paddingBottom="@dimen/hover_show_width"
+			  android:paddingLeft="10dp"
+			  android:paddingRight="10dp"
+			  android:background="@color/darker_gray"
+			  android:orientation="horizontal">
 
-	<TextView
-		android:id="@+id/header_hint"
-		style="@style/header_hint_text"
-		android:layout_width="match_parent"
+	<Button
+		android:id="@+id/header_add"
+		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentTop="true"
-		android:paddingTop="@dimen/hover_show_width"
-		android:paddingBottom="@dimen/hover_show_width"
-		android:paddingLeft="10dp"
-		android:text="@string/edit" />
+		android:layout_weight="1"
+		android:layout_marginRight="5dp"
+		android:text="@string/add"
+		/>
 
-</RelativeLayout>
+	<Button
+		android:id="@+id/header_delete"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_marginLeft="5dp"
+		android:text="@string/delete"
+		/>
+
+</LinearLayout>

@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.base.L;
 import com.rise.R;
 
 /**
@@ -90,6 +89,10 @@ public class PullHeaderView extends LinearLayout {
         return listView;
     }
 
+    public View getHeaderView(){
+        return headerView;
+    }
+
     /**
      * 添加ListView
      *
@@ -100,7 +103,12 @@ public class PullHeaderView extends LinearLayout {
         addView(listView);
     }
 
-    private void applyHeaderPadding(MotionEvent ev, boolean actionUp) {
+    /**
+     * 计算并调整header显示的高度
+     * @param ev
+     * @param actionUp
+     */
+    private void applyHeaderMargin(MotionEvent ev, boolean actionUp) {
         float movingY = ev.getRawY();
         int marginTop = (int) ((movingY - downY) / 2);
         // 上滑
@@ -153,10 +161,10 @@ public class PullHeaderView extends LinearLayout {
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_MOVE) {
-            applyHeaderPadding(event, false);
+            applyHeaderMargin(event, false);
             downY = event.getRawY();
         } else if (action == MotionEvent.ACTION_UP) {
-            applyHeaderPadding(event, true);
+            applyHeaderMargin(event, true);
         }
         return super.onTouchEvent(event);
     }
