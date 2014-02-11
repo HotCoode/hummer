@@ -1,6 +1,7 @@
 package com.rise.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,7 +30,15 @@ public class PullHeaderView extends LinearLayout {
     public PullHeaderView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setOrientation(LinearLayout.VERTICAL);
-        headerView = LayoutInflater.from(context).inflate(R.layout.main_list_view_header, null);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.PullHeader);
+        int layout = a.getResourceId(R.styleable.PullHeader_layout, 0);
+        a.recycle();
+        if (layout == 0) {
+            throw new RuntimeException("PullHeaderView haven't header view.");
+        }
+
+        headerView = LayoutInflater.from(context).inflate(layout, null);
         addHeaderView(headerView);
     }
 
@@ -96,7 +105,7 @@ public class PullHeaderView extends LinearLayout {
         addView(listView);
     }
 
-    private void applyHeaderPadding(MotionEvent ev) {
+    private void applyHeaderPadding(MotionEvent ev, boolean actionUp) {
         float movingY = ev.getRawY();
         int marginTop = (int) ((movingY - downY) / 2);
         // 上滑
@@ -106,8 +115,8 @@ public class PullHeaderView extends LinearLayout {
             if (i < -headerViewHeight) {
                 adjustHeaderView(-headerViewHeight);
             } else {
-                // 露出一小部分时设置为全部隐藏
-                if (i + headerViewHeight < 10 && i + headerViewHeight > 0) {
+                // 上滑一半高度时自动隐藏
+                if (i < -headerViewHeight / 2) {
                     i = -headerViewHeight;
                 }
                 adjustHeaderView(i);
@@ -118,7 +127,12 @@ public class PullHeaderView extends LinearLayout {
             if (i > 0) {
                 adjustHeaderView(0);
             } else {
-                adjustHeaderView(i);
+                // 没全部下拉自动隐藏
+                if (actionUp && i < -5) {
+                    adjustHeaderView(-headerViewHeight);
+                } else {
+                    adjustHeaderView(i);
+                }
             }
         }
     }
@@ -145,9 +159,11 @@ public class PullHeaderView extends LinearLayout {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        if (action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_UP) {
-            applyHeaderPadding(event);
+        if (action == MotionEvent.ACTION_MOVE) {
+            applyHeaderPadding(event, false);
             downY = event.getRawY();
+        } else if (action == MotionEvent.ACTION_UP) {
+            applyHeaderPadding(event, true);
         }
         return super.onTouchEvent(event);
     }

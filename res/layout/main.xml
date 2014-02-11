@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			 xmlns:pull="http://schemas.android.com/apk/res/com.rise"
 			 android:layout_width="fill_parent"
 			 android:layout_height="fill_parent">
 
@@ -10,7 +11,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_marginLeft="@dimen/hover_show_width"
-		android:layout_marginRight="@dimen/hover_show_width" />
+		android:layout_marginRight="@dimen/hover_show_width"
+		pull:layout="@layout/main_list_view_header" />
 
 	<!-- 左侧区域 -->
 	<LinearLayout
