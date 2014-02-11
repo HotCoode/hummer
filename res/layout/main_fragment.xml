@@ -6,7 +6,7 @@
 
 	<!-- 列表 -->
 	<com.rise.view.PullHeaderView
-		android:id="@+id/pullable_listview"
+		android:id="@+id/pullable_view"
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
