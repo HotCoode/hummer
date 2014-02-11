@@ -23,10 +23,9 @@
 		<item name="android:background">@drawable/bg_drag_item</item>
 	</style>
 
-	<style name="dragging_text">
-		<item name="android:textSize">20sp</item>
+	<style name="header_hint_text">
+		<item name="android:textSize">18sp</item>
 		<item name="android:textColor">#333333</item>
-		<item name="android:background">#FFCCCCCC</item>
 	</style>
 
 </resources>

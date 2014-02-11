@@ -61,7 +61,6 @@ public class PullHeaderView extends LinearLayout {
         p.topMargin = margin;
         headerView.setLayoutParams(p);
         currentHeaderMargin = margin;
-        L.i("currentHeaderMargin:" + currentHeaderMargin);
         headerShowing = margin != -headerViewHeight;
     }
 

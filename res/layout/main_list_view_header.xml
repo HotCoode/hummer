@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			 android:layout_width="match_parent"
-			 android:layout_height="40dp"
-			 android:background="@color/holo_blue_dark">
+			 android:layout_height="wrap_content"
+			 android:background="@color/darker_gray">
 
 	<TextView
+		android:id="@+id/header_hint"
+		style="@style/header_hint_text"
 		android:layout_width="match_parent"
-		android:layout_height="40dp"
-		android:text="Header" />
-</FrameLayout>
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true"
+		android:paddingTop="@dimen/hover_show_width"
+		android:paddingBottom="@dimen/hover_show_width"
+		android:paddingLeft="10dp"
+		android:text="@string/edit" />
+
+</RelativeLayout>
