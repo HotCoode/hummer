@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.base.L;
 import com.rise.R;
 
 /**
@@ -89,7 +90,7 @@ public class PullHeaderView extends LinearLayout {
         return listView;
     }
 
-    public View getHeaderView(){
+    public View getHeaderView() {
         return headerView;
     }
 
@@ -105,6 +106,7 @@ public class PullHeaderView extends LinearLayout {
 
     /**
      * 计算并调整header显示的高度
+     *
      * @param ev
      * @param actionUp
      */
@@ -144,10 +146,10 @@ public class PullHeaderView extends LinearLayout {
         int action = ev.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
             downY = ev.getRawY();
-        } else if (action == MotionEvent.ACTION_MOVE || action == MotionEvent.ACTION_UP) {
+        } else if (action == MotionEvent.ACTION_MOVE) {
             if (listView.getFirstVisiblePosition() == 0) {
-                // header正在显示或者没显示并且向下拉调整header
-                if (headerShowing || downY - ev.getRawY() < 0) {
+                // (header正在显示 || 没显示并且向下拉) && 滑动距离大于10
+                if ((headerShowing || downY - ev.getRawY() < 0) && Math.abs(downY - ev.getRawY()) > 10) {
                     result = true;
                 }
             } else {
@@ -160,6 +162,7 @@ public class PullHeaderView extends LinearLayout {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
+        L.i(downY - event.getRawY());
         if (action == MotionEvent.ACTION_MOVE) {
             applyHeaderMargin(event, false);
             downY = event.getRawY();
