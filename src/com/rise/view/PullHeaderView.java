@@ -106,7 +106,6 @@ public class PullHeaderView extends LinearLayout {
         int marginTop = (int) ((movingY - downY) / 2);
         // 上滑
         if (marginTop < 0) {
-//            L.i("上滑,marginTop:" + marginTop);
             int i = currentHeaderMargin + marginTop;
             if (i < -headerViewHeight) {
                 adjustHeaderView(-headerViewHeight);
@@ -118,7 +117,6 @@ public class PullHeaderView extends LinearLayout {
                 adjustHeaderView(i);
             }
         } else { // 下拉
-//            L.i("下拉,marginTop:" + marginTop);
             int i = currentHeaderMargin + marginTop;
             if (i > 0) {
                 adjustHeaderView(0);
