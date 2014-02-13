@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.rise.R;
 import com.rise.view.DragView;
@@ -13,19 +14,19 @@ import com.rise.view.DragView;
 /**
  * Created by kai.wang on 2/7/14.
  */
-public class MainListAdapter extends BaseAdapter {
-    private String[] things;
+public class DrawerListAdapter extends BaseAdapter {
+    private String[] items;
 
     private LayoutInflater inflater;
 
-    public MainListAdapter(Context context, String[] things) {
-        this.things = things;
+    public DrawerListAdapter(Context context, String[] items) {
+        this.items = items;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return things.length;
+        return items.length;
     }
 
     @Override
@@ -41,9 +42,9 @@ public class MainListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.main_list_view_item,null);
+            convertView = inflater.inflate(R.layout.drawer_list_item,null);
         }
-        ((DragView)convertView).setText(things[position]);
+        ((TextView)convertView).setText(items[position]);
         convertView.setTag(position);
         return convertView;
     }

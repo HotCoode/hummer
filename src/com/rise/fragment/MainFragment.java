@@ -5,9 +5,13 @@ import android.content.ClipData;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -31,6 +35,15 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     private MainListAdapter mainListAdapter;
     private Activity activity;
 
+    private Menu menu;
+
+    private ImageView putAnimView;
+    private Animation animation;
+
+    public MainFragment(Menu menu){
+        this.menu = menu;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         activity = getActivity();
@@ -47,6 +60,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         upholdBox = (BoxView) parentView.findViewById(R.id.uphold_box);
         quickBox = (BoxView) parentView.findViewById(R.id.quick_box);
         badBox = (BoxView) parentView.findViewById(R.id.bad_box);
+        putAnimView = (ImageView) activity.getLayoutInflater().inflate(R.layout.put_anim,null);
 
         actualListView = (ListView) activity.getLayoutInflater().inflate(R.layout.main_list_view, null);
         pullableView.createListView(actualListView);
@@ -59,6 +73,8 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         upholdBox.setBoxListener(this);
         quickBox.setBoxListener(this);
         badBox.setBoxListener(this);
+        animation = AnimationUtils.loadAnimation(activity, R.anim.put_anim);
+        menu.findItem(R.id.menu_put_anim).setActionView(putAnimView);
     }
 
     @Override
@@ -71,6 +87,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         hover(view, false);
         if (data != null && data.getItemCount() == 2) {
             Toast.makeText(activity, "Put:" + data.getItemAt(0).getText(), Toast.LENGTH_SHORT).show();
+            startPutAnim(view.getId());
         } else {
             Toast.makeText(activity, "Put fail", Toast.LENGTH_SHORT).show();
         }
@@ -108,6 +125,17 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 break;
             case R.id.header_delete:
                 Toast.makeText(activity, "delete", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void startPutAnim(int id){
+        switch (id){
+            case R.id.perfect_box:
+                putAnimView.setImageResource(R.drawable.cricle_green);
+                putAnimView.startAnimation(animation);
                 break;
             default:
                 break;
