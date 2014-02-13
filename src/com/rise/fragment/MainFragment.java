@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -40,7 +41,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     private ImageView putAnimView;
     private Animation animation;
 
-    public MainFragment(Menu menu){
+    public MainFragment(Menu menu) {
         this.menu = menu;
     }
 
@@ -60,7 +61,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         upholdBox = (BoxView) parentView.findViewById(R.id.uphold_box);
         quickBox = (BoxView) parentView.findViewById(R.id.quick_box);
         badBox = (BoxView) parentView.findViewById(R.id.bad_box);
-        putAnimView = (ImageView) activity.getLayoutInflater().inflate(R.layout.put_anim,null);
+        putAnimView = (ImageView) activity.getLayoutInflater().inflate(R.layout.put_anim, null);
 
         actualListView = (ListView) activity.getLayoutInflater().inflate(R.layout.main_list_view, null);
         pullableView.createListView(actualListView);
@@ -74,6 +75,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         quickBox.setBoxListener(this);
         badBox.setBoxListener(this);
         animation = AnimationUtils.loadAnimation(activity, R.anim.put_anim);
+
         menu.findItem(R.id.menu_put_anim).setActionView(putAnimView);
     }
 
@@ -131,10 +133,10 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         }
     }
 
-    private void startPutAnim(int id){
-        switch (id){
+    private void startPutAnim(int id) {
+        switch (id) {
             case R.id.perfect_box:
-                putAnimView.setImageResource(R.drawable.cricle_green);
+                putAnimView.setImageResource(R.drawable.circle_blue);
                 putAnimView.startAnimation(animation);
                 break;
             default:

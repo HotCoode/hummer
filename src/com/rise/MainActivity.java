@@ -1,10 +1,12 @@
 package com.rise;
 
+import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -65,9 +67,11 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu, menu);
+        menu.findItem(R.id.menu_put_anim).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         initFragment(menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
