@@ -2,11 +2,12 @@ package com.rise.fragment;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -40,6 +41,8 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     private ImageView putAnimView;
     private Animation animation;
+	private Drawable circlePerfect,circleUphold,circleQuick,circleBad;
+
 
     public MainFragment(Menu menu) {
         this.menu = menu;
@@ -77,6 +80,10 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         animation = AnimationUtils.loadAnimation(activity, R.anim.put_anim);
 
         menu.findItem(R.id.menu_put_anim).setActionView(putAnimView);
+	    circlePerfect = activity.getResources().getDrawable(R.drawable.circle_perfect);
+	    circleUphold = activity.getResources().getDrawable(R.drawable.circle_uphold);
+	    circleQuick = activity.getResources().getDrawable(R.drawable.circle_quick);
+	    circleBad = activity.getResources().getDrawable(R.drawable.circle_bad);
     }
 
     @Override
@@ -136,12 +143,21 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     private void startPutAnim(int id) {
         switch (id) {
             case R.id.perfect_box:
-                putAnimView.setImageResource(R.drawable.circle_blue);
-                putAnimView.startAnimation(animation);
+                putAnimView.setImageDrawable(circlePerfect);
                 break;
+	        case R.id.uphold_box:
+		        putAnimView.setImageDrawable(circleUphold);
+		        break;
+	        case R.id.quick_box:
+		        putAnimView.setImageDrawable(circleQuick);
+		        break;
+	        case R.id.bad_box:
+		        putAnimView.setImageDrawable(circleBad);
+		        break;
             default:
                 break;
         }
+	    putAnimView.startAnimation(animation);
     }
 
     private String[] things = {"吃饭", "上班", "学习英语", "看了两小时电影", "译言网 | 怎样在一小时内学会（但不是精通）任何一种语言（加上兴趣） & 译言网 | 怎样在一小时内学会（但不精通）一门语言（附实例）", "高收益，长半衰期", "低收益，短半衰期", "高收益，短半衰期", "低收益，长半衰期", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
