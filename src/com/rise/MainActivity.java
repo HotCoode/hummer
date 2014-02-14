@@ -1,37 +1,40 @@
 package com.rise;
 
-import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.base.common.Screen;
 import com.rise.adapter.DrawerListAdapter;
+import com.rise.component.BaseActivity;
 import com.rise.component.DrawerToggle;
 import com.rise.fragment.MainFragment;
+import com.rise.fragment.NotesFragment;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity implements ListView.OnItemClickListener {
 
-    private FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
 
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
 
     private DrawerToggle drawerToggle;
+
+    // drawer list 数据
+    private int[] drawerList = {R.string.home, R.string.high_income_long_half_life, R.string.low_income_long_half_life, R.string.high_income_short_half_life, R.string.low_income_short_half_life};
+
+    private Menu menu;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,10 @@ public class MainActivity extends ActionBarActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(Screen.getScreenWidth(getWindowManager()) * 3 / 4, ViewGroup.LayoutParams.MATCH_PARENT);
-        params.gravity = Gravity.START;
+        params.gravity = Gravity.LEFT;
         drawerListView.setLayoutParams(params);
-        drawerListView.setAdapter(new DrawerListAdapter(this, new String[]{"aaaa", "bbbb", "cccc"}));
+        drawerListView.setAdapter(new DrawerListAdapter(this, drawerList));
+        drawerListView.setOnItemClickListener(this);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         drawerToggle = new DrawerToggle(this, drawerLayout);
@@ -55,14 +59,27 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void initFragment(Menu menu) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentManager = getSupportFragmentManager();
         showFragment(new MainFragment(menu));
     }
 
     private void showFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.content_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void showFragment(int id) {
+        Fragment fragment = null;
+        if(id == R.string.home){
+            fragment = new MainFragment(menu);
+        }else{
+            Bundle bundle = new Bundle();
+            bundle.putInt("id",id);
+            fragment = new NotesFragment();
+            fragment.setArguments(bundle);
+        }
+        showFragment(fragment);
     }
 
     @Override
@@ -71,6 +88,7 @@ public class MainActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         menu.findItem(R.id.menu_put_anim).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         initFragment(menu);
+        this.menu = menu;
         return true;
     }
 
@@ -96,4 +114,9 @@ public class MainActivity extends ActionBarActivity {
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        showFragment(drawerList[position]);
+        drawerLayout.closeDrawers();
+    }
 }

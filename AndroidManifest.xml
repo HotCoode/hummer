@@ -9,6 +9,7 @@
 		android:minSdkVersion="11"
 		android:targetSdkVersion="18" />
 	<application
+		android:name=".RiseApplication"
 		android:label="@string/app_name"
 		android:icon="@drawable/ic_launcher"
 		android:theme="@style/AppTheme"

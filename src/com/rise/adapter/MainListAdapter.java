@@ -7,25 +7,28 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.rise.R;
+import com.rise.bean.Item;
 import com.rise.view.DragView;
+
+import java.util.List;
 
 
 /**
  * Created by kai.wang on 2/7/14.
  */
 public class MainListAdapter extends BaseAdapter {
-    private String[] things;
+    private List<Item> things;
 
     private LayoutInflater inflater;
 
-    public MainListAdapter(Context context, String[] things) {
+    public MainListAdapter(Context context, List<Item> things) {
         this.things = things;
         inflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        return things.length;
+        return things.size();
     }
 
     @Override
@@ -43,8 +46,8 @@ public class MainListAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.main_list_view_item,null);
         }
-        ((DragView)convertView).setText(things[position]);
-        convertView.setTag(position);
+        ((DragView)convertView).setText(things.get(position).getContent());
+        convertView.setTag(things.get(position).getId());
         return convertView;
     }
 }

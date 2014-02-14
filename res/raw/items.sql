@@ -1,0 +1,5 @@
+CREATE TABLE items (
+id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+content  TEXT,
+status  TEXT
+);

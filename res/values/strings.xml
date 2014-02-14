@@ -7,4 +7,10 @@
 	<string name="main_frame">Rise</string>
 	<string name="drawer_open">Open navigation drawer</string>
 	<string name="drawer_close">Close navigation drawer</string>
+	<string name="put_fail">添加失败</string>
+	<string name="home">首页</string>
+	<string name="high_income_long_half_life">高收益-长半衰期</string>
+	<string name="low_income_long_half_life">低收益-长半衰期</string>
+	<string name="high_income_short_half_life">高收益-短半衰期</string>
+	<string name="low_income_short_half_life">低收益-短半衰期</string>
 </resources>

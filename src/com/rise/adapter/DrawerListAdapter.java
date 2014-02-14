@@ -15,11 +15,13 @@ import com.rise.view.DragView;
  * Created by kai.wang on 2/7/14.
  */
 public class DrawerListAdapter extends BaseAdapter {
-    private String[] items;
+    private int[] items;
 
     private LayoutInflater inflater;
+    private Context context;
 
-    public DrawerListAdapter(Context context, String[] items) {
+    public DrawerListAdapter(Context context, int[] items) {
+        this.context = context;
         this.items = items;
         inflater = LayoutInflater.from(context);
     }
@@ -44,8 +46,8 @@ public class DrawerListAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.drawer_list_item,null);
         }
-        ((TextView)convertView).setText(items[position]);
-        convertView.setTag(position);
+        ((TextView)convertView).setText(context.getResources().getText(items[position]));
+        convertView.setTag(items[position]);
         return convertView;
     }
 }
