@@ -23,7 +23,6 @@ public class RiseApplication extends Application {
         @Override
         protected Boolean doInBackground(Void... params) {
             SQL.loadSql(RiseApplication.this);
-            QueryHelper.init(new DBHelper(RiseApplication.this));
             return null;
         }
     }

@@ -17,10 +17,10 @@ public class DragView extends TextView {
         super(context, attrs);
         setOnLongClickListener(new View.OnLongClickListener() {
             public boolean onLongClick(View v) {
-                ClipData data = ClipData.newPlainText("text", ((TextView) v).getText());
+                ClipData data = null;
                 Object tag = v.getTag();
                 if (tag != null) {
-                    data.addItem(new ClipData.Item(tag.toString()));
+                    data = ClipData.newPlainText("text", tag.toString());
                 }
                 v.startDrag(data, new ShadowBuilder(v), (Object) v, 0);
                 return true;

@@ -16,9 +16,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.base.common.Screen;
+import com.base.orm.QueryHelper;
 import com.rise.adapter.DrawerListAdapter;
 import com.rise.component.BaseActivity;
 import com.rise.component.DrawerToggle;
+import com.rise.db.DBHelper;
 import com.rise.fragment.MainFragment;
 import com.rise.fragment.NotesFragment;
 
@@ -56,6 +58,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
         drawerToggle = new DrawerToggle(this, drawerLayout);
         drawerLayout.setDrawerListener(drawerToggle);
+
+        QueryHelper.init(new DBHelper(this));
     }
 
     private void initFragment(Menu menu) {
@@ -118,5 +122,12 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         showFragment(drawerList[position]);
         drawerLayout.closeDrawers();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        QueryHelper.close();
+        System.exit(1);
     }
 }

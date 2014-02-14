@@ -112,9 +112,9 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     @Override
     public void onPut(BoxView view, ClipData data) {
         hover(view, false);
-        if (data != null && data.getItemCount() == 2) {
-//            Toast.makeText(activity, "Put:" + data.getItemAt(0).getText(), Toast.LENGTH_SHORT).show();
+        if (data != null) {
             startPutAnim(view.getId());
+            putNote(view.getId(),data.getItemAt(0).getText().toString());
         } else {
             Toast.makeText(activity, R.string.put_fail, Toast.LENGTH_SHORT).show();
         }
@@ -123,6 +123,30 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     @Override
     public void onExit(BoxView view) {
         hover(view, false);
+    }
+
+    /**
+     * 添加新note
+     * @param boxId
+     * @param itemId
+     */
+    private void putNote(int boxId,String itemId){
+        String type = "";
+        switch (boxId){
+            case R.id.perfect_box:
+                type = SqlConst.NOTE_TYPE_HIGH_INCOME_LONG_HALF_LIFE;
+                break;
+            case R.id.uphold_box:
+                type = SqlConst.NOTE_TYPE_LOW_INCOME_LONG_HALF_LIFE;
+                break;
+            case R.id.quick_box:
+                type = SqlConst.NOTE_TYPE_HIGH_INCOME_SHORT_HALF_LIFE;
+                break;
+            case R.id.bad_box:
+                type = SqlConst.NOTE_TYPE_LOW_INCOME_SHORT_HALF_LIFE;
+                break;
+        }
+        QueryHelper.update(SQL.PUT_NEW_NOTE, new String[]{itemId, type, System.currentTimeMillis() + ""}, null);
     }
 
     /**

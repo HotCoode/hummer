@@ -3,7 +3,7 @@ id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 item_id  INTEGER,
 type  TEXT,
 time  TEXT,
-status  TEXT,
-sync  TEXT,
+status  TEXT DEFAULT 1,
+sync  TEXT DEFAULT 0,
 CONSTRAINT notes_items FOREIGN KEY (item_id) REFERENCES items (id)
 );
