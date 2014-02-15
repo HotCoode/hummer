@@ -12,4 +12,9 @@
 	<color name="item_pressed">#33669900</color>
 	<color name="item_focused">#60669900</color>
 	<color name="background_holo_light">#fff0f0f0</color>
+
+	<color name="perfect_notes_bg">#10669900</color>
+	<color name="uphold_notes_bg">#100099cc</color>
+	<color name="quick_notes_bg">#10ff8800</color>
+	<color name="bad_notes_bg">#10cc0000</color>
 </resources>

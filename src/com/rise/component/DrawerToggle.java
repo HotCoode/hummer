@@ -3,6 +3,7 @@ package com.rise.component;
 import android.app.Activity;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.rise.R;
@@ -13,11 +14,11 @@ import com.rise.fragment.FragmentUtil;
  */
 public class DrawerToggle extends ActionBarDrawerToggle {
 
-    private Activity activity;
+    private ActionBarActivity activity;
 
     private int currentTitle = R.string.main_frame;
 
-    public DrawerToggle(Activity activity, DrawerLayout drawerLayout){
+    public DrawerToggle(ActionBarActivity activity, DrawerLayout drawerLayout){
         super(activity, drawerLayout, R.drawable.ic_drawer, R.string.drawer_open,R.string.drawer_close);
         this.activity = activity;
     }
@@ -34,13 +35,13 @@ public class DrawerToggle extends ActionBarDrawerToggle {
         currentTitle = title;
     }
 
+	@Override
     public void onDrawerClosed(View view) {
-        activity.getActionBar().setTitle(FragmentUtil.getCurrentFragment());
-//        activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+        activity.getSupportActionBar().setTitle(FragmentUtil.getCurrentFragment());
     }
 
+	@Override
     public void onDrawerOpened(View drawerView) {
-        activity.getActionBar().setTitle(R.string.app_name);
-//        activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+        activity.getSupportActionBar().setTitle(R.string.app_name);
     }
 }

@@ -82,7 +82,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     }
 
     private void showFragment(int id) {
-        Fragment fragment = null;
+	    if (FragmentUtil.getCurrentFragment() == id) return;
+	    Fragment fragment = null;
         if(id == R.string.notes){
             fragment = new MainFragment(menu);
         }else{
