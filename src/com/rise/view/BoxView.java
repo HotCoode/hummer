@@ -60,25 +60,23 @@ public class BoxView extends TextView {
         boolean result = false;
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED: {
-                L.i("box start @ " + this);
                 result = true;
             }
             break;
 
             case DragEvent.ACTION_DRAG_ENTERED: {
                 exited = false;
-                L.i("box 123123 Entered dot @ " + this);
                 if (boxListener != null) boxListener.onEnter(this);
             }
             break;
 
             case DragEvent.ACTION_DRAG_EXITED: {
-                L.i("box Exited dot @ " + this);
                 exited = true;
                 if (boxListener != null) boxListener.onExit(this);
             }
+            break;
+
             case DragEvent.ACTION_DROP: {
-                L.i("box drop @ " + this);
                 result = true;
                 if(!exited){
                     ClipData data = event.getClipData();

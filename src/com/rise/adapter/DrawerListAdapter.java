@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.rise.R;
+import com.rise.fragment.FragmentUtil;
 import com.rise.view.DragView;
 
 
@@ -48,6 +49,11 @@ public class DrawerListAdapter extends BaseAdapter {
         }
         ((TextView)convertView).setText(context.getResources().getText(items[position]));
         convertView.setTag(items[position]);
+	    if(FragmentUtil.getCurrentFragment() == items[position]){
+		    convertView.setBackgroundResource(R.drawable.bg_list_item_focus);
+	    }else{
+		    convertView.setBackgroundResource(R.drawable.bg_list_item);
+	    }
         return convertView;
     }
 }

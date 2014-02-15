@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 
 import com.rise.R;
+import com.rise.fragment.FragmentUtil;
 
 /**
  * Created by kai.wang on 2/11/14.
@@ -34,12 +35,12 @@ public class DrawerToggle extends ActionBarDrawerToggle {
     }
 
     public void onDrawerClosed(View view) {
-        activity.getActionBar().setTitle(currentTitle);
-        activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+        activity.getActionBar().setTitle(FragmentUtil.getCurrentFragment());
+//        activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
     public void onDrawerOpened(View drawerView) {
         activity.getActionBar().setTitle(R.string.app_name);
-        activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+//        activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 }

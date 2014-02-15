@@ -10,5 +10,6 @@
 	<color name="lighter_gray">#ddd</color>
 	<color name="darker_gray">#ccc</color>
 	<color name="item_pressed">#33669900</color>
-	<color name="background_holo_light">#fff3f3f3</color>
+	<color name="item_focused">#60669900</color>
+	<color name="background_holo_light">#fff0f0f0</color>
 </resources>
