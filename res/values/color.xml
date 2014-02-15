@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<color name="text_normal">#333333</color>
 	<color name="perfect">#690</color>
 	<color name="uphold">#09c</color>
 	<color name="quick">#f80</color>
