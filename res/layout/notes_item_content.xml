@@ -4,7 +4,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@drawable/bg_list_item"
-				android:padding="10dp"
+				android:padding="7dp"
 		>
 	<LinearLayout
 			android:id="@+id/notes_item_content_time"
@@ -33,6 +33,6 @@
 			android:layout_height="wrap_content"
 			android:layout_centerVertical="true"
 			android:layout_toRightOf="@id/notes_item_content_time"
-			android:layout_marginLeft="@dimen/hover_show_width"
+			android:layout_marginLeft="7dp"
 			/>
 </RelativeLayout>
