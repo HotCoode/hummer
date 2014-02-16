@@ -11,6 +11,7 @@ public class NotesItemOrder {
 	private String month;
 	private NotesItem item;
 	private int type;
+	private String year;
 
 	public String getMonth() {
 		return month;
@@ -34,5 +35,13 @@ public class NotesItemOrder {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
 	}
 }

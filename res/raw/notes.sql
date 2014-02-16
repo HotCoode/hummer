@@ -2,7 +2,7 @@ CREATE TABLE notes (
 id  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 item_id  INTEGER,
 type  TEXT,
-time  TEXT,
+time  INTEGER,
 status  TEXT DEFAULT 1,
 sync  TEXT DEFAULT 0,
 CONSTRAINT notes_items FOREIGN KEY (item_id) REFERENCES items (id)

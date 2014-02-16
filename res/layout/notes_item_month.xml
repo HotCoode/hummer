@@ -4,6 +4,7 @@
 		  android:layout_width="match_parent"
 		  android:layout_height="match_parent"
 		  android:gravity="center"
-		  android:padding="@dimen/hover_width"
+		  android:padding="@dimen/notes_item_padding"
+		  android:background="@android:color/transparent"
 		  style="@style/notes_item_month"
 		/>

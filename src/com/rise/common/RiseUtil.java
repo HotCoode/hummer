@@ -3,9 +3,11 @@ package com.rise.common;
 import com.rise.R;
 import com.rise.bean.NotesItem;
 import com.rise.bean.NotesItemOrder;
+import com.rise.bean.Time;
 import com.rise.db.SqlConst;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -14,9 +16,9 @@ import java.util.List;
  */
 public class RiseUtil {
 
-	public static String getTypeByName(int name){
+	public static String getTypeByName(int name) {
 		String type = null;
-		switch (name){
+		switch (name) {
 			case R.string.high_income_long_half_life:
 				type = SqlConst.NOTE_TYPE_HIGH_INCOME_LONG_HALF_LIFE;
 				break;
@@ -33,13 +35,62 @@ public class RiseUtil {
 		return type;
 	}
 
-	public List<NotesItemOrder> packageNoteItems(List<NotesItem> items){
-		List<NotesItemOrder> result = new ArrayList<NotesItemOrder>();
-		// todo 组装noteitem，按月分组
-		for(NotesItem item : items){
+	public static int getColorByName(int name) {
+		int color = 0;
+		switch (name) {
+			case R.string.high_income_long_half_life:
+				color = R.color.perfect;
+				break;
+			case R.string.low_income_long_half_life:
+				color = R.color.uphold;
+				break;
+			case R.string.high_income_short_half_life:
+				color = R.color.quick;
+				break;
+			case R.string.low_income_short_half_life:
+				color = R.color.bad;
+				break;
+		}
+		return color;
+	}
 
+	public static List<NotesItemOrder> packageNoteItems(List<NotesItem> items) {
+		List<NotesItemOrder> result = new ArrayList<NotesItemOrder>();
+		Time splitTime = new Time();
+		for (NotesItem item : items) {
+			Time tmpTime = getTimeByMillis(item.getTime());
+			if (!(splitTime.getYear() == tmpTime.getYear() && splitTime.getMonth() == tmpTime.getMonth())) {
+				splitTime = tmpTime;
+				NotesItemOrder order = new NotesItemOrder();
+				order.setType(NotesItemOrder.TYPE_MONTH);
+				order.setMonth(splitTime.getMonth() + "");
+				order.setYear(splitTime.getYear() + "");
+				result.add(order);
+			}
+			NotesItemOrder order = new NotesItemOrder();
+			item.setMonth(tmpTime.getMonth() + "");
+			item.setDay(tmpTime.getDay() + "");
+			order.setItem(item);
+			order.setType(NotesItemOrder.TYPE_ITEM);
+			result.add(order);
 		}
 		return result;
+	}
+
+	public static Time getTimeByMillis(long millis) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(millis);
+		Time time = new Time();
+		time.setYear(calendar.get(Calendar.YEAR));
+		time.setMonth(calendar.get(Calendar.MONTH) + 1);
+		time.setDay(calendar.get(Calendar.DAY_OF_MONTH));
+		return time;
+	}
+
+	public static int getYearByMillis(long millis) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(millis);
+		return calendar.get(Calendar.YEAR);
 	}
 
 }

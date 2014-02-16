@@ -130,13 +130,13 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	    drawerLayout.closeDrawers();
 	    for(int i=0;i<parent.getCount();i++){
 		    parent.getChildAt(i).setBackgroundResource(R.drawable.bg_list_item);
 	    }
 	    view.setBackgroundResource(R.drawable.bg_list_item_focus);
         showFragment(drawerList[position]);
 	    drawerToggle.setTitle(drawerList[position]);
-        drawerLayout.closeDrawers();
     }
 
     @Override
