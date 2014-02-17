@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,8 +39,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     // drawer list 数据
     private int[] drawerList = {R.string.notes, R.string.high_income_long_half_life, R.string.low_income_long_half_life, R.string.high_income_short_half_life, R.string.low_income_short_half_life};
 
-    private Menu menu;
-
 	// 当前显示的fragment
 	private int currentFragment = R.string.notes;
 
@@ -66,13 +65,15 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         drawerLayout.setDrawerListener(drawerToggle);
 
         QueryHelper.init(new DBHelper(this));
+
+        initFragment();
     }
 
-    private void initFragment(Menu menu) {
+    private void initFragment() {
 	    setTitle(R.string.notes);
         fragmentManager = getSupportFragmentManager();
 	    FragmentUtil.setCurrentFragment(R.string.notes);
-        showFragment(new MainFragment(menu));
+        showFragment(new MainFragment());
     }
 
     private void showFragment(Fragment fragment) {
@@ -85,7 +86,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 	    if (FragmentUtil.getCurrentFragment() == id) return;
 	    Fragment fragment = null;
         if(id == R.string.notes){
-            fragment = new MainFragment(menu);
+            fragment = new MainFragment();
         }else{
             Bundle bundle = new Bundle();
             bundle.putInt("id",id);
@@ -96,15 +97,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         showFragment(fragment);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.menu, menu);
-        menu.findItem(R.id.menu_put_anim).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        initFragment(menu);
-        this.menu = menu;
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -137,6 +129,15 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 	    view.setBackgroundResource(R.drawable.bg_list_item_focus);
         showFragment(drawerList[position]);
 	    drawerToggle.setTitle(drawerList[position]);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && FragmentUtil.getCurrentFragment() != R.string.notes){
+            showFragment(R.string.notes);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override

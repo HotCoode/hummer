@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			 xmlns:pull="http://schemas.android.com/apk/res/com.rise"
 			 android:layout_width="fill_parent"
 			 android:layout_height="fill_parent">
 
+	<ImageView
+		android:id="@+id/put_anim"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:scaleType="centerInside"
+		android:layout_gravity="center"
+		android:layout_marginBottom="50dp" />
 	<!-- 列表 -->
-	<com.rise.view.PullHeaderView
-		android:id="@+id/pullable_view"
-		android:orientation="vertical"
+	<ListView
+		android:id="@+id/main_list_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:cacheColorHint="@android:color/transparent"
+		android:footerDividersEnabled="true"
 		android:layout_marginLeft="@dimen/padding_normal"
 		android:layout_marginRight="@dimen/padding_normal"
-		pull:layout="@layout/main_list_view_header" />
+		android:scrollbars="none" />
 
 	<!-- 左侧区域 -->
 	<LinearLayout

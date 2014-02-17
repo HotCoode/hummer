@@ -9,6 +9,8 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -25,7 +27,6 @@ import com.rise.bean.Item;
 import com.rise.db.SQL;
 import com.rise.db.SqlConst;
 import com.rise.view.BoxView;
-import com.rise.view.PullHeaderView;
 
 import java.util.List;
 
@@ -34,8 +35,7 @@ import java.util.List;
  * 主页面
  */
 public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxListener, View.OnClickListener {
-    private PullHeaderView pullableView;
-    private ListView actualListView;
+    private ListView mainListView;
     private BoxView perfectBox;
     private BoxView upholdBox;
     private BoxView quickBox;
@@ -43,8 +43,6 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     private MainListAdapter mainListAdapter;
     private Activity activity;
-
-    private Menu menu;
 
     private ImageView putAnimView;
     private Animation animation;
@@ -56,14 +54,16 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         @Override
         public boolean handleMessage(Message msg) {
             if(msg.what == ITEM_LOAD_FINISH){
-                actualListView.setAdapter(mainListAdapter);
+                mainListView.setAdapter(mainListAdapter);
             }
             return false;
         }
     });
 
-    public MainFragment(Menu menu) {
-        this.menu = menu;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -77,25 +77,20 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     @Override
     public void injectViews(View parentView) {
-        pullableView = (PullHeaderView) parentView.findViewById(R.id.pullable_view);
         perfectBox = (BoxView) parentView.findViewById(R.id.perfect_box);
         upholdBox = (BoxView) parentView.findViewById(R.id.uphold_box);
         quickBox = (BoxView) parentView.findViewById(R.id.quick_box);
         badBox = (BoxView) parentView.findViewById(R.id.bad_box);
-        putAnimView = (ImageView) activity.getLayoutInflater().inflate(R.layout.put_anim, null);
+        putAnimView = (ImageView) parentView.findViewById(R.id.put_anim);
 
-        actualListView = (ListView) activity.getLayoutInflater().inflate(R.layout.main_list_view, null);
-        pullableView.createListView(actualListView);
+        mainListView = (ListView) parentView.findViewById(R.id.main_list_view);
 
-        pullableView.findViewById(R.id.header_add).setOnClickListener(this);
-        pullableView.findViewById(R.id.header_delete).setOnClickListener(this);
         perfectBox.setBoxListener(this);
         upholdBox.setBoxListener(this);
         quickBox.setBoxListener(this);
         badBox.setBoxListener(this);
         animation = AnimationUtils.loadAnimation(activity, R.anim.put_anim);
 
-        menu.findItem(R.id.menu_put_anim).setActionView(putAnimView);
         circlePerfect = activity.getResources().getDrawable(R.drawable.circle_perfect);
         circleUphold = activity.getResources().getDrawable(R.drawable.circle_uphold);
         circleQuick = activity.getResources().getDrawable(R.drawable.circle_quick);
@@ -217,6 +212,12 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 break;
         }
         putAnimView.startAnimation(animation);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 }

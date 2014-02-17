@@ -7,15 +7,15 @@
 	android:fillAfter="true"
 	>
 	<scale
-		android:fromXScale="1.0"
-		android:fromYScale="1.0"
-		android:toXScale="2.0"
-		android:toYScale="2.0"
+		android:fromXScale="3.0"
+		android:fromYScale="3.0"
+		android:toXScale="8.0"
+		android:toYScale="8.0"
 		android:pivotX="50%"
 		android:pivotY="50%"
 		/>
 	<alpha
-		android:fromAlpha="0.5"
+		android:fromAlpha="0.3"
 		android:toAlpha="0.0"
 		/>
 </set>

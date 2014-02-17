@@ -3,9 +3,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
 		android:id="@+id/menu_put_anim"
-		android:showAsAction="always"
+		android:showAsAction="never"
 		android:orderInCategory="100"
 		android:enabled="true"
 		android:menuCategory="alternative"
+		android:title="anim"
 		/>
 </menu>
