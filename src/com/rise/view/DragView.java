@@ -41,36 +41,20 @@ public class DragView extends TextView {
         boolean result = false;
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED: {
-//                L.i("ACTION_DRAG_STARTED, event=" + event);
                 result = true;
             }
             break;
-
-            case DragEvent.ACTION_DRAG_ENDED: {
-//                L.i("ACTION_DRAG_ENDED.");
-            }
-            break;
-
             case DragEvent.ACTION_DROP: {
-//                L.i("ACTION_DROP! dot=" + this + " event=" + event);
                 result = true;
             }
             break;
-
-            case DragEvent.ACTION_DRAG_ENTERED: {
-//                L.i("ACTION_DRAG_ENTERED,Entered dot @ " + this);
-            }
-            break;
-
             default:
                 break;
         }
-
         return result;
     }
 
 
-    // Shadow builder that can ANR if desired
     class ShadowBuilder extends DragShadowBuilder {
 
         public ShadowBuilder(View view) {
@@ -79,7 +63,6 @@ public class DragView extends TextView {
 
         @Override
         public void onDrawShadow(Canvas canvas) {
-            canvas.drawColor(Color.LTGRAY);
             super.onDrawShadow(canvas);
         }
     }

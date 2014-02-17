@@ -31,9 +31,15 @@ public class DrawerToggle extends ActionBarDrawerToggle {
      * 设置当前ActionBar上显示的title,drawer close 时显示
      * @param title
      */
-    public void setTitle(int title){
+    public void changeTitle(int title){
         currentTitle = title;
     }
+
+    public void setTitle(int title){
+        activity.getSupportActionBar().setTitle(title);
+    }
+
+
 
 	@Override
     public void onDrawerClosed(View view) {

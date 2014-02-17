@@ -9,7 +9,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +37,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
     // drawer list 数据
     private int[] drawerList = {R.string.notes, R.string.high_income_long_half_life, R.string.low_income_long_half_life, R.string.high_income_short_half_life, R.string.low_income_short_half_life};
+    private DrawerListAdapter adapter;
+
 
 	// 当前显示的fragment
 	private int currentFragment = R.string.notes;
@@ -57,7 +58,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 	    DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(Const.SCREEN_WIDTH * 7 / 8, ViewGroup.LayoutParams.MATCH_PARENT);
 	    params.gravity = Gravity.LEFT;
         drawerListView.setLayoutParams(params);
-        drawerListView.setAdapter(new DrawerListAdapter(this, drawerList));
+        adapter = new DrawerListAdapter(this, drawerList);
+        drawerListView.setAdapter(adapter);
         drawerListView.setOnItemClickListener(this);
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
@@ -82,9 +84,18 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         fragmentTransaction.commit();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     private void showFragment(int id) {
-	    if (FragmentUtil.getCurrentFragment() == id) return;
-	    Fragment fragment = null;
+        if (FragmentUtil.getCurrentFragment() == id) return;
+        Fragment fragment = null;
         if(id == R.string.notes){
             fragment = new MainFragment();
         }else{
@@ -93,17 +104,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
             fragment = new NotesFragment();
             fragment.setArguments(bundle);
         }
-	    FragmentUtil.setCurrentFragment(id);
+        FragmentUtil.setCurrentFragment(id);
         showFragment(fragment);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -128,13 +130,13 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 	    }
 	    view.setBackgroundResource(R.drawable.bg_list_item_focus);
         showFragment(drawerList[position]);
-	    drawerToggle.setTitle(drawerList[position]);
+	    drawerToggle.changeTitle(drawerList[position]);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && FragmentUtil.getCurrentFragment() != R.string.notes){
-            showFragment(R.string.notes);
+            moveToHome();
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -145,5 +147,14 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         super.onDestroy();
         QueryHelper.close();
         System.exit(1);
+    }
+
+    /**
+     * 其他頁面按返回鍵，返回到home頁面
+     */
+    private void moveToHome(){
+        showFragment(R.string.notes);
+        drawerToggle.setTitle(R.string.notes);
+        adapter.notifyDataSetChanged();
     }
 }

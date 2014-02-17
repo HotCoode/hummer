@@ -25,5 +25,10 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
+		<activity
+			android:name=".ItemsActivity"
+			android:label="@string/common_event"
+			>
+			</activity>
 	</application>
 </manifest>

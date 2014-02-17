@@ -13,4 +13,6 @@
 	<string name="low_income_long_half_life">低收益-长半衰期</string>
 	<string name="high_income_short_half_life">高收益-短半衰期</string>
 	<string name="low_income_short_half_life">低收益-短半衰期</string>
+	<string name="edit_common_event">编辑常用事件</string>
+	<string name="common_event">常用事件</string>
 </resources>

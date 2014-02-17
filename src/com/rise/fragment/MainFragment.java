@@ -2,6 +2,7 @@ package com.rise.fragment;
 
 import android.app.Activity;
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.base.orm.QueryHelper;
+import com.rise.ItemsActivity;
 import com.rise.R;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
@@ -216,8 +218,15 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.home, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_home){
+            startActivity(new Intent(activity, ItemsActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
