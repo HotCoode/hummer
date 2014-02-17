@@ -3,6 +3,7 @@ package com.rise;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
@@ -58,6 +59,14 @@ public class ItemsActivity extends BaseActivity {
                         handler.sendEmptyMessage(ITEM_LOAD_FINISH);
                     }
                 });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.add,menu);
+        menu.findItem(R.id.menu_add).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return true;
     }
 
     @Override
