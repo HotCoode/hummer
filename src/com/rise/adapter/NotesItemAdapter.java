@@ -49,7 +49,7 @@ public class NotesItemAdapter extends BaseAdapter {
 		NotesItemOrder note = items.get(position);
 		if(note.getType() == NotesItemOrder.TYPE_MONTH){
 			convertView = inflater.inflate(R.layout.notes_item_month,null);
-			((TextView)convertView).setText(note.getMonth());
+			((TextView)convertView).setText(note.getMonth() + " " + note.getYear());
 		}else{
 			convertView = inflater.inflate(R.layout.notes_item_content,null);
 			View timeView = convertView.findViewById(R.id.notes_item_content_time);

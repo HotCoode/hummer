@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<dimen name="hover_width">20dp</dimen>
-	<dimen name="hover_show_width">5dp</dimen>
+	<dimen name="hover_show_width">2dp</dimen>
+	<dimen name="padding_normal">5dp</dimen>
 	<dimen name="range_padding">20dp</dimen>
 	<dimen name="notes_item_padding">10dp</dimen>
 </resources>

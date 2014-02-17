@@ -100,6 +100,7 @@ public class NotesFragment extends Fragment implements BaseFragment {
 				break;
 		}
 		TransitionDrawable transition = (TransitionDrawable) containerView.getBackground();
+        transition.setCrossFadeEnabled(true);
 		transition.startTransition(2000);
 	}
 }

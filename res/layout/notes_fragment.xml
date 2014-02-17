@@ -12,7 +12,7 @@
 			android:footerDividersEnabled="true"
 			android:paddingLeft="@dimen/hover_width"
 			android:paddingRight="@dimen/hover_width"
-			android:scrollbarStyle="outsideInset"
+			android:scrollbarStyle="outsideOverlay"
 			/>
 
 </FrameLayout>

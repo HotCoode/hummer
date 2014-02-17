@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.base.L;
 import com.base.orm.QueryHelper;
 import com.rise.R;
 import com.rise.adapter.MainListAdapter;

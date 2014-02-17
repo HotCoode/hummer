@@ -1,5 +1,6 @@
 package com.rise.common;
 
+import com.base.common.DateUtils;
 import com.rise.R;
 import com.rise.bean.NotesItem;
 import com.rise.bean.NotesItemOrder;
@@ -57,18 +58,22 @@ public class RiseUtil {
 	public static List<NotesItemOrder> packageNoteItems(List<NotesItem> items) {
 		List<NotesItemOrder> result = new ArrayList<NotesItemOrder>();
 		Time splitTime = new Time();
+        String tmpMonth;
+        String tmpMonthShort = "";
 		for (NotesItem item : items) {
 			Time tmpTime = getTimeByMillis(item.getTime());
 			if (!(splitTime.getYear() == tmpTime.getYear() && splitTime.getMonth() == tmpTime.getMonth())) {
 				splitTime = tmpTime;
+                tmpMonth = DateUtils.getMonth(splitTime.getMonth());
+                tmpMonthShort = DateUtils.getShortMonths(splitTime.getMonth());
 				NotesItemOrder order = new NotesItemOrder();
 				order.setType(NotesItemOrder.TYPE_MONTH);
-				order.setMonth(splitTime.getMonth() + "");
+				order.setMonth(tmpMonth);
 				order.setYear(splitTime.getYear() + "");
 				result.add(order);
 			}
 			NotesItemOrder order = new NotesItemOrder();
-			item.setMonth(tmpTime.getMonth() + "");
+			item.setMonth(tmpMonthShort);
 			item.setDay(tmpTime.getDay() + "");
 			order.setItem(item);
 			order.setType(NotesItemOrder.TYPE_ITEM);
