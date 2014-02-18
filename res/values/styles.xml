@@ -55,5 +55,10 @@
 		<item name="android:textColor">@color/text_normal</item>
 	</style>
 
+	<style name="new_item_text">
+		<item name="android:textSize">16sp</item>
+		<item name="android:textColor">@color/text_normal</item>
+	</style>
+
 
 </resources>

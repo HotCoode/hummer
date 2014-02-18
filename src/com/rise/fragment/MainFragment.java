@@ -1,8 +1,11 @@
 package com.rise.fragment;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +29,7 @@ import com.rise.ItemsActivity;
 import com.rise.R;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
+import com.rise.common.Const;
 import com.rise.db.SQL;
 import com.rise.db.SqlConst;
 import com.rise.view.BoxView;
@@ -36,7 +40,7 @@ import java.util.List;
  * Created by kai.wang on 2/11/14.
  * 主页面
  */
-public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxListener, View.OnClickListener {
+public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxListener {
     private ListView mainListView;
     private BoxView perfectBox;
     private BoxView upholdBox;
@@ -62,20 +66,40 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         }
     });
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(Const.ACTION_ITEM_UPDATE.equals(action)){
+                loadData();
+            }
+        }
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         activity = getActivity();
         container = (ViewGroup) inflater.inflate(R.layout.main_fragment, null);
         injectViews(container);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Const.ACTION_ITEM_UPDATE);
+        activity.registerReceiver(broadcastReceiver, intentFilter);
+
         return container;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadData();
+    }
 
     @Override
     public void injectViews(View parentView) {
@@ -98,7 +122,6 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         circleQuick = activity.getResources().getDrawable(R.drawable.circle_quick);
         circleBad = activity.getResources().getDrawable(R.drawable.circle_bad);
 
-        loadData();
     }
 
     @Override
@@ -182,20 +205,6 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.header_add:
-                Toast.makeText(activity, "add", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.header_delete:
-                Toast.makeText(activity, "delete", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                break;
-        }
-    }
-
     private void startPutAnim(int id) {
         switch (id) {
             case R.id.perfect_box:
@@ -228,5 +237,11 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
             startActivity(new Intent(activity, ItemsActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDetach() {
+        activity.unregisterReceiver(broadcastReceiver);
+        super.onDetach();
     }
 }

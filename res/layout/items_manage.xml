@@ -11,5 +11,5 @@
 		android:footerDividersEnabled="true"
 		android:layout_marginLeft="@dimen/padding_normal"
 		android:layout_marginRight="@dimen/padding_normal"
-		android:scrollbars="none" />
+		android:scrollbarStyle="outsideOverlay" />
 </FrameLayout>

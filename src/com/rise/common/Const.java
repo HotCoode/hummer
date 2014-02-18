@@ -12,4 +12,7 @@ public class Const {
 
 	public static int SCREEN_WIDTH;
 
+    /** 广播，item更新，提醒更新item列表 */
+    public static String ACTION_ITEM_UPDATE = "com.rise.item.update";
+
 }

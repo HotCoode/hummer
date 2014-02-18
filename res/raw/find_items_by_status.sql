@@ -7,3 +7,4 @@ from
 	items
 where
 	status = ?
+order by time desc

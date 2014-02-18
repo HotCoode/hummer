@@ -5,6 +5,7 @@
 		android:id="@+id/menu_add"
 		android:showAsAction="always"
 		android:orderInCategory="100"
-		android:title="@string/add"
+		android:icon="@drawable/menu_add"
+		android:title="@string/add_common_event"
 		/>
 </menu>

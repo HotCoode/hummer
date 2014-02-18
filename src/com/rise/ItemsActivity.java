@@ -1,5 +1,9 @@
 package com.rise;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +15,7 @@ import com.base.orm.QueryHelper;
 import com.rise.adapter.MainListAdapter;
 import com.rise.adapter.ManageItemAdapter;
 import com.rise.bean.Item;
+import com.rise.common.Const;
 import com.rise.component.BaseActivity;
 import com.rise.db.SQL;
 import com.rise.db.SqlConst;
@@ -35,6 +40,17 @@ public class ItemsActivity extends BaseActivity {
             return false;
         }
     });
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(Const.ACTION_ITEM_UPDATE.equals(action)){
+                loadData();
+            }
+        }
+    };
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.items_manage);
@@ -43,6 +59,10 @@ public class ItemsActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Const.ACTION_ITEM_UPDATE);
+        registerReceiver(broadcastReceiver, intentFilter);
 
         loadData();
     }
@@ -76,7 +96,16 @@ public class ItemsActivity extends BaseActivity {
             case android.R.id.home:
                 finish();
                 return true;
+            case R.id.menu_add:
+                startActivity(new Intent(ItemsActivity.this,NewItemActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(broadcastReceiver);
+        super.onDestroy();
     }
 }

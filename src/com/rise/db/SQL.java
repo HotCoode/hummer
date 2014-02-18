@@ -15,6 +15,7 @@ public class SQL {
     public static String FIND_ITEMS_BY_STATUS;
     public static String PUT_NEW_NOTE;
 	public static String FIND_NOTES_BY_TYPE;
+    public static String ADD_ITEM;
 
     public static void loadSql(Context context){
         // create table
@@ -23,5 +24,6 @@ public class SQL {
         FIND_ITEMS_BY_STATUS = LoadSQL.readSql(context,R.raw.find_items_by_status);
         PUT_NEW_NOTE = LoadSQL.readSql(context,R.raw.put_new_note);
 	    FIND_NOTES_BY_TYPE = LoadSQL.readSql(context,R.raw.find_notes_by_type);
+        ADD_ITEM = LoadSQL.readSql(context,R.raw.add_item);
     }
 }

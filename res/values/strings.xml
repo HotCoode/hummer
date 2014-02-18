@@ -15,4 +15,9 @@
 	<string name="low_income_short_half_life">低收益-短半衰期</string>
 	<string name="edit_common_event">编辑常用事件</string>
 	<string name="common_event">常用事件</string>
+	<string name="add_common_event">添加常用事件</string>
+	<string name="done">完成</string>
+	<string name="discard">取消</string>
+	<string name="new_item_hint">添加事件(15字以内)</string>
+	<string name="add_success">添加成功</string>
 </resources>

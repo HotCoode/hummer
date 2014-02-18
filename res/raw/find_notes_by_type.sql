@@ -10,4 +10,4 @@ where
 	notes.type = ?
 	and
 	notes.status = ?
-ORDER BY time DESC
+ORDER BY notes.time DESC
