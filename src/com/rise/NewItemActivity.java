@@ -29,10 +29,10 @@ public class NewItemActivity extends DoneDiscardActivity {
         if (itemText.getText() != null) {
             String text = itemText.getText().toString();
             if (!"".equals(text)) {
-                sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
                 QueryHelper.update(SQL.ADD_ITEM, new String[]{text, System.currentTimeMillis() + ""}, null);
                 Toast.makeText(NewItemActivity.this, R.string.add_success, Toast.LENGTH_SHORT).show();
                 finish();
+                sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
             }
         }
     }
