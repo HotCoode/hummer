@@ -25,7 +25,7 @@
 			</intent-filter>
 		</activity>
 		<activity
-			android:name=".ItemsActivity"
+			android:name=".ItemsManageActivity"
 			android:label="@string/common_event" />
 		<activity
 			android:name=".NewItemActivity"

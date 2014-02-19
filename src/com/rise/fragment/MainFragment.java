@@ -25,7 +25,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.base.orm.QueryHelper;
-import com.rise.ItemsActivity;
+import com.rise.ItemsManageActivity;
 import com.rise.R;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
@@ -234,7 +234,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.menu_home){
-            startActivity(new Intent(activity, ItemsActivity.class));
+            startActivity(new Intent(activity, ItemsManageActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -1,7 +1,10 @@
 package com.rise.fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.lib.dialogs.SimpleDialogFragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.base.L;
@@ -26,7 +30,7 @@ import java.util.List;
 /**
  * Created by kai.wang on 2/14/14.
  */
-public class NotesFragment extends Fragment implements BaseFragment {
+public class NotesFragment extends Fragment implements BaseFragment,ListView.OnItemLongClickListener {
 
 
 	private int id;
@@ -38,6 +42,8 @@ public class NotesFragment extends Fragment implements BaseFragment {
 	private ViewGroup containerView;
 
 	private final int DATA_LOAD_FINISH = 100;
+
+    private AlertDialog dialog;
 
 	private Handler handler = new Handler(new Handler.Callback() {
 		@Override
@@ -63,6 +69,7 @@ public class NotesFragment extends Fragment implements BaseFragment {
     @Override
     public void injectViews(View parentView) {
 	    listView = (ListView) parentView.findViewById(R.id.notes_list_view);
+        listView.setOnItemLongClickListener(this);
     }
 
 	private void loadData(){
@@ -73,7 +80,7 @@ public class NotesFragment extends Fragment implements BaseFragment {
 				new QueryHelper.FindBeansCallBack<NotesItem>() {
 					@Override
 					public void onFinish(List<NotesItem> beans) {
-						List<NotesItemOrder> items = RiseUtil.packageNoteItems(beans);
+						items = RiseUtil.packageNoteItems(beans);
 						adapter = new NotesItemAdapter(getActivity(),items,id);
 						handler.sendEmptyMessage(DATA_LOAD_FINISH);
 					}
@@ -103,4 +110,10 @@ public class NotesFragment extends Fragment implements BaseFragment {
         transition.setCrossFadeEnabled(true);
 		transition.startTransition(2000);
 	}
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+        return false;
+    }
 }

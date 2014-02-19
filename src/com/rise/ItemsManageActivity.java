@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.base.orm.QueryHelper;
-import com.rise.adapter.MainListAdapter;
 import com.rise.adapter.ManageItemAdapter;
 import com.rise.bean.Item;
 import com.rise.common.Const;
@@ -25,7 +24,7 @@ import java.util.List;
 /**
  * Created by kai.wang on 2/17/14.
  */
-public class ItemsActivity extends BaseActivity {
+public class ItemsManageActivity extends BaseActivity {
     private ListView listView;
     private ManageItemAdapter adapter;
 
@@ -75,7 +74,7 @@ public class ItemsActivity extends BaseActivity {
                 new QueryHelper.FindBeansCallBack<Item>() {
                     @Override
                     public void onFinish(List<Item> beans) {
-                        adapter = new ManageItemAdapter(ItemsActivity.this, beans);
+                        adapter = new ManageItemAdapter(ItemsManageActivity.this, beans);
                         handler.sendEmptyMessage(ITEM_LOAD_FINISH);
                     }
                 });
@@ -97,7 +96,7 @@ public class ItemsActivity extends BaseActivity {
                 finish();
                 return true;
             case R.id.menu_add:
-                startActivity(new Intent(ItemsActivity.this,NewItemActivity.class));
+                startActivity(new Intent(ItemsManageActivity.this,NewItemActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
