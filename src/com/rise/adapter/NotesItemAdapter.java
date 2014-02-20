@@ -22,10 +22,10 @@ public class NotesItemAdapter extends BaseAdapter {
 	private List<NotesItemOrder> items;
 	private LayoutInflater inflater;
 	private int color;
-	public NotesItemAdapter(Context context,List<NotesItemOrder> items,int name){
+	public NotesItemAdapter(Context context,List<NotesItemOrder> items,int noteType){
 		this.context = context;
 		this.items = items;
-		color = RiseUtil.getColorByName(name);
+		color = RiseUtil.getColorByName(noteType);
 		inflater = LayoutInflater.from(context);
 	}
 

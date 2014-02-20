@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static int DB_VERSION = 7;
+    private static int DB_VERSION = 8;
 
     private static String DATABASE_PATH = Const.PATH;
     private static String DATABASE_FILENAME = "database.db";

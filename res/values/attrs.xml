@@ -4,8 +4,4 @@
 		<attr name="layout" format="reference|integer" />
 	</declare-styleable>
 
-	<attr name="messageBarContainerStyle" format="reference" />
-	<attr name="messageBarTextStyle" format="reference" />
-	<attr name="messageBarButtonStyle" format="reference" />
-
 </resources>
