@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Created by kai.wang on 2/14/14.
  */
-public class NotesFragment extends Fragment implements BaseFragment,ListView.OnItemLongClickListener,MessageBar.OnMessageClickListener {
+public class NotesFragment extends Fragment implements BaseFragment,ListView.OnItemLongClickListener {
 
 
 	private int id;
@@ -43,8 +43,6 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 	private ViewGroup containerView;
 
 	private final int DATA_LOAD_FINISH = 100;
-
-    private MessageBar messageBar;
 
 	private Handler handler = new Handler(new Handler.Callback() {
 		@Override
@@ -70,8 +68,6 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
     @Override
     public void injectViews(View parentView) {
-        messageBar = new MessageBar(getActivity());
-        messageBar.setOnClickListener(this);
 
         adapter = new NotesItemAdapter(getActivity(),items,id);
 	    listView = (ListView) parentView.findViewById(R.id.notes_list_view);
@@ -120,18 +116,10 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        messageBar.clear();
-        Bundle b = new Bundle();
-        b.putLong("id", items.get(position).getItem().getId());
-        messageBar.show(items.get(position).getItem().getContent(), getResources().getString(R.string.delete),b);
-        return false;
-    }
+        long noteId = items.get(position).getItem().getId();
 
-    @Override
-    public void onMessageClick(Parcelable token) {
-        messageBar.clear();
-        Bundle b = (Bundle) token;
-        final long position = b.getLong("position");
+
+
         QueryHelper.update(SQL.DELETE_NOTE_BY_ID,new String[]{position + ""},new QueryHelper.UpdateCallBack() {
             @Override
             public void onFinish() {
@@ -140,5 +128,8 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
             }
         });
         Toast.makeText(getActivity(),R.string.delete_success,Toast.LENGTH_SHORT).show();
+
+        return false;
     }
+
 }
