@@ -124,8 +124,6 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
         String content = items.get(position).getItem().getContent();
 
         if(DateUtils.isToday(items.get(position).getItem().getTime())){
-            Toast.makeText(getActivity(),R.string.only_can_delete_today_event,Toast.LENGTH_SHORT).show();
-        }else{
             final SimpleDialog dialog = new SimpleDialog(getActivity(),content,getString(R.string.delete_event));
             dialog.setOnClickListener(new SimpleDialog.OnClickListener() {
                 @Override
@@ -141,6 +139,8 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
                     Toast.makeText(getActivity(),R.string.delete_success,Toast.LENGTH_SHORT).show();
                 }
             });
+        }else{
+            Toast.makeText(getActivity(),R.string.only_can_delete_today_event,Toast.LENGTH_SHORT).show();
         }
 
         return false;
