@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.base.common.DateUtils;
 import com.base.orm.QueryHelper;
 import com.rise.R;
 import com.rise.adapter.NotesItemAdapter;
@@ -122,22 +123,25 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
         final long noteId = items.get(position).getItem().getId();
         String content = items.get(position).getItem().getContent();
 
-        final SimpleDialog dialog = new SimpleDialog(getActivity(),content,"delete");
-        dialog.setOnClickListener(new SimpleDialog.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-                QueryHelper.update(SQL.DELETE_NOTE_BY_ID,new String[]{noteId + ""},new QueryHelper.UpdateCallBack() {
-                    @Override
-                    public void onFinish() {
-                        items.clear();
-                        loadData();
-                    }
-                });
-                Toast.makeText(getActivity(),R.string.delete_success,Toast.LENGTH_SHORT).show();
-            }
-        });
-//        dialog.show();
+        if(DateUtils.isToday(items.get(position).getItem().getTime())){
+            Toast.makeText(getActivity(),R.string.only_can_delete_today_event,Toast.LENGTH_SHORT).show();
+        }else{
+            final SimpleDialog dialog = new SimpleDialog(getActivity(),content,getString(R.string.delete_event));
+            dialog.setOnClickListener(new SimpleDialog.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.cancel();
+                    QueryHelper.update(SQL.DELETE_NOTE_BY_ID,new String[]{noteId + ""},new QueryHelper.UpdateCallBack() {
+                        @Override
+                        public void onFinish() {
+                            items.clear();
+                            loadData();
+                        }
+                    });
+                    Toast.makeText(getActivity(),R.string.delete_success,Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         return false;
     }
