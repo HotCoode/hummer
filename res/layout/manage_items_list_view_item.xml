@@ -10,5 +10,5 @@
 		android:paddingBottom="5dp"
 		android:paddingLeft="10dp"
 		android:paddingRight="10dp"
-		android:background="@drawable/bg_list_item"
+		android:background="@drawable/bg_normal"
 		/>

@@ -25,6 +25,7 @@ import com.rise.db.DBHelper;
 import com.rise.fragment.FragmentUtil;
 import com.rise.fragment.MainFragment;
 import com.rise.fragment.NotesFragment;
+import com.rise.fragment.ReportFragment;
 
 public class MainActivity extends BaseActivity implements ListView.OnItemClickListener {
 
@@ -36,17 +37,19 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     private DrawerToggle drawerToggle;
 
     // drawer list 数据
-    private int[] drawerList = {R.string.notes, R.string.high_income_long_half_life, R.string.low_income_long_half_life, R.string.high_income_short_half_life, R.string.low_income_short_half_life};
+    private int[] drawerList = {R.string.notes,
+            R.string.high_income_long_half_life,
+            R.string.low_income_long_half_life,
+            R.string.high_income_short_half_life,
+            R.string.low_income_short_half_life,
+            R.string.report
+    };
     private DrawerListAdapter adapter;
-
-
-	// 当前显示的fragment
-	private int currentFragment = R.string.notes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -99,6 +102,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         Fragment fragment = null;
         if(id == R.string.notes){
             fragment = new MainFragment();
+        }else if(id == R.string.report){
+            fragment = new ReportFragment();
         }else{
             Bundle bundle = new Bundle();
             bundle.putInt("id",id);
@@ -127,7 +132,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	    drawerLayout.closeDrawers();
 	    for(int i=0;i<parent.getCount();i++){
-		    parent.getChildAt(i).setBackgroundResource(R.drawable.bg_list_item);
+		    parent.getChildAt(i).setBackgroundResource(R.drawable.bg_normal);
 	    }
 	    view.setBackgroundResource(R.drawable.bg_list_item_focus);
         showFragment(drawerList[position]);

@@ -1,13 +1,9 @@
 package com.rise.fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
-import android.preference.DialogPreference;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +22,6 @@ import com.rise.common.RiseUtil;
 import com.rise.component.SimpleDialog;
 import com.rise.db.SQL;
 import com.rise.db.SqlConst;
-
-import net.simonvt.messagebar.MessageBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +54,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	    container = (ViewGroup) inflater.inflate(R.layout.notes_fragment,null);
+	    container = (ViewGroup) inflater.inflate(R.layout.fragment_notes,null);
 	    containerView = container;
 	    id = getArguments().getInt("id");
 

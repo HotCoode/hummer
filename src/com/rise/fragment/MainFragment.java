@@ -85,7 +85,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         activity = getActivity();
-        container = (ViewGroup) inflater.inflate(R.layout.main_fragment, null);
+        container = (ViewGroup) inflater.inflate(R.layout.fragment_main, null);
         injectViews(container);
 
         IntentFilter intentFilter = new IntentFilter();

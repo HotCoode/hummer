@@ -24,13 +24,13 @@
 	<style name="main_list_text">
 		<item name="android:textSize">18sp</item>
 		<item name="android:textColor">@color/text_normal</item>
-		<item name="android:background">@drawable/bg_list_item</item>
+		<item name="android:background">@drawable/bg_normal</item>
 	</style>
 
 	<style name="drawer_list_text">
 		<item name="android:textSize">21sp</item>
 		<item name="android:textColor">@color/text_normal</item>
-		<item name="android:background">@drawable/bg_list_item</item>
+		<item name="android:background">@drawable/bg_normal</item>
 	</style>
 
 	<style name="header_hint_text">

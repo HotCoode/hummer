@@ -19,7 +19,7 @@ public class NewItemActivity extends DoneDiscardActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_item_activity);
+        setContentView(R.layout.activity_new_item);
 
         itemText = (EditText) findViewById(R.id.new_item_text);
     }

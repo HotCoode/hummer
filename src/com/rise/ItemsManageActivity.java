@@ -52,7 +52,7 @@ public class ItemsManageActivity extends BaseActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.items_manage);
+        setContentView(R.layout.activity_items_manage);
 
         listView = (ListView) findViewById(R.id.item_list_view);
 

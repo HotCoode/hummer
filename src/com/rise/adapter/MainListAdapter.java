@@ -44,7 +44,7 @@ public class MainListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.main_list_view_item,null);
+            convertView = inflater.inflate(R.layout.v_fragment_main_list_view_item,null);
         }
         ((DragView)convertView).setText(things.get(position).getContent());
         convertView.setTag(things.get(position).getId());
