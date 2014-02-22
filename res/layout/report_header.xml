@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/action_bar_size">
+
+		<ImageButton
+			android:id="@+id/report_previous_month"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="left|center_vertical"
+			android:background="@drawable/bg_normal"
+			android:src="@drawable/previous"
+			android:scaleType="centerInside"
+			android:paddingTop="8dp"
+			android:paddingBottom="8dp"
+			android:paddingLeft="16dp"
+			android:paddingRight="16dp" />
+
+		<TextView
+			android:id="@+id/report_month"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center" />
+
+		<ImageButton
+			android:id="@+id/report_next_month"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_gravity="right|center_vertical"
+			android:background="@drawable/bg_normal"
+			android:src="@drawable/next"
+			android:scaleType="centerInside"
+			android:paddingTop="8dp"
+			android:paddingBottom="8dp"
+			android:paddingLeft="16dp"
+			android:paddingRight="16dp" />
+	</FrameLayout>
+</merge>

@@ -95,5 +95,18 @@
 		<item name="android:background">@color/holo_blue_dark</item>
 	</style>
 
+	<style name="Separator">
+		<item name="android:background">@color/separator</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">1dp</item>
+	</style>
+
+	<style name="Text"/>
+	<style name="Text.gray_normal">
+		<item name="android:textSize">15sp</item>
+		<item name="android:textColor">@color/text_gray</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
+
 
 </resources>

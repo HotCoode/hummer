@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="text_normal">#333333</color>
+	<color name="text_gray">#999</color>
 	<color name="perfect">#690</color>
 	<color name="uphold">#09c</color>
 	<color name="quick">#f80</color>
@@ -22,4 +23,5 @@
 	<color name="uphold_notes_bg">#100099cc</color>
 	<color name="quick_notes_bg">#10ff8800</color>
 	<color name="bad_notes_bg">#10cc0000</color>
+	<color name="separator">#ffe0e0e0</color>
 </resources>
