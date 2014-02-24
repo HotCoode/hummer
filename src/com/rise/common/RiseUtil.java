@@ -64,8 +64,8 @@ public class RiseUtil {
 			Time tmpTime = getTimeByMillis(item.getTime());
 			if (!(splitTime.getYear() == tmpTime.getYear() && splitTime.getMonth() == tmpTime.getMonth())) {
 				splitTime = tmpTime;
-                tmpMonth = DateUtils.getMonth(splitTime.getMonth());
-                tmpMonthShort = DateUtils.getShortMonths(splitTime.getMonth());
+                tmpMonth = DateUtils.getNormalMonth(splitTime.getMonth());
+                tmpMonthShort = DateUtils.getShortNormalMonths(splitTime.getMonth());
 				NotesItemOrder order = new NotesItemOrder();
 				order.setType(NotesItemOrder.TYPE_MONTH);
 				order.setMonth(tmpMonth);
