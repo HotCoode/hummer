@@ -103,7 +103,7 @@
 
 	<style name="Text"/>
 	<style name="Text.gray_normal">
-		<item name="android:textSize">15sp</item>
+		<item name="android:textSize">13dp</item>
 		<item name="android:textColor">@color/text_gray</item>
 		<item name="android:gravity">center_vertical</item>
 	</style>
