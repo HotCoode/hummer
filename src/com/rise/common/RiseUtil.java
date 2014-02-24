@@ -55,6 +55,20 @@ public class RiseUtil {
 		return color;
 	}
 
+	public static int getColorByType(String type) {
+		int color = 0;
+		if(SqlConst.NOTE_TYPE_HIGH_INCOME_LONG_HALF_LIFE.equals(type)){
+			color = R.color.perfect;
+		}else if(SqlConst.NOTE_TYPE_LOW_INCOME_LONG_HALF_LIFE.equals(type)){
+			color = R.color.uphold;
+		}else if(SqlConst.NOTE_TYPE_HIGH_INCOME_SHORT_HALF_LIFE.equals(type)){
+			color = R.color.quick;
+		}else if(SqlConst.NOTE_TYPE_LOW_INCOME_SHORT_HALF_LIFE.equals(type)){
+			color = R.color.bad;
+		}
+		return color;
+	}
+
 	public static List<NotesItemOrder> packageNoteItems(List<NotesItem> items) {
 		List<NotesItemOrder> result = new ArrayList<NotesItemOrder>();
 		Time splitTime = new Time();

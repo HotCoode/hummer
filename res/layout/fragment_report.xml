@@ -78,6 +78,7 @@
 		android:paddingLeft="10dp"
 		android:paddingRight="10dp"
 		android:scrollbarStyle="outsideOverlay"
+		android:background="@color/background_holo_light"
 		/>
 
 

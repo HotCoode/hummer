@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import com.rise.R;
 import com.rise.bean.Item;
-import com.rise.view.DragView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -47,7 +44,7 @@ public class ManageItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.manage_items_list_view_item,null);
+            convertView = inflater.inflate(R.layout.list_item_manage_items,null);
         }
         ((TextView)convertView).setText(things.get(position).getContent());
         convertView.setTag(things.get(position).getId());

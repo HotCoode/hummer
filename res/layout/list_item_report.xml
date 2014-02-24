@@ -7,32 +7,32 @@
 				android:padding="7dp"
 		>
 	<LinearLayout
-			android:id="@+id/notes_item_content_time"
+			android:id="@+id/percent_container"
 			android:layout_width="50dp"
 			android:layout_height="50dp"
 			android:gravity="center"
 			android:orientation="vertical">
 		<TextView
-				android:id="@+id/notes_item_content_month"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				style="@style/type_container_small"
-				/>
-		<TextView
-				android:id="@+id/notes_item_content_day"
+				android:id="@+id/percent"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				style="@style/type_container_big"
+				/>
+		<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				style="@style/type_container_small"
+				android:text="@string/percent"
 				/>
 	</LinearLayout>
 
 	<TextView
 			style="@style/notes_item_content_text"
-			android:id="@+id/notes_item_content_text"
+			android:id="@+id/count_event"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_centerVertical="true"
-			android:layout_toRightOf="@id/notes_item_content_time"
+			android:layout_alignParentRight="true"
 			android:layout_marginLeft="7dp"
 			/>
 </RelativeLayout>

@@ -24,4 +24,6 @@
 	<string name="add_success">添加成功</string>
 	<string name="delete_event">删除这条事件</string>
 	<string name="only_can_delete_today_event">只能删除今天的事件</string>
+	<string name="percent">%</string>
+	<string name="event_count">%件</string>
 </resources>

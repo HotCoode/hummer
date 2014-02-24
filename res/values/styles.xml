@@ -43,12 +43,12 @@
 		<item name="android:textColor">@color/text_normal</item>
 	</style>
 
-	<style name="notes_item_content_month">
+	<style name="type_container_small">
 		<item name="android:textSize">13sp</item>
 		<item name="android:textColor">@color/background_holo_light</item>
 	</style>
 
-	<style name="notes_item_content_day">
+	<style name="type_container_big">
 		<item name="android:textSize">18sp</item>
 		<item name="android:textColor">@color/background_holo_light</item>
 	</style>
