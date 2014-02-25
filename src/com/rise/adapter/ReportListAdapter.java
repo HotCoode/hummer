@@ -51,8 +51,10 @@ public class ReportListAdapter extends BaseAdapter {
             countEvent += report.getCount();
         }
         if (countEvent != 0) {
-            for (Report report : reports) {
-                report.setPercent((int) (report.getCount() / countEvent*100));
+            for (int i=0;i<reports.size();i++) {
+                Report report = reports.get(i);
+                int p = (int) (report.getCount() / countEvent * 100f);
+                report.setPercent(p);
             }
         }
         super.notifyDataSetChanged();
