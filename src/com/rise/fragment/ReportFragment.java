@@ -32,22 +32,29 @@ public class ReportFragment extends Fragment implements BaseFragment, View.OnCli
     private int perfectCount, upholdCount, quickCount, badCount;
 
     private final int REPORT_LOAD_FINISH = 100;
+    private final int REPORT_ADD_DATA = 101;
 
     private ListView reportListView;
 
     private ImageButton previousMonthBtn, nextMonthBtn;
     private TextView showMonthView;
+    private TextView noDataView;
 
     private ReportListAdapter adapter;
     private List<Report> reports = new ArrayList<Report>();
 
     private int monthOffset = 0;
 
+    private int eventCount = 0;
+
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             if (msg.what == REPORT_LOAD_FINISH) {
+                reports.add((Report) msg.obj);
                 updateReportViews();
+            }else if(msg.what == REPORT_ADD_DATA){
+                reports.add((Report) msg.obj);
             }
             return false;
         }
@@ -67,6 +74,8 @@ public class ReportFragment extends Fragment implements BaseFragment, View.OnCli
         previousMonthBtn = (ImageButton) parentView.findViewById(R.id.report_previous_month);
         nextMonthBtn = (ImageButton) parentView.findViewById(R.id.report_next_month);
         showMonthView = (TextView) parentView.findViewById(R.id.report_month);
+        noDataView = (TextView) parentView.findViewById(R.id.report_no_data);
+
 
         showMonthView.setText(DateUtils.getNormalMonth(DateUtils.getMonth()) + " " + DateUtils.getYear());
         previousMonthBtn.setOnClickListener(this);
@@ -82,50 +91,63 @@ public class ReportFragment extends Fragment implements BaseFragment, View.OnCli
         nextMonthBtn.setClickable(false);
         reports.clear();
 
+        eventCount = 0;
+
         QueryHelper.findCount(SQL.COUNT_NOTES_BY_TYPE_AND_MONTH, new String[]{SqlConst.NOTE_TYPE_HIGH_INCOME_LONG_HALF_LIFE, DateUtils.getStartOfMonth(year, month) + "", DateUtils.getEndOfMonth(year, month) + "", SqlConst.NOTE_STATUS_AVAILABLE}, new QueryHelper.NumberCallBack() {
             @Override
             public void onFinish(Number num) {
                 perfectCount = num.intValue();
-
+                eventCount += perfectCount;
                 Report report = new Report();
                 report.setType(SqlConst.NOTE_TYPE_HIGH_INCOME_LONG_HALF_LIFE);
                 report.setCount(perfectCount);
-                reports.add(report);
+                Message message = new Message();
+                message.obj = report;
+                message.what = REPORT_ADD_DATA;
+                handler.sendMessage(message);
             }
         });
         QueryHelper.findCount(SQL.COUNT_NOTES_BY_TYPE_AND_MONTH, new String[]{SqlConst.NOTE_TYPE_LOW_INCOME_LONG_HALF_LIFE, DateUtils.getStartOfMonth(year, month) + "", DateUtils.getEndOfMonth(year, month) + "", SqlConst.NOTE_STATUS_AVAILABLE}, new QueryHelper.NumberCallBack() {
             @Override
             public void onFinish(Number num) {
                 upholdCount = num.intValue();
-
+                eventCount += upholdCount;
                 Report report = new Report();
                 report.setType(SqlConst.NOTE_TYPE_LOW_INCOME_LONG_HALF_LIFE);
                 report.setCount(upholdCount);
-                reports.add(report);
+                Message message = new Message();
+                message.obj = report;
+                message.what = REPORT_ADD_DATA;
+                handler.sendMessage(message);
             }
         });
         QueryHelper.findCount(SQL.COUNT_NOTES_BY_TYPE_AND_MONTH, new String[]{SqlConst.NOTE_TYPE_HIGH_INCOME_SHORT_HALF_LIFE, DateUtils.getStartOfMonth(year, month) + "", DateUtils.getEndOfMonth(year, month) + "", SqlConst.NOTE_STATUS_AVAILABLE}, new QueryHelper.NumberCallBack() {
             @Override
             public void onFinish(Number num) {
                 quickCount = num.intValue();
-
+                eventCount += quickCount;
                 Report report = new Report();
                 report.setType(SqlConst.NOTE_TYPE_HIGH_INCOME_SHORT_HALF_LIFE);
                 report.setCount(quickCount);
-                reports.add(report);
+                Message message = new Message();
+                message.obj = report;
+                message.what = REPORT_ADD_DATA;
+                handler.sendMessage(message);
             }
         });
         QueryHelper.findCount(SQL.COUNT_NOTES_BY_TYPE_AND_MONTH, new String[]{SqlConst.NOTE_TYPE_LOW_INCOME_SHORT_HALF_LIFE, DateUtils.getStartOfMonth(year, month) + "", DateUtils.getEndOfMonth(year, month) + "", SqlConst.NOTE_STATUS_AVAILABLE}, new QueryHelper.NumberCallBack() {
             @Override
             public void onFinish(Number num) {
                 badCount = num.intValue();
-
+                eventCount += badCount;
                 Report report = new Report();
                 report.setType(SqlConst.NOTE_TYPE_LOW_INCOME_SHORT_HALF_LIFE);
                 report.setCount(badCount);
-                reports.add(report);
+                Message message = new Message();
+                message.obj = report;
+                message.what = REPORT_LOAD_FINISH;
+                handler.sendMessage(message);
 
-                handler.sendEmptyMessage(REPORT_LOAD_FINISH);
             }
         });
     }
@@ -134,25 +156,32 @@ public class ReportFragment extends Fragment implements BaseFragment, View.OnCli
         adapter.notifyDataSetChanged();
 
         pieGraph.removeSlices();
-        PieSlice slice = new PieSlice();
-        slice.setColor(getResources().getColor(R.color.perfect));
-        slice.setValue(perfectCount);
-        pieGraph.addSlice(slice);
+        if(eventCount != 0){
+            noDataView.setVisibility(View.GONE);
 
-        slice = new PieSlice();
-        slice.setColor(getResources().getColor(R.color.uphold));
-        slice.setValue(upholdCount);
-        pieGraph.addSlice(slice);
+            PieSlice slice = new PieSlice();
+            slice.setColor(getResources().getColor(R.color.perfect));
+            slice.setValue(perfectCount);
+            pieGraph.addSlice(slice);
 
-        slice = new PieSlice();
-        slice.setColor(getResources().getColor(R.color.quick));
-        slice.setValue(quickCount);
-        pieGraph.addSlice(slice);
+            slice = new PieSlice();
+            slice.setColor(getResources().getColor(R.color.uphold));
+            slice.setValue(upholdCount);
+            pieGraph.addSlice(slice);
 
-        slice = new PieSlice();
-        slice.setColor(getResources().getColor(R.color.bad));
-        slice.setValue(badCount);
-        pieGraph.addSlice(slice);
+            slice = new PieSlice();
+            slice.setColor(getResources().getColor(R.color.quick));
+            slice.setValue(quickCount);
+            pieGraph.addSlice(slice);
+
+            slice = new PieSlice();
+            slice.setColor(getResources().getColor(R.color.bad));
+            slice.setValue(badCount);
+            pieGraph.addSlice(slice);
+        }else{
+            noDataView.setVisibility(View.VISIBLE);
+        }
+
 
         previousMonthBtn.setClickable(true);
         nextMonthBtn.setClickable(true);

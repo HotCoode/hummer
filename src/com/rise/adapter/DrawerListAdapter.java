@@ -51,7 +51,7 @@ public class DrawerListAdapter extends BaseAdapter {
 	    if(FragmentUtil.getCurrentFragment() == items[position]){
 		    convertView.setBackgroundResource(R.drawable.bg_list_item_focus);
 	    }else{
-		    convertView.setBackgroundResource(R.drawable.bg_normal);
+		    convertView.setBackgroundResource(R.drawable.bg_pressable_normal);
 	    }
         return convertView;
     }

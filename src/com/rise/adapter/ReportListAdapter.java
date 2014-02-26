@@ -18,8 +18,6 @@ import java.util.List;
  * Function :
  */
 public class ReportListAdapter extends BaseAdapter {
-    private float countEvent;
-
     private List<Report> reports;
 
     private Context context;
@@ -47,6 +45,7 @@ public class ReportListAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
+        float countEvent = 0;
         for (Report report : reports) {
             countEvent += report.getCount();
         }

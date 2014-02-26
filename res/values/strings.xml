@@ -26,4 +26,5 @@
 	<string name="only_can_delete_today_event">只能删除今天的事件</string>
 	<string name="percent">%</string>
 	<string name="event_count">{0}件</string>
+	<string name="no_data">没有数据</string>
 </resources>

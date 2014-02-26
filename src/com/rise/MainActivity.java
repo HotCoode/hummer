@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	    drawerLayout.closeDrawers();
 	    for(int i=0;i<parent.getCount();i++){
-		    parent.getChildAt(i).setBackgroundResource(R.drawable.bg_normal);
+		    parent.getChildAt(i).setBackgroundResource(R.drawable.bg_pressable_normal);
 	    }
 	    view.setBackgroundResource(R.drawable.bg_list_item_focus);
         showFragment(drawerList[position]);

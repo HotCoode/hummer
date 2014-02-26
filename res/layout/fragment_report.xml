@@ -21,6 +21,17 @@
 			android:layout_gravity="left"
 			/>
 
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="150dp"
+			android:id="@+id/report_no_data"
+			android:layout_gravity="left"
+			android:visibility="gone"
+			android:text="@string/no_data"
+			style="@style/Text.gray.big"
+			android:gravity="center"
+			/>
+
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
@@ -30,7 +41,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray_normal"
+				style="@style/Text.gray.normal"
 				android:text="@string/high_income_long_half_life"
 				android:drawableRight="@drawable/shape_perfect"
 				android:drawablePadding="5dp"
@@ -38,7 +49,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray_normal"
+				style="@style/Text.gray.normal"
 				android:text="@string/low_income_long_half_life"
 				android:drawableRight="@drawable/shape_uphold"
 				android:drawablePadding="5dp"
@@ -47,7 +58,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray_normal"
+				style="@style/Text.gray.normal"
 				android:text="@string/high_income_short_half_life"
 				android:drawableRight="@drawable/shape_quick"
 				android:drawablePadding="5dp"
@@ -56,7 +67,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray_normal"
+				style="@style/Text.gray.normal"
 				android:text="@string/low_income_short_half_life"
 				android:drawableRight="@drawable/shape_bad"
 				android:drawablePadding="5dp"
@@ -73,12 +84,13 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:listSelector="@android:color/transparent"
-		android:dividerHeight="0dp"
-		android:divider="@null"
-		android:paddingLeft="10dp"
-		android:paddingRight="10dp"
+		android:dividerHeight="2dp"
+		android:divider="@android:color/transparent"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="3dp"
 		android:scrollbarStyle="outsideOverlay"
-		android:background="@color/background_holo_light"
+		android:background="@android:color/transparent"
 		/>
 
 
