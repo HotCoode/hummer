@@ -1,11 +1,15 @@
 package com.rise.fragment;
 
+import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +18,7 @@ import android.widget.Toast;
 
 import com.base.common.DateUtils;
 import com.base.orm.QueryHelper;
+import com.rise.NewItemActivity;
 import com.rise.R;
 import com.rise.adapter.NotesItemAdapter;
 import com.rise.bean.NotesItem;
@@ -54,6 +59,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
 	    container = (ViewGroup) inflater.inflate(R.layout.fragment_notes,null);
 	    containerView = container;
 	    id = getArguments().getInt("id");
@@ -138,6 +144,23 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
         }
 
         return false;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.add,menu);
+        menu.findItem(R.id.menu_add).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_add:
+                startActivity(new Intent(getActivity(),NewItemActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

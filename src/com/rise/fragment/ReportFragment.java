@@ -160,24 +160,33 @@ public class ReportFragment extends Fragment implements BaseFragment, View.OnCli
             noDataView.setVisibility(View.GONE);
 
             PieSlice slice = new PieSlice();
-            slice.setColor(getResources().getColor(R.color.perfect));
-            slice.setValue(perfectCount);
-            pieGraph.addSlice(slice);
+            if(perfectCount != 0){
+                slice.setColor(getResources().getColor(R.color.perfect));
+                slice.setValue(perfectCount);
+                pieGraph.addSlice(slice);
+            }
 
-            slice = new PieSlice();
-            slice.setColor(getResources().getColor(R.color.uphold));
-            slice.setValue(upholdCount);
-            pieGraph.addSlice(slice);
+            if(upholdCount != 0){
+                slice = new PieSlice();
+                slice.setColor(getResources().getColor(R.color.uphold));
+                slice.setValue(upholdCount);
+                pieGraph.addSlice(slice);
+            }
 
-            slice = new PieSlice();
-            slice.setColor(getResources().getColor(R.color.quick));
-            slice.setValue(quickCount);
-            pieGraph.addSlice(slice);
+            if(quickCount != 0){
+                slice = new PieSlice();
+                slice.setColor(getResources().getColor(R.color.quick));
+                slice.setValue(quickCount);
+                pieGraph.addSlice(slice);
+            }
 
-            slice = new PieSlice();
-            slice.setColor(getResources().getColor(R.color.bad));
-            slice.setValue(badCount);
-            pieGraph.addSlice(slice);
+            if(badCount != 0){
+                slice = new PieSlice();
+                slice.setColor(getResources().getColor(R.color.bad));
+                slice.setValue(badCount);
+                pieGraph.addSlice(slice);
+            }
+
         }else{
             noDataView.setVisibility(View.VISIBLE);
         }

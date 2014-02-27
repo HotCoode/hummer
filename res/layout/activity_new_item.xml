@@ -8,7 +8,6 @@
 		android:id="@+id/new_item_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:singleLine="true"
 		android:hint="@string/new_item_hint"
 		android:textStyle="bold"
 		style="@style/new_item_text"
@@ -19,6 +18,5 @@
 		android:paddingRight="10dp"
 		android:focusableInTouchMode="true"
 		android:focusable="true"
-		android:maxLength="15"
 		/>
 </FrameLayout>

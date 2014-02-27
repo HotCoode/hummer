@@ -14,5 +14,31 @@
 			android:paddingRight="@dimen/hover_width"
 			android:scrollbarStyle="outsideOverlay"
 			/>
+	<FrameLayout
+		android:id="@+id/add_note"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/translucent_dark"
+		>
+		<EditText
+			android:id="@+id/note_edit_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/new_item_hint"
+			android:textStyle="bold"
+			style="@style/new_item_text"
+			android:layout_margin="@dimen/hover_width"
+			android:paddingTop="@dimen/padding_normal"
+			android:paddingBottom="@dimen/padding_normal"
+			android:focusableInTouchMode="true"
+			android:focusable="true"
+			android:layout_marginRight="30dp"
+			/>
+		<Button
+			android:layout_width="30dp"
+			android:layout_height="match_parent"
+			android:text="@string/add"/>
+
+		</FrameLayout>
 
 </FrameLayout>
