@@ -61,7 +61,7 @@ public class ReportListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = View.inflate(context, R.layout.list_item_report, null);
+        convertView = View.inflate(context, R.layout.item_report, null);
         View percentContainer = convertView.findViewById(R.id.percent_container);
         TextView percent = (TextView) convertView.findViewById(R.id.percent);
         TextView countEvent = (TextView) convertView.findViewById(R.id.count_event);

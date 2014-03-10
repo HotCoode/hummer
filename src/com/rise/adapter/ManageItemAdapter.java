@@ -44,7 +44,7 @@ public class ManageItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.list_item_manage_items,null);
+            convertView = inflater.inflate(R.layout.item_manage_items,null);
         }
         ((TextView)convertView).setText(things.get(position).getContent());
         convertView.setTag(things.get(position).getId());

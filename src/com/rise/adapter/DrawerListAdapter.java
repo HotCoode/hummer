@@ -44,7 +44,7 @@ public class DrawerListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.drawer_list_item,null);
+            convertView = inflater.inflate(R.layout.item_drawer_layout,null);
         }
         ((TextView)convertView).setText(context.getResources().getText(items[position]));
         convertView.setTag(items[position]);

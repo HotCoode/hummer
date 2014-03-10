@@ -23,6 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context context;
 
     public DBHelper(Context context) {
+        // todo db改成默认地址
         super(context, DATABASE_PATH + DATABASE_FILENAME, null, DB_VERSION);
         this.context = context;
     }
@@ -35,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        dropTables(db);
+        updateTables(db);
         createTables(db);
         loadPresetData(db);
     }
@@ -45,7 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL.CREATE_NOTES);
     }
 
-    private void dropTables(SQLiteDatabase db){
+    private void updateTables(SQLiteDatabase db){
         List<String> sqls = LoadSQL.readSqls(context, R.raw.drop_tables);
         for(String sql : sqls){
             db.execSQL(sql);
