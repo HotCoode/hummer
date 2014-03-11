@@ -27,6 +27,7 @@ import com.rise.fragment.FragmentUtil;
 import com.rise.fragment.MainFragment;
 import com.rise.fragment.NotesFragment;
 import com.rise.fragment.ReportFragment;
+import com.rise.fragment.SettingFragment;
 
 public class MainActivity extends BaseActivity implements ListView.OnItemClickListener {
 
@@ -57,14 +58,22 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        injectViews();
+
+        QueryHelper.init(new DBHelper(this));
+
+        initFragment();
+    }
+
+    private void injectViews(){
         drawerListView = (ListView) findViewById(R.id.left_drawer_list);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayoutContainer = findViewById(R.id.drawer_layout_container);
         settingBtn = (Button) findViewById(R.id.setting);
 
-	    Const.SCREEN_WIDTH = Screen.getScreenWidth(getWindowManager());
-	    DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(Const.SCREEN_WIDTH * 7 / 8, ViewGroup.LayoutParams.MATCH_PARENT);
-	    params.gravity = Gravity.LEFT;
+        Const.SCREEN_WIDTH = Screen.getScreenWidth(getWindowManager());
+        DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(Const.SCREEN_WIDTH * 7 / 8, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.gravity = Gravity.LEFT;
         drawerLayoutContainer.setLayoutParams(params);
 
         adapter = new DrawerListAdapter(this, drawerList);
@@ -74,10 +83,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
         drawerToggle = new DrawerToggle(this, drawerLayout);
         drawerLayout.setDrawerListener(drawerToggle);
-
-        QueryHelper.init(new DBHelper(this));
-
-        initFragment();
     }
 
     private void initFragment() {
@@ -102,16 +107,15 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         return super.onOptionsItemSelected(item);
     }
 
-
     private void showFragment(int id) {
         if (FragmentUtil.getCurrentFragment() == id) return;
-        Fragment fragment = null;
+        Fragment fragment;
         if(id == R.string.notes){
             fragment = new MainFragment();
         }else if(id == R.string.report){
             fragment = new ReportFragment();
         }else if(id == R.string.setting){
-
+            fragment = new SettingFragment();
         }else{
             Bundle bundle = new Bundle();
             bundle.putInt("id",id);
