@@ -2,9 +2,15 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item
-		android:id="@+id/menu_home"
+		android:id="@+id/setting"
 		android:showAsAction="never"
 		android:orderInCategory="100"
+		android:title="@string/setting"
+		/>
+	<item
+		android:id="@+id/menu_home"
+		android:showAsAction="never"
+		android:orderInCategory="101"
 		android:title="@string/edit_common_event"
 		/>
 </menu>
