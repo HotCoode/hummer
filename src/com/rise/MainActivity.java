@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.base.common.Screen;
@@ -27,7 +25,6 @@ import com.rise.fragment.FragmentUtil;
 import com.rise.fragment.MainFragment;
 import com.rise.fragment.NotesFragment;
 import com.rise.fragment.ReportFragment;
-import com.rise.fragment.SettingFragment;
 
 public class MainActivity extends BaseActivity implements ListView.OnItemClickListener {
 
@@ -36,7 +33,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     private ListView drawerListView;
     private DrawerLayout drawerLayout;
     private View drawerLayoutContainer;
-    private Button settingBtn;
 
     private DrawerToggle drawerToggle;
 
@@ -69,7 +65,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         drawerListView = (ListView) findViewById(R.id.left_drawer_list);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayoutContainer = findViewById(R.id.drawer_layout_container);
-        settingBtn = (Button) findViewById(R.id.setting);
 
         Const.SCREEN_WIDTH = Screen.getScreenWidth(getWindowManager());
         DrawerLayout.LayoutParams params = new DrawerLayout.LayoutParams(Const.SCREEN_WIDTH * 7 / 8, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -114,8 +109,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
             fragment = new MainFragment();
         }else if(id == R.string.report){
             fragment = new ReportFragment();
-        }else if(id == R.string.setting){
-            fragment = new SettingFragment();
         }else{
             Bundle bundle = new Bundle();
             bundle.putInt("id",id);
@@ -175,17 +168,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
     private void resetDrawerLayoutItemFocus(){
         drawerLayout.closeDrawers();
-        settingBtn.setBackgroundResource(R.drawable.bg_pressable_normal);
         for(int i=0;i<drawerListView.getCount();i++){
             drawerListView.getChildAt(i).setBackgroundResource(R.drawable.bg_pressable_normal);
         }
-    }
-
-    // setting button click
-    public void setting(View view){
-        resetDrawerLayoutItemFocus();
-        view.setBackgroundResource(R.drawable.bg_list_item_focus);
-        showFragment(R.string.setting);
-        drawerToggle.changeTitle(R.string.setting);
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TimePicker;
 
+import com.base.common.StringUtils;
 import com.rise.R;
 
 /**
@@ -22,13 +23,13 @@ public class TimePreference extends DialogPreference {
     public static int getHour(String time) {
         String[] pieces = time.split(":");
 
-        return (Integer.parseInt(pieces[0]));
+        return StringUtils.toInt(pieces[0],0);
     }
 
     public static int getMinute(String time) {
         String[] pieces = time.split(":");
 
-        return (Integer.parseInt(pieces[1]));
+        return StringUtils.toInt(pieces[1],0);
     }
 
     public TimePreference(Context ctxt, AttributeSet attrs) {

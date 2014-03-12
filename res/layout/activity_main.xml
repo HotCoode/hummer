@@ -28,15 +28,5 @@
 			android:divider="@android:color/transparent"
 			android:dividerHeight="0dp"
 			/>
-
-		<Button
-			android:id="@+id/setting"
-			style="@style/drawer_list_item"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="bottom"
-			android:text="@string/setting"
-			android:onClick="setting"
-			/>
 	</FrameLayout>
 </android.support.v4.widget.DrawerLayout>

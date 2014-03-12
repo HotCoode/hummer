@@ -15,4 +15,9 @@ public class Const {
     /** 广播，item更新，提醒更新item列表 */
     public static String ACTION_ITEM_UPDATE = "com.rise.item.update";
 
+    public static String PREFERENCE_KEY_REMINDER_TIME = "reminder_time";
+    public static String PREFERENCE_KEY_REMINDER = "reminder";
+
+    public static final String ALARM_INTENT = "com.rise.alarm";
+
 }

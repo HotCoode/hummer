@@ -31,5 +31,12 @@
 			android:name=".NewItemActivity"
 			android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
 		<activity android:name=".SettingActivity" />
+
+		<receiver android:name=".AlarmReceiver" >
+			<intent-filter>
+				<action android:name="com.ianc.lilytestintent" />
+				<data android:mimeType="vnd.android.cursor.item/calendar-alert" />
+			</intent-filter>
+		</receiver>
 	</application>
 </manifest>
