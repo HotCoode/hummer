@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.base.orm.QueryHelper;
 import com.rise.ItemsManageActivity;
 import com.rise.R;
+import com.rise.SettingActivity;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
 import com.rise.common.Const;
@@ -233,8 +234,13 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.menu_home){
-            startActivity(new Intent(activity, ItemsManageActivity.class));
+        switch (item.getItemId()){
+            case R.id.menu_setting:
+                startActivity(new Intent(activity, SettingActivity.class));
+                break;
+            case R.id.menu_edit_event:
+                startActivity(new Intent(activity, ItemsManageActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

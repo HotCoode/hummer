@@ -30,5 +30,6 @@
 		<activity
 			android:name=".NewItemActivity"
 			android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
+		<activity android:name=".SettingActivity" />
 	</application>
 </manifest>
