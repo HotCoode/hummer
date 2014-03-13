@@ -1,5 +1,6 @@
 package com.rise;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -32,7 +33,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 //        builder.setNumber(12);
         builder.setLargeIcon(btm);
         // 自己维护通知的消失
-        builder.setAutoCancel(false);
+        builder.setAutoCancel(true);
+        builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
 
         // 构建一个Intent
         Intent resultIntent = new Intent(context,MainActivity.class);
@@ -40,6 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         // 设置通知主题的意图
         builder.setContentIntent(resultPendingIntent);
+
         // 获取通知管理器对象
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, builder.build());
