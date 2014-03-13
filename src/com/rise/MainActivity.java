@@ -1,5 +1,6 @@
 package com.rise;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.base.L;
 import com.base.common.Screen;
 import com.base.orm.QueryHelper;
 import com.rise.adapter.DrawerListAdapter;
@@ -59,6 +61,13 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         QueryHelper.init(new DBHelper(this));
 
         initFragment();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        L.i("new intent");
+        moveToHome();
+        super.onNewIntent(intent);
     }
 
     private void injectViews(){

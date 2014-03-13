@@ -18,6 +18,4 @@ public class Const {
     public static String PREFERENCE_KEY_REMINDER_TIME = "reminder_time";
     public static String PREFERENCE_KEY_REMINDER = "reminder";
 
-    public static final String ALARM_INTENT = "com.rise.alarm";
-
 }

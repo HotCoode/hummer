@@ -24,7 +24,7 @@ import java.util.Calendar;
  */
 public class SettingActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private final String ID = "alarm_";
+    private final String ID = "alarm_id";
     private final String TIME = "alarm_time";
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -80,7 +80,7 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
     private void startAlarm(int hour, int minute) {
         L.i("start alarm");
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(Const.ALARM_INTENT);
+        Intent intent = new Intent(AlarmReceiver.ALARM_INTENT);
         intent.setData(Uri.parse("content://calendar/calendar_alerts/1"));
         intent.setClass(this, AlarmReceiver.class);
         intent.putExtra(ID, 1);
@@ -96,14 +96,14 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
         }
         long alarmTime = calendar.getTimeInMillis();
         intent.putExtra(TIME, alarmTime);
-        PendingIntent sender = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent sender = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, sender);
     }
 
 
     private void stopAlarm() {
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(Const.ALARM_INTENT);
+        Intent intent = new Intent(AlarmReceiver.ALARM_INTENT);
         intent.setClass(this, AlarmReceiver.class);
         intent.setData(Uri.parse("content://calendar/calendar_alerts/1"));
         PendingIntent sender = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_NO_CREATE);
