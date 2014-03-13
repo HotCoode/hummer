@@ -15,15 +15,6 @@ public class RiseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        new LoadTask().execute();
     }
 
-    private class LoadTask extends AsyncTask<Void,Integer,Boolean>{
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            SQL.loadSql(RiseApplication.this);
-            return null;
-        }
-    }
 }

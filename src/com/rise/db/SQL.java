@@ -19,6 +19,16 @@ public class SQL {
     public static String DELETE_NOTE_BY_ID;
     public static String COUNT_NOTES_BY_TYPE_AND_MONTH;
 
+    public interface OnSqlLoadFinish{
+        void onSqlLoadFinish();
+    }
+
+    private static OnSqlLoadFinish onSqlLoadFinish;
+
+    public static void setOnSqlLoadFinish(OnSqlLoadFinish onSqlLoadFinish){
+        SQL.onSqlLoadFinish = onSqlLoadFinish;
+    }
+
     public static void loadSql(Context context){
         // create table
         CREATE_ITEMS = LoadSQL.readSql(context, R.raw.items);
@@ -29,5 +39,7 @@ public class SQL {
         ADD_ITEM = LoadSQL.readSql(context,R.raw.add_item);
         DELETE_NOTE_BY_ID = LoadSQL.readSql(context,R.raw.delete_note_by_id);
         COUNT_NOTES_BY_TYPE_AND_MONTH = LoadSQL.readSql(context,R.raw.count_notes_by_type_and_month);
+
+        if(onSqlLoadFinish != null) onSqlLoadFinish.onSqlLoadFinish();
     }
 }

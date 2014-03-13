@@ -116,7 +116,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         upholdBox.setBoxListener(this);
         quickBox.setBoxListener(this);
         badBox.setBoxListener(this);
-        animation = AnimationUtils.loadAnimation(activity, R.anim.put_anim);
+        animation = AnimationUtils.loadAnimation(activity, R.anim.put);
 
         circlePerfect = activity.getResources().getDrawable(R.drawable.circle_perfect);
         circleUphold = activity.getResources().getDrawable(R.drawable.circle_uphold);
