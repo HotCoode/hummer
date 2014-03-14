@@ -6,6 +6,6 @@
 		android:showAsAction="always"
 		android:orderInCategory="100"
 		android:icon="@drawable/menu_add"
-		android:title="@string/add_common_event"
+		android:title="@string/add_note"
 		/>
 </menu>
