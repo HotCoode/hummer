@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.base.common.DateUtils;
 import com.base.orm.QueryHelper;
-import com.rise.NewItemActivity;
+import com.rise.NewNoteActivity;
 import com.rise.R;
 import com.rise.adapter.NotesItemAdapter;
 import com.rise.bean.NotesItem;
@@ -65,8 +65,8 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 	    id = getArguments().getInt("id");
 
 	    injectViews(container);
-	    loadData();
         setBackground();
+
 	    return container;
     }
 
@@ -81,6 +81,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
     }
 
 	private void loadData(){
+        items.clear();
 		QueryHelper.findBeans(
 				NotesItem.class,
 				SQL.FIND_NOTES_BY_TYPE,
@@ -148,7 +149,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.add,menu);
+        inflater.inflate(R.menu.add_note,menu);
         menu.findItem(R.id.menu_add).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -157,10 +158,20 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_add:
-                startActivity(new Intent(getActivity(),NewItemActivity.class));
+                Intent intent = new Intent(getActivity(),NewNoteActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadData();
+    }
+
 
 }

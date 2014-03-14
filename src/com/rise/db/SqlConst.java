@@ -8,6 +8,8 @@ public class SqlConst {
     public static final String ITEM_STATUS_AVAILABLE = "1";
     /** 無效的ITEM */
     public static final String ITEM_STATUS_INVALID = "0";
+    /** 直接添加note */
+    public static final String ITEM_STATUS_NOTE_ONLY = "2";
 
 
     /** 高收益-长半衰期 */

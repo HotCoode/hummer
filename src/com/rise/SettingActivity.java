@@ -86,12 +86,14 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
         intent.putExtra(ID, 1);
 
         Calendar calendar = Calendar.getInstance();
+
+        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int currentMinute = calendar.get(Calendar.MINUTE);
+
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
-        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
-        int currentMinute = calendar.get(Calendar.MINUTE);
-        if (hour < currentHour || (hour == currentHour && minute < currentMinute)) {
+        if (hour < currentHour || (hour == currentHour && minute <= currentMinute)) {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
         long alarmTime = calendar.getTimeInMillis();

@@ -1,0 +1,1 @@
+insert into items (content,time,status) values (?,?,?);

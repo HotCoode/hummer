@@ -50,6 +50,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        L.i("main activity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

@@ -36,4 +36,5 @@
 	<string name="cancel">取消</string>
 	<string name="please_record_today_event">记录今天做的事吧</string>
 	<string name="alarm_summary">每天记录，每天提高一点。</string>
+	<string name="add_note">添加事件</string>
 </resources>
