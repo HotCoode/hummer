@@ -10,5 +10,7 @@
 		android:layout_height="50dp"
 		android:layout_gravity="center"
 		android:src="@drawable/circle_perfect"
-		android:scaleType="centerInside" />
+		android:scaleType="centerInside"
+
+		/>
 </FrameLayout>

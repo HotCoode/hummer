@@ -93,7 +93,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 						handler.sendEmptyMessage(DATA_LOAD_FINISH);
 					}
 				}
-		);
+		,300);
 	}
 
 	/**

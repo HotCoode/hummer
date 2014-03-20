@@ -24,7 +24,6 @@ public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish
     public void onCreate(Bundle savedInstanceState) {
         L.i("LoadingActivity");
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_loading);
         SQL.setOnSqlLoadFinish(this);
         new LoadTask().execute();
@@ -39,9 +38,9 @@ public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish
     public void onSqlLoadFinish() {
         L.i("onSqlLoadFinish");
         sqlLoadFinish = true;
-        if(animationEnd){
+//        if(animationEnd){
             allFinish();
-        }
+//        }
     }
 
     @Override
@@ -61,9 +60,10 @@ public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish
     }
 
     private void allFinish(){
+        finish();
+        overridePendingTransition(0,0);
         Intent intent = new Intent(LoadingActivity.this,MainActivity.class);
         startActivity(intent);
-        finish();
     }
 
     private class LoadTask extends AsyncTask<Void,Integer,Boolean> {
