@@ -19,6 +19,7 @@ import com.base.L;
 import com.base.common.Screen;
 import com.base.orm.QueryHelper;
 import com.rise.adapter.DrawerListAdapter;
+import com.rise.common.AppUtils;
 import com.rise.common.Const;
 import com.rise.component.BaseActivity;
 import com.rise.component.DrawerToggle;
@@ -157,14 +158,14 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
             moveToHome();
             return true;
         }
-        return super.onKeyDown(keyCode, event);
+        finish();
+        return true;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        QueryHelper.close();
-        System.exit(1);
+        AppUtils.exit();
     }
 
     /**

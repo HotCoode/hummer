@@ -8,8 +8,11 @@
 	<color name="bad">#c00</color>
 	<!-- A dark Holo shade of blue -->
 	<color name="holo_blue_dark">#ff0099cc</color>
+	<color name="theme_lighter">#ffc7dcf4</color>
+	<color name="theme">#FF9FB3CB</color>
 
 	<color name="lighter_gray">#ddd</color>
+	<color name="lighter">#FFEFF1F4</color>
 	<color name="darker_gray">#ccc</color>
 	<color name="item_pressed">#33669900</color>
 	<color name="item_focused">#60669900</color>
