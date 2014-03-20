@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.base.orm.QueryHelper;
+import com.rise.common.AppUtils;
 import com.rise.common.Const;
 import com.rise.component.DoneDiscardActivity;
 import com.rise.db.SQL;
@@ -39,7 +40,7 @@ public class NewItemActivity extends DoneDiscardActivity {
 
     @Override
     public void discardClick() {
-        finish();
+        AppUtils.doneDiscardActivityClose(itemText,this);
     }
 
 }

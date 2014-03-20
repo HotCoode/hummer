@@ -18,8 +18,7 @@
 			android:layout_width="150dp"
 			android:layout_height="150dp"
 			android:id="@+id/report_pie_graph"
-			android:layout_gravity="left"
-			/>
+			android:layout_gravity="left" />
 
 		<TextView
 			android:layout_width="150dp"
@@ -29,23 +28,22 @@
 			android:visibility="gone"
 			android:text="@string/no_data"
 			style="@style/Text.gray.big"
-			android:gravity="center"
-			/>
+			android:gravity="center" />
 
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:orientation="vertical"
-			android:layout_gravity="right|center_vertical"
-			>
+			android:layout_gravity="right|center_vertical">
+
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				style="@style/Text.gray.normal"
 				android:text="@string/high_income_long_half_life"
 				android:drawableRight="@drawable/shape_perfect"
-				android:drawablePadding="5dp"
-				/>
+				android:drawablePadding="5dp" />
+
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -53,8 +51,8 @@
 				android:text="@string/low_income_long_half_life"
 				android:drawableRight="@drawable/shape_uphold"
 				android:drawablePadding="5dp"
-				android:layout_marginTop="10dp"
-				/>
+				android:layout_marginTop="10dp" />
+
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -62,8 +60,8 @@
 				android:text="@string/high_income_short_half_life"
 				android:drawableRight="@drawable/shape_quick"
 				android:drawablePadding="5dp"
-				android:layout_marginTop="10dp"
-				/>
+				android:layout_marginTop="10dp" />
+
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -71,8 +69,7 @@
 				android:text="@string/low_income_short_half_life"
 				android:drawableRight="@drawable/shape_bad"
 				android:drawablePadding="5dp"
-				android:layout_marginTop="10dp"
-				/>
+				android:layout_marginTop="10dp" />
 
 		</LinearLayout>
 	</FrameLayout>
@@ -88,8 +85,6 @@
 		android:layout_marginRight="10dp"
 		android:layout_marginTop="3dp"
 		android:scrollbarStyle="outsideOverlay"
-		android:background="@android:color/transparent"
-		/>
-
+		android:background="@android:color/transparent" />
 
 </LinearLayout>

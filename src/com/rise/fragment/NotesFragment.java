@@ -65,7 +65,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 	    id = getArguments().getInt("id");
 
 	    injectViews(container);
-        setBackground();
+//        setBackground();
 
 	    return container;
     }

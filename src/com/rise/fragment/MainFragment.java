@@ -227,25 +227,6 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.home, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_setting:
-                startActivity(new Intent(activity, SettingActivity.class));
-                break;
-            case R.id.menu_edit_event:
-                startActivity(new Intent(activity, ItemsManageActivity.class));
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onDetach() {
         activity.unregisterReceiver(broadcastReceiver);
         super.onDetach();
