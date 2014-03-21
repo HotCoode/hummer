@@ -7,8 +7,12 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.base.orm.QueryHelper;
@@ -24,7 +28,7 @@ import java.util.List;
 /**
  * Created by kai.wang on 2/17/14.
  */
-public class ItemsManageActivity extends BaseActivity {
+public class ItemsManageActivity extends BaseActivity implements AdapterView.OnItemLongClickListener{
     private ListView listView;
     private ManageItemAdapter adapter;
 
@@ -52,12 +56,14 @@ public class ItemsManageActivity extends BaseActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         setContentView(R.layout.activity_items_manage);
 
         listView = (ListView) findViewById(R.id.item_list_view);
+        listView.setOnItemLongClickListener(this);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Const.ACTION_ITEM_UPDATE);
@@ -107,4 +113,49 @@ public class ItemsManageActivity extends BaseActivity {
         unregisterReceiver(broadcastReceiver);
         super.onDestroy();
     }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        startSupportActionMode(mActionModeCallback);
+        return false;
+    }
+
+    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+
+        // called when the action mode is created; startActionMode() was called
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            // Inflate a menu resource providing context menu items
+            MenuInflater inflater = mode.getMenuInflater();
+            // assumes that you have "contexual.xml" menu resources
+            inflater.inflate(R.menu.manage_item, menu);
+            return true;
+        }
+
+        // the following method is called each time
+        // the action mode is shown. Always called after
+        // onCreateActionMode, but
+        // may be called multiple times if the mode is invalidated.
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false; // Return false if nothing is done
+        }
+
+        // called when the user selects a contextual menu item
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.menu_edit:
+                    // the Action was executed, close the CAB
+                    mode.finish();
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        // called when the user exits the action mode
+        public void onDestroyActionMode(ActionMode mode) {
+//            mActionMode = null;
+//            selectedItem = -1;
+        }
+    };
+
 }

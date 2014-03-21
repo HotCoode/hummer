@@ -5,12 +5,12 @@
 				  android:layout_height="match_parent"
 				  android:background="@color/theme_lighter">
 
-	<PreferenceCategory android:title="@string/timed_reminder">
+	<PreferenceCategory
+		android:title="@string/timed_reminder">
 
 		<com.rise.component.TimePreference
 			android:key="reminder_time"
-			android:title="@string/time"
-			/>
+			android:title="@string/time" />
 
 		<CheckBoxPreference
 			android:key="reminder"

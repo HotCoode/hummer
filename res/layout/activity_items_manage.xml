@@ -12,7 +12,8 @@
 		android:cacheColorHint="@android:color/transparent"
 		android:listSelector="@android:color/transparent"
 		android:footerDividersEnabled="true"
-		android:layout_marginLeft="@dimen/padding_normal"
-		android:layout_marginRight="@dimen/padding_normal"
+		android:paddingLeft="@dimen/padding_normal"
+		android:paddingRight="@dimen/padding_normal"
+		android:choiceMode="multipleChoice"
 		android:scrollbarStyle="outsideOverlay" />
 </FrameLayout>
