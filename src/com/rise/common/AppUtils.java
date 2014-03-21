@@ -30,7 +30,7 @@ public class AppUtils {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
         try {
-            Thread.sleep(150);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

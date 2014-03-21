@@ -21,11 +21,9 @@ public class NotesItemAdapter extends BaseAdapter {
 	private Context context;
 	private List<NotesItemOrder> items;
 	private LayoutInflater inflater;
-	private int color;
-	public NotesItemAdapter(Context context,List<NotesItemOrder> items,int noteType){
+	public NotesItemAdapter(Context context,List<NotesItemOrder> items){
 		this.context = context;
 		this.items = items;
-		color = RiseUtil.getColorByName(noteType);
 		inflater = LayoutInflater.from(context);
 	}
 
@@ -52,14 +50,12 @@ public class NotesItemAdapter extends BaseAdapter {
 			((TextView)convertView).setText(note.getMonth() + " " + note.getYear());
 		}else{
 			convertView = inflater.inflate(R.layout.notes_item_content,null);
-			View timeView = convertView.findViewById(R.id.notes_item_content_time);
 			TextView monthView = (TextView) convertView.findViewById(R.id.notes_item_content_month);
 			TextView dayView = (TextView) convertView.findViewById(R.id.notes_item_content_day);
 			TextView textView = (TextView) convertView.findViewById(R.id.notes_item_content_text);
 			monthView.setText(note.getItem().getMonth());
 			dayView.setText(note.getItem().getDay());
 			textView.setText(note.getItem().getContent());
-			timeView.setBackgroundResource(color);
 		}
 		return convertView;
 	}

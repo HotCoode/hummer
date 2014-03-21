@@ -4,35 +4,35 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:background="@drawable/bg_pressable_darker"
-				android:padding="7dp"
-		>
+				android:padding="7dp">
+
 	<LinearLayout
-			android:id="@+id/notes_item_content_time"
-			android:layout_width="50dp"
-			android:layout_height="50dp"
-			android:gravity="center"
-			android:orientation="vertical">
+		android:id="@+id/notes_item_content_time"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:background="@color/theme_darker">
+
 		<TextView
-				android:id="@+id/notes_item_content_month"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				style="@style/type_container_small"
-				/>
+			android:id="@+id/notes_item_content_month"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/type_container_small" />
+
 		<TextView
-				android:id="@+id/notes_item_content_day"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				style="@style/type_container_big"
-				/>
+			android:id="@+id/notes_item_content_day"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/type_container_big" />
 	</LinearLayout>
 
 	<TextView
-			style="@style/notes_item_content_text"
-			android:id="@+id/notes_item_content_text"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerVertical="true"
-			android:layout_toRightOf="@id/notes_item_content_time"
-			android:layout_marginLeft="7dp"
-			/>
+		style="@style/notes_item_content_text"
+		android:id="@+id/notes_item_content_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:layout_toRightOf="@id/notes_item_content_time"
+		android:layout_marginLeft="7dp" />
 </RelativeLayout>
