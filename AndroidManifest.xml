@@ -30,7 +30,7 @@
 			android:name=".ItemsManageActivity"
 			android:label="@string/common_event" />
 		<activity
-			android:name=".NewItemActivity"
+			android:name=".EditItemActivity"
 			android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
 		<activity
 			android:name=".SettingActivity"
