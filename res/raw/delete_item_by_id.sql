@@ -1,0 +1,1 @@
+update items set status=0  where id=?

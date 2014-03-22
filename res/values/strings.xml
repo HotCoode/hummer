@@ -23,6 +23,8 @@
 	<string name="new_item_hint">添加事件(15字以内)</string>
 	<string name="add_success">添加成功</string>
 	<string name="delete_event">删除这条事件</string>
+	<string name="edit_event">编辑这条事件</string>
+	<string name="edit_success">编辑成功</string>
 	<string name="only_can_delete_today_event">只能删除今天的事件</string>
 	<string name="percent">%</string>
 	<string name="event_count">{0}件</string>
@@ -37,4 +39,6 @@
 	<string name="please_record_today_event">记录今天做的事吧</string>
 	<string name="alarm_summary">每天记录，每天提高一点。</string>
 	<string name="add_note">添加事件</string>
+	<string name="please_select_want_to_delete_items">请选择</string>
+	<string name="selected_some_rows">已选择{0}条</string>
 </resources>

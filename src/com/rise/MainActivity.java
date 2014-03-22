@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import com.base.L;
 import com.base.common.Screen;
 import com.base.orm.QueryHelper;
 import com.rise.adapter.DrawerListAdapter;
+import com.rise.common.AppUtils;
 import com.rise.common.Const;
 import com.rise.component.BaseActivity;
 import com.rise.component.DrawerToggle;
@@ -104,14 +107,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         fragmentTransaction.commit();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void showFragment(int id) {
         if (FragmentUtil.getCurrentFragment() == id) return;
         Fragment fragment;
@@ -156,15 +151,17 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         if(keyCode == KeyEvent.KEYCODE_BACK && FragmentUtil.getCurrentFragment() != R.string.notes){
             moveToHome();
             return true;
+        }else if(keyCode != KeyEvent.KEYCODE_MENU){
+            finish();
+            return true;
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown(keyCode,event);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        QueryHelper.close();
-        System.exit(1);
+        AppUtils.exit();
     }
 
     /**
@@ -181,5 +178,25 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         for(int i=0;i<drawerListView.getCount();i++){
             drawerListView.getChildAt(i).setBackgroundResource(R.drawable.bg_pressable_normal);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }else{
+            switch (item.getItemId()){
+                case R.id.menu_setting:
+                    startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                    break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

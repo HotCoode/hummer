@@ -19,6 +19,8 @@ public class SQL {
     public static String DELETE_NOTE_BY_ID;
     public static String COUNT_NOTES_BY_TYPE_AND_MONTH;
     public static String ADD_NOTE_ONLY_ITEM;
+    public static String UPDATE_ITEM_BY_ID;
+    public static String DELETE_ITEM_BY_ID;
 
     public interface OnSqlLoadFinish {
         void onSqlLoadFinish();
@@ -41,6 +43,8 @@ public class SQL {
         DELETE_NOTE_BY_ID = LoadSQL.readSql(context,R.raw.delete_note_by_id);
         COUNT_NOTES_BY_TYPE_AND_MONTH = LoadSQL.readSql(context,R.raw.count_notes_by_type_and_month);
         ADD_NOTE_ONLY_ITEM = LoadSQL.readSql(context,R.raw.add_note_only_item);
+        UPDATE_ITEM_BY_ID = LoadSQL.readSql(context,R.raw.update_item_by_id);
+        DELETE_ITEM_BY_ID = LoadSQL.readSql(context,R.raw.delete_item_by_id);
 
         if(onSqlLoadFinish != null) onSqlLoadFinish.onSqlLoadFinish();
     }
