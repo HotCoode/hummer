@@ -39,6 +39,8 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
+        getListView().setBackgroundResource(R.color.theme_lighter);
+
     }
 
     @Override

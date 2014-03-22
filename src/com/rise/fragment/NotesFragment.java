@@ -47,6 +47,8 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
 	private final int DATA_LOAD_FINISH = 100;
 
+    private View indicatorView;
+
 	private Handler handler = new Handler(new Handler.Callback() {
 		@Override
 		public boolean handleMessage(Message msg) {
@@ -65,7 +67,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 	    id = getArguments().getInt("id");
 
 	    injectViews(container);
-        setBackground();
+//        setBackground();
 
 	    return container;
     }
@@ -73,11 +75,15 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
     @Override
     public void injectViews(View parentView) {
 
-        adapter = new NotesItemAdapter(getActivity(),items,id);
+        adapter = new NotesItemAdapter(getActivity(),items);
 	    listView = (ListView) parentView.findViewById(R.id.notes_list_view);
-        listView.setAdapter(adapter);
+        indicatorView = parentView.findViewById(R.id.indicator);
 
+        listView.setAdapter(adapter);
         listView.setOnItemLongClickListener(this);
+
+        indicatorView.setBackgroundResource(RiseUtil.getColorByName(id));
+
     }
 
 	private void loadData(){
@@ -93,7 +99,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 						handler.sendEmptyMessage(DATA_LOAD_FINISH);
 					}
 				}
-		);
+		,300);
 	}
 
 	/**
