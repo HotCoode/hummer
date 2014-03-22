@@ -27,6 +27,9 @@
 		<item name="android:textColor">@color/theme_lighter</item>
 	</style>
 
+	<style name="PreferencesTheme" parent="AppTheme">
+		<item name="android:background">@color/theme_lighter</item>
+	</style>
 
 	<style name="main_list_text">
 		<item name="android:textSize">18sp</item>

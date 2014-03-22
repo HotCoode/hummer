@@ -167,6 +167,10 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
         deleting = true;
         mode.setTitle(R.string.please_select_want_to_delete_items);
+        // Inflate a menu resource providing context menu items
+        MenuInflater inflater = mode.getMenuInflater();
+        // assumes that you have "contexual.xml" menu resources
+        inflater.inflate(R.menu.delete_item, menu);
         return true;
     }
 
@@ -175,10 +179,6 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
     // onCreateActionMode, but
     // may be called multiple times if the mode is invalidated.
     public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        // Inflate a menu resource providing context menu items
-        MenuInflater inflater = mode.getMenuInflater();
-        // assumes that you have "contexual.xml" menu resources
-        inflater.inflate(R.menu.delete_item, menu);
         return false; // Return false if nothing is done
     }
 
@@ -224,14 +224,15 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void deleteItems(ActionMode mode){
-        mode.finish();
         if(selectedItems.size() == 0) return;
         for (int position : selectedItems){
             Item item = items.get(position);
+            items.remove(position);
             String itemId = item.getId();
             QueryHelper.update(SQL.DELETE_ITEM_BY_ID,new String[]{itemId},null);
         }
         Toast.makeText(ItemsManageActivity.this,R.string.delete_success,Toast.LENGTH_SHORT).show();
-        refreshList();
+        mode.finish();
+        adapter.notifyDataSetChanged();
     }
 }

@@ -195,9 +195,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
                 case R.id.menu_setting:
                     startActivity(new Intent(MainActivity.this, SettingActivity.class));
                     break;
-                case R.id.menu_edit_event:
-                    startActivity(new Intent(MainActivity.this, ItemsManageActivity.class));
-                    break;
             }
         }
         return super.onOptionsItemSelected(item);
