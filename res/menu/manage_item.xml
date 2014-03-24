@@ -12,7 +12,7 @@
 		android:id="@+id/menu_add"
 		android:showAsAction="always"
 		android:orderInCategory="100"
-		android:icon="@drawable/menu_add"
+		android:icon="@drawable/add_gray"
 		android:title="@string/add"
 		/>
 </menu>
