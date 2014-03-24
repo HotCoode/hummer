@@ -44,22 +44,20 @@ public class EditItemActivity extends DoneDiscardActivity {
                     QueryHelper.update(SQL.UPDATE_ITEM_BY_ID, new String[]{text, itemId}, null);
                     Toast.makeText(EditItemActivity.this, R.string.edit_success, Toast.LENGTH_SHORT).show();
                     sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
-                    finish();
                 } else {
                     // create mode
                     QueryHelper.update(SQL.ADD_ITEM, new String[]{text, System.currentTimeMillis() + ""}, null);
                     Toast.makeText(EditItemActivity.this, R.string.add_success, Toast.LENGTH_SHORT).show();
                     sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
-                    finish();
                 }
-
+                AppUtils.doneActivityClose(itemText,EditItemActivity.this);
             }
         }
     }
 
     @Override
     public void discardClick() {
-        AppUtils.doneDiscardActivityClose(itemText,this);
+        AppUtils.discardActivityClose(itemText, this);
     }
 
 }

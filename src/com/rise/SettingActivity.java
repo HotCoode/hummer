@@ -117,8 +117,9 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
         }
     }
 
-    private void changeAlarm(int hour, int minute) {
-        stopAlarm();
-        startAlarm(hour, minute);
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(0, R.anim.exit);
     }
 }

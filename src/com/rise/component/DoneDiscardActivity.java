@@ -47,4 +47,10 @@ public abstract class DoneDiscardActivity extends ActionBarActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
     }
+
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(0, R.anim.exit);
+    }
 }

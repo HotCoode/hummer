@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.base.orm.QueryHelper;
 import com.rise.common.AppUtils;
@@ -31,9 +30,8 @@ public class NewNoteActivity extends DoneDiscardActivity {
         public boolean handleMessage(Message msg) {
             switch (msg.what) {
                 case INSERT_NOTE_FINISH:
-//                    Toast.makeText(NewNoteActivity.this, R.string.add_success, Toast.LENGTH_SHORT).show();
-                    finish();
                     sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
+                    AppUtils.doneActivityClose(itemText,NewNoteActivity.this);
                     break;
             }
             return false;
@@ -70,7 +68,7 @@ public class NewNoteActivity extends DoneDiscardActivity {
 
     @Override
     public void discardClick() {
-        AppUtils.doneDiscardActivityClose(itemText,this);
+        AppUtils.discardActivityClose(itemText, this);
     }
 
 }

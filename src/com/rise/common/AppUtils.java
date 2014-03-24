@@ -26,7 +26,7 @@ public class AppUtils {
      * @param focusView
      * @param activity
      */
-    public static void doneDiscardActivityClose(View focusView,Activity activity){
+    public static void discardActivityClose(View focusView, Activity activity){
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
         try {
@@ -36,5 +36,26 @@ public class AppUtils {
         }
         activity.finish();
         activity.overridePendingTransition(0,R.anim.cancel_item);
+    }
+
+    /**
+     * DoneDiscardActivity关闭动画
+     * @param focusView
+     * @param activity
+     */
+    public static void doneActivityClose(View focusView, Activity activity){
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        finish(activity);
+    }
+
+    public static void finish(Activity activity){
+        activity.finish();
+        activity.overridePendingTransition(0,R.anim.exit);
     }
 }
