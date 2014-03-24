@@ -78,7 +78,7 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
         setContentView(R.layout.activity_items_manage);
 
         listView = (ListView) findViewById(R.id.item_list_view);
-        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setOnItemLongClickListener(this);
         listView.setOnItemClickListener(this);
         listView.setMultiChoiceModeListener(this);
@@ -140,7 +140,7 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        if(deleting) return false;
+        if(deleting) return true;
         final String content = items.get(position).getContent();
         final String itemId = items.get(position).getId();
         final SimpleDialog dialog = new SimpleDialog(ItemsManageActivity.this,content,getString(R.string.edit_event));
@@ -161,7 +161,6 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
         items.clear();
         loadData();
     }
-
 
     // called when the action mode is created; startActionMode() was called
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -204,22 +203,23 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
 
     @Override
     public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
-        if(checked){
-            selectedRows ++;
-            adapter.selection(position);
-            selectedItems.add(position);
-        }else{
-            selectedRows --;
-            adapter.removeSelection(position);
-            selectedItems.remove(selectedItems.indexOf(position));
-        }
-        mode.setTitle(MessageFormat.format(getString(R.string.selected_some_rows),selectedRows));
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(actionMode != null){
             listView.setItemChecked(position, !adapter.isSelection(position));
+            boolean checked = !adapter.isSelection(position);
+            if(checked){
+                selectedRows ++;
+                adapter.selection(position);
+                selectedItems.add(position);
+            }else{
+                selectedRows --;
+                adapter.removeSelection(position);
+                selectedItems.remove(selectedItems.indexOf(position));
+            }
+            actionMode.setTitle(MessageFormat.format(getString(R.string.selected_some_rows),selectedRows));
         }
     }
 
