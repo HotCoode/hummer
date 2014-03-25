@@ -29,3 +29,6 @@ proguard/
 .idea/
 project.properties
 ant.properties
+build.xml
+local.properties
+proguard-project.txt
