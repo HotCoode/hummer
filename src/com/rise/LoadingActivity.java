@@ -10,59 +10,35 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.base.L;
+import com.base.orm.QueryHelper;
 import com.rise.component.BaseActivity;
+import com.rise.db.DBHelper;
 import com.rise.db.SQL;
 
 /**
  * Created by kai.wang on 3/13/14.
  */
-public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish,Animation.AnimationListener{
-    private boolean sqlLoadFinish = false;
-    private boolean animationEnd = false;
-    private View loadAnimView;
-    private Animation animation;
+public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish{
     public void onCreate(Bundle savedInstanceState) {
         L.i("LoadingActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         SQL.setOnSqlLoadFinish(this);
         new LoadTask().execute();
-
-        loadAnimView = findViewById(R.id.loading_anim_view);
-        animation = AnimationUtils.loadAnimation(this,R.anim.activity_loading);
-        animation.setAnimationListener(this);
-        loadAnimView.startAnimation(animation);
     }
 
     @Override
     public void onSqlLoadFinish() {
         L.i("onSqlLoadFinish");
-        sqlLoadFinish = true;
-//        if(animationEnd){
-            allFinish();
-//        }
-    }
-
-    @Override
-    public void onAnimationStart(Animation animation) {
-    }
-    @Override
-    public void onAnimationRepeat(Animation animation) {
-    }
-
-    @Override
-    public void onAnimationEnd(Animation animation) {
-        L.i("onAnimationEnd");
-        animationEnd = true;
-        if(sqlLoadFinish){
-            allFinish();
-        }
+        QueryHelper.init(new DBHelper(LoadingActivity.this));
+        allFinish();
     }
 
     private void allFinish(){
         finish();
         overridePendingTransition(0,0);
         Intent intent = new Intent(LoadingActivity.this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -73,5 +49,11 @@ public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish
             SQL.loadSql(LoadingActivity.this);
             return null;
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        L.i("onRestart");
+        super.onRestart();
     }
 }

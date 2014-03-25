@@ -39,7 +39,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray.normal"
+				style="@style/Text.theme_darker.normal"
 				android:text="@string/high_income_long_half_life"
 				android:drawableRight="@drawable/shape_perfect"
 				android:drawablePadding="5dp" />
@@ -47,7 +47,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray.normal"
+				style="@style/Text.theme_darker.normal"
 				android:text="@string/low_income_long_half_life"
 				android:drawableRight="@drawable/shape_uphold"
 				android:drawablePadding="5dp"
@@ -56,7 +56,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray.normal"
+				style="@style/Text.theme_darker.normal"
 				android:text="@string/high_income_short_half_life"
 				android:drawableRight="@drawable/shape_quick"
 				android:drawablePadding="5dp"
@@ -65,7 +65,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				style="@style/Text.gray.normal"
+				style="@style/Text.theme_darker.normal"
 				android:text="@string/low_income_short_half_life"
 				android:drawableRight="@drawable/shape_bad"
 				android:drawablePadding="5dp"
@@ -80,7 +80,7 @@
 		android:layout_height="wrap_content"
 		android:listSelector="@android:color/transparent"
 		android:dividerHeight="2dp"
-		android:divider="@color/theme"
+		android:divider="@android:color/transparent"
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
 		android:layout_marginTop="3dp"

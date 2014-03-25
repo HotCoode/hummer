@@ -125,7 +125,23 @@
 	<style name="Text.gray">
 		<item name="android:textColor">@color/text_gray</item>
 	</style>
+	<style name="Text.theme_darker">
+		<item name="android:textColor">@color/theme_darker</item>
+	</style>
+	<style name="Text.white">
+		<item name="android:textColor">@android:color/white</item>
+	</style>
 	<style name="Text.gray.normal">
+		<item name="android:textSize">12dp</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
+
+	<style name="Text.theme_darker.normal">
+		<item name="android:textSize">12dp</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
+
+	<style name="Text.white.normal">
 		<item name="android:textSize">12dp</item>
 		<item name="android:gravity">center_vertical</item>
 	</style>

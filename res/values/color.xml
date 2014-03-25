@@ -19,8 +19,8 @@
 	<color name="item_pressed">#33669900</color>
 	<color name="item_focused">#60669900</color>
 	<color name="background_holo_light">#fff0f0f0</color>
-	<color name="dark">#383838</color>
-	<color name="darker">#303030</color>
+	<color name="dark">#292929</color>
+	<color name="darker">#101010</color>
 	<color name="dialog_stroke">#90404040</color>
 	<color name="translucent_dark">#AA000000</color>
 

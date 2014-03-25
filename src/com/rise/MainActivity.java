@@ -62,8 +62,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
         injectViews();
 
-        QueryHelper.init(new DBHelper(this));
-
         initFragment();
     }
 
