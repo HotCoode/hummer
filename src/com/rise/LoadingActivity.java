@@ -35,11 +35,10 @@ public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish
     }
 
     private void allFinish(){
+        Intent intent = new Intent(LoadingActivity.this,MainActivity.class);
+        startActivity(intent);
         finish();
         overridePendingTransition(0,0);
-        Intent intent = new Intent(LoadingActivity.this,MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 
     private class LoadTask extends AsyncTask<Void,Integer,Boolean> {
