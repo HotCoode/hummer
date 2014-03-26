@@ -23,6 +23,7 @@ import com.base.orm.QueryHelper;
 import com.rise.adapter.DrawerListAdapter;
 import com.rise.common.AppUtils;
 import com.rise.common.Const;
+import com.rise.common.RiseUtil;
 import com.rise.component.BaseActivity;
 import com.rise.component.DrawerToggle;
 import com.rise.db.DBHelper;
@@ -43,10 +44,10 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
     // drawer list 数据
     private int[] drawerList = {R.string.notes,
-            R.string.high_income_long_half_life,
-            R.string.low_income_long_half_life,
-            R.string.high_income_short_half_life,
-            R.string.low_income_short_half_life,
+            R.string.high_income_long_half_life_color,
+            R.string.low_income_long_half_life_color,
+            R.string.high_income_short_half_life_color,
+            R.string.low_income_short_half_life_color,
             R.string.report
     };
     private DrawerListAdapter adapter;
@@ -114,7 +115,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
             fragment = new ReportFragment();
         }else{
             Bundle bundle = new Bundle();
-            bundle.putInt("id",id);
+            bundle.putInt("id", id);
             fragment = new NotesFragment();
             fragment.setArguments(bundle);
         }
@@ -140,8 +141,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	    resetDrawerLayoutItemFocus();
 	    view.setBackgroundResource(R.drawable.bg_list_item_focus);
-        showFragment(drawerList[position]);
-	    drawerToggle.changeTitle(drawerList[position]);
+        showFragment(RiseUtil.getRealName(drawerList[position]));
+	    drawerToggle.changeTitle(RiseUtil.getRealName(drawerList[position]));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.rise.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class DrawerListAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.item_drawer_layout,null);
         }
-        ((TextView)convertView).setText(context.getResources().getText(items[position]));
+        ((TextView)convertView).setText(Html.fromHtml(context.getResources().getString(items[position])));
         convertView.setTag(items[position]);
 	    if(FragmentUtil.getCurrentFragment() == items[position]){
 		    convertView.setBackgroundResource(R.drawable.bg_list_item_focus);
