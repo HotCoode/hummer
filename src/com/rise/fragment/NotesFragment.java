@@ -1,5 +1,6 @@
 package com.rise.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.base.L;
 import com.base.common.DateUtils;
 import com.base.orm.QueryHelper;
 import com.rise.NewNoteActivity;
@@ -178,6 +180,5 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
         super.onStart();
         loadData();
     }
-
 
 }

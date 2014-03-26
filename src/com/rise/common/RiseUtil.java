@@ -70,7 +70,7 @@ public class RiseUtil {
     }
 
     public static int getRealName(int colorName) {
-        int name = 0;
+        int name = colorName;
         switch (colorName) {
             case R.string.high_income_long_half_life_color:
                 name = R.string.high_income_long_half_life;

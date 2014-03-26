@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="edit">edit</string>
+	<string name="add">add</string>
+	<string name="delete">delete</string>
+	<string name="delete_success">delete success</string>
+	<string name="main_frame">Rise</string>
+	<string name="drawer_open">Open navigation drawer</string>
+	<string name="drawer_close">Close navigation drawer</string>
+	<string name="put_fail">add fail</string>
+	<string name="events">Events</string>
+	<string name="high_income_long_half_life">Perfect</string>
+	<string name="low_income_long_half_life">Persistent</string>
+	<string name="high_income_short_half_life">Against</string>
+	<string name="low_income_short_half_life">Harmful</string>
+	<string name="high_income_long_half_life_color">Perfec<![CDATA[<font color="#669900">t</font>]]></string>
+	<string name="low_income_long_half_life_color">Persisten<![CDATA[<font color="#0099CC">t</font>]]></string>
+	<string name="high_income_short_half_life_color">Agains<![CDATA[<font color="#FF8800">t</font>]]></string>
+	<string name="low_income_short_half_life_color">Harmfu<![CDATA[<font color="#CC0000">l</font>]]></string>
+	<string name="report">Report</string>
+	<string name="edit_common_event">Manage events</string>
+	<string name="common_event">Manage events</string>
+	<string name="add_common_event">add manage events</string>
 	<string name="done">Done</string>
 	<string name="discard">Discard</string>
+	<string name="new_item_hint">add event</string>
+	<string name="add_success">add success</string>
+	<string name="delete_event">delete this event</string>
+	<string name="edit_event">edit this event</string>
+	<string name="edit_success">edit success</string>
+	<string name="only_can_delete_today_event">Can only delete today\'s events</string>
+	<string name="percent">%</string>
+	<string name="event_count">count:{0}</string>
+	<string name="no_data">No data</string>
+	<string name="setting">Setting</string>
+	<string name="timed_reminder">Alarm every day</string>
+	<string name="time">time</string>
+	<string name="reminder">remind</string>
+	<string name="reminder_summary">Will regularly remind you every day</string>
+	<string name="set">set</string>
+	<string name="cancel">Cancel</string>
+	<string name="please_record_today_event">Record what i do today</string>
+	<string name="alarm_summary">Record every day, every day to improve a little bit.</string>
+	<string name="add_note">add note</string>
+	<string name="please_select_want_to_delete_items">please select</string>
+	<string name="selected_some_rows">selected {0}</string>
 </resources>

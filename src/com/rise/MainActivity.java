@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +18,12 @@ import android.widget.ListView;
 
 import com.base.L;
 import com.base.common.Screen;
-import com.base.orm.QueryHelper;
 import com.rise.adapter.DrawerListAdapter;
 import com.rise.common.AppUtils;
 import com.rise.common.Const;
 import com.rise.common.RiseUtil;
 import com.rise.component.BaseActivity;
 import com.rise.component.DrawerToggle;
-import com.rise.db.DBHelper;
 import com.rise.fragment.FragmentUtil;
 import com.rise.fragment.MainFragment;
 import com.rise.fragment.NotesFragment;
@@ -43,7 +40,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     private DrawerToggle drawerToggle;
 
     // drawer list 数据
-    private int[] drawerList = {R.string.notes,
+    private int[] drawerList = {R.string.events,
             R.string.high_income_long_half_life_color,
             R.string.low_income_long_half_life_color,
             R.string.high_income_short_half_life_color,
@@ -86,16 +83,15 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
         adapter = new DrawerListAdapter(this, drawerList);
         drawerListView.setAdapter(adapter);
         drawerListView.setOnItemClickListener(this);
-//        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         drawerToggle = new DrawerToggle(this, drawerLayout);
         drawerLayout.setDrawerListener(drawerToggle);
     }
 
     private void initFragment() {
-	    setTitle(R.string.notes);
+	    setTitle(R.string.events);
         fragmentManager = getSupportFragmentManager();
-	    FragmentUtil.setCurrentFragment(R.string.notes);
+	    FragmentUtil.setCurrentFragment(R.string.events);
         showFragment(new MainFragment());
     }
 
@@ -109,7 +105,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     private void showFragment(int id) {
         if (FragmentUtil.getCurrentFragment() == id) return;
         Fragment fragment;
-        if(id == R.string.notes){
+        if(id == R.string.events){
             fragment = new MainFragment();
         }else if(id == R.string.report){
             fragment = new ReportFragment();
@@ -147,7 +143,7 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK && FragmentUtil.getCurrentFragment() != R.string.notes){
+        if(keyCode == KeyEvent.KEYCODE_BACK && FragmentUtil.getCurrentFragment() != R.string.events){
             moveToHome();
             return true;
         }else if(keyCode != KeyEvent.KEYCODE_MENU){
@@ -168,8 +164,8 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
      * 其他頁面按返回鍵，返回到home頁面
      */
     private void moveToHome(){
-        showFragment(R.string.notes);
-        drawerToggle.setTitle(R.string.notes);
+        showFragment(R.string.events);
+        drawerToggle.setTitle(R.string.events);
         adapter.notifyDataSetChanged();
     }
 
