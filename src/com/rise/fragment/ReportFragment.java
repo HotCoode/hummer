@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.base.common.DateUtils;
 import com.base.orm.QueryHelper;
-import com.echo.holographlibrary.PieGraph;
-import com.echo.holographlibrary.PieSlice;
+import com.graph.chart.PieGraph;
+import com.graph.chart.PieSlice;
 import com.rise.R;
 import com.rise.adapter.ReportListAdapter;
 import com.rise.bean.Report;

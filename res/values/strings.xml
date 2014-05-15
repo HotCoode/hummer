@@ -10,14 +10,14 @@
 	<string name="drawer_close">Close navigation drawer</string>
 	<string name="put_fail">添加失败</string>
 	<string name="events">记录</string>
-	<string name="high_income_long_half_life">高收益-长半衰期</string>
-	<string name="low_income_long_half_life">低收益-长半衰期</string>
-	<string name="high_income_short_half_life">高收益-短半衰期</string>
-	<string name="low_income_short_half_life">低收益-短半衰期</string>
-	<string name="high_income_long_half_life_color"><![CDATA[高收益<font color="#669900">—</font>长半衰期]]></string>
-	<string name="low_income_long_half_life_color">低收益<![CDATA[<font color="#0099CC">—</font>]]>长半衰期</string>
-	<string name="high_income_short_half_life_color">高收益<![CDATA[<font color="#FF8800">—</font>]]>短半衰期</string>
-	<string name="low_income_short_half_life_color">低收益<![CDATA[<font color="#CC0000">—</font>]]>短半衰期</string>
+	<string name="high_income_long_half_life">可遇不可求</string>
+	<string name="low_income_long_half_life">坚持</string>
+	<string name="high_income_short_half_life">尽量少做</string>
+	<string name="low_income_short_half_life">脑袋坏了</string>
+	<string name="high_income_long_half_life_color">可遇不可求<![CDATA[<font color="#669900">·</font>]]></string>
+	<string name="low_income_long_half_life_color">坚持<![CDATA[<font color="#0099CC">·</font>]]></string>
+	<string name="high_income_short_half_life_color">尽量少做<![CDATA[<font color="#FF8800">·</font>]]></string>
+	<string name="low_income_short_half_life_color">脑袋坏了<![CDATA[<font color="#CC0000">·</font>]]></string>
 	<string name="report">报告</string>
 	<string name="edit_common_event">编辑常用事件</string>
 	<string name="common_event">常用事件</string>
