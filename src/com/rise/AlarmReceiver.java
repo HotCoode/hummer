@@ -37,7 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE);
 
         // 构建一个Intent
-        Intent resultIntent = new Intent(context,MainActivity.class);
+        Intent resultIntent = new Intent(context,LoadingActivity.class);
         // 封装一个Intent
         PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         // 设置通知主题的意图

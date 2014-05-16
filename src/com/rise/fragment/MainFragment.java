@@ -27,7 +27,6 @@ import android.widget.Toast;
 import com.base.orm.QueryHelper;
 import com.rise.ItemsManageActivity;
 import com.rise.R;
-import com.rise.SettingActivity;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
 import com.rise.common.Const;
@@ -228,8 +227,8 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.edit, menu);
-        menu.findItem(R.id.menu_edit).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        inflater.inflate(R.menu.main_node, menu);
+        menu.findItem(R.id.menu_more).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
