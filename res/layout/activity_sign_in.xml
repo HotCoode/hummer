@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:signText="http://schemas.android.com/apk/res-auto"
+			android:background="@drawable/bg_signin"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:fillViewport="true">
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="fill_parent"
+		>
+		<LinearLayout
+			android:layout_width="@dimen/signin_content_width"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="vertical"
+			android:paddingBottom="36.0dip"
+			>
+			<com.rise.view.RSignInEditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				signText:icon_normal="@drawable/signin_user_ori"
+				signText:icon_focused="@drawable/signin_user_sel"
+				signText:sign_layout="@layout/view_signin_username_edit_text"
+				/>
+
+			<com.rise.view.RSignInEditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				signText:icon_normal="@drawable/signin_password_ori"
+				signText:icon_focused="@drawable/signin_password_sel"
+				signText:sign_layout="@layout/view_signin_password_edit_text"
+				/>
+
+		</LinearLayout>
+	</FrameLayout>
+
+</ScrollView>

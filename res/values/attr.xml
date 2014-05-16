@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="RSignInEditText">
+		<attr name="icon_normal" format="reference|integer"/>
+		<attr name="icon_focused" format="reference|integer"/>
+		<attr name="text_color_normal" format="reference|color"/>
+		<attr name="text_color_focused" format="reference|color"/>
+		<attr name="sign_layout" format="reference|integer"/>
+	</declare-styleable>
+</resources>

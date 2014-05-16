@@ -36,6 +36,7 @@
 		<activity
 			android:name=".NewNoteActivity"
 			android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
+		<activity android:name=".SignInActivity" />
 
 		<receiver android:name=".AlarmReceiver">
 			<intent-filter>

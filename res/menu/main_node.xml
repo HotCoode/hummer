@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menu_more" android:icon="@drawable/more" android:showAsAction="always" android:title="@string/more_function">
+		<menu>
+			<item
+				android:id="@+id/menu_edit" android:title="@string/edit_common_event" android:showAsAction="withText" />
+			<item android:id="@+id/menu_sync" android:title="@string/sync" android:showAsAction="withText" />
+		</menu>
+	</item>
+</menu>

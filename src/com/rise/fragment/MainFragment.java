@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.base.orm.QueryHelper;
 import com.rise.ItemsManageActivity;
 import com.rise.R;
+import com.rise.SignInActivity;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
 import com.rise.common.Const;
@@ -237,6 +238,9 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         switch (item.getItemId()){
             case R.id.menu_edit:
                 startActivity(new Intent(activity, ItemsManageActivity.class));
+                break;
+            case R.id.menu_sync:
+                startActivity(new Intent(activity, SignInActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
