@@ -47,8 +47,8 @@
 	<string name="add_note">添加事件</string>
 	<string name="please_select_want_to_delete_items">请选择</string>
 	<string name="selected_some_rows">已选择{0}条</string>
-    <string name="sign_in_space">登  录</string>
-    <string name="sign_up_space">注  册</string>
+    <string name="sign_in_space">登    录</string>
+    <string name="sign_up_space">注    册</string>
     <string name="password">密码</string>
     <string name="username_or_email">用户名/邮箱</string>
     <string name="please_input_username_or_email">请输入用户名或邮箱</string>
