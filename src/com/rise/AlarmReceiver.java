@@ -30,7 +30,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                                   .setContentText(context.getString(R.string.alarm_summary));
         // 第一次提示消息的时候显示在通知栏上
         builder.setTicker(context.getString(R.string.please_record_today_event));
-//        builder.setNumber(12);
+        // builder.setNumber(12);
         builder.setLargeIcon(btm);
         // 自己维护通知的消失
         builder.setAutoCancel(true);

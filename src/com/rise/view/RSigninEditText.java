@@ -37,8 +37,8 @@ public class RSignInEditText extends FrameLayout implements View.OnFocusChangeLi
             iconFocused = iconNormal;
         }
         containerView = View.inflate(context,layout,this);
-        iconView = (ImageView) containerView.findViewById(R.id.sign_user_icon);
-        editView = (EditText) containerView.findViewById(R.id.sign_user_text);
+        iconView = (ImageView) containerView.findViewById(R.id.sign_icon);
+        editView = (EditText) containerView.findViewById(R.id.sign_text);
 
         iconView.setImageResource(iconNormal);
 
