@@ -25,6 +25,7 @@
                       android:layout_marginBottom="10dp"
                     />
             <com.rise.view.RSignInEditText
+                    android:id="@+id/sign_in_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     signText:icon_normal="@drawable/signin_user_ori"
@@ -32,6 +33,7 @@
                     signText:sign_layout="@layout/view_signin_username_edit_text"
                     />
             <com.rise.view.RSignInEditText
+                    android:id="@+id/sign_in_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     signText:icon_normal="@drawable/signin_password_ori"
@@ -44,6 +46,7 @@
                     style="@style/sign_button"
                     android:text="@string/sign_in_space"
                     android:layout_marginTop="10dp"
+                    android:onClick="onClick"
                     />
         </LinearLayout>
     </FrameLayout>

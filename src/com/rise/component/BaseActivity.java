@@ -6,7 +6,9 @@ import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 
+import android.view.MenuItem;
 import com.base.consts.Config;
+import com.rise.EditItemActivity;
 import com.rise.LoadingActivity;
 import com.rise.MainActivity;
 import com.rise.R;
@@ -40,5 +42,16 @@ public class BaseActivity extends ActionBarActivity {
 //            finish();
 //        }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

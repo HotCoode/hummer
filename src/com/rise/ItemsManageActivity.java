@@ -117,10 +117,6 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                finish();
-                return true;
             case R.id.menu_add:
                 startActivity(new Intent(ItemsManageActivity.this,EditItemActivity.class));
                 break;

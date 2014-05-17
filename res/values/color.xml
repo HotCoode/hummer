@@ -24,10 +24,14 @@
 	<color name="dialog_stroke">#90404040</color>
 	<color name="translucent_dark">#AA000000</color>
 
-
 	<color name="perfect_notes_bg">#10669900</color>
 	<color name="uphold_notes_bg">#100099cc</color>
 	<color name="quick_notes_bg">#10ff8800</color>
 	<color name="bad_notes_bg">#10cc0000</color>
 	<color name="separator">#ffe0e0e0</color>
+
+    <color name="blue_dark">@android:color/holo_blue_dark</color>
+    <color name="blue_light">@android:color/holo_blue_light</color>
+    <color name="green">@android:color/holo_green_light</color>
+    <color name="purple">@android:color/holo_purple</color>
 </resources>

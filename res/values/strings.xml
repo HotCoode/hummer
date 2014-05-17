@@ -51,4 +51,7 @@
     <string name="sign_up_space">注  册</string>
     <string name="password">密码</string>
     <string name="username_or_email">用户名/邮箱</string>
+    <string name="please_input_username_or_email">请输入用户名或邮箱</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="verifying">验证中...</string>
 </resources>
