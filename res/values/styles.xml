@@ -164,5 +164,14 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="sign_edit_text">
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 
 </resources>
