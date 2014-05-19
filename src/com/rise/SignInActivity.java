@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.rise.component.BaseActivity;
+import com.rise.component.Sign;
 
 /**
  * Created by kai.wang on 5/16/14.
@@ -15,6 +16,10 @@ import com.rise.component.BaseActivity;
 public class SignInActivity extends BaseActivity {
     private EditText nameView,passView;
     private Button signInBtn;
+
+    private String name;
+    private String pass;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,7 +42,7 @@ public class SignInActivity extends BaseActivity {
             case R.id.sign_btn:
                 if(check()){
                     disableUi();
-                    // TODO check user from server
+                    Sign.in(SignInActivity.this,name,pass);
                 }else{
                     return;
                 }
@@ -46,8 +51,8 @@ public class SignInActivity extends BaseActivity {
     }
 
     public boolean check(){
-        String name = nameView.getText().toString();
-        String pass = passView.getText().toString();
+        name = nameView.getText().toString();
+        pass = passView.getText().toString();
 
         // check username
         if(TextUtils.isEmpty(name)){
