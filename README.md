@@ -1,6 +1,3 @@
-hummer
-======
-
 ##What have i done
 
 dependent on
