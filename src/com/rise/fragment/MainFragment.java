@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -240,7 +241,11 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 startActivity(new Intent(activity, ItemsManageActivity.class));
                 break;
             case R.id.menu_sync:
-                startActivity(new Intent(activity, SignInActivity.class));
+                if(Const.USER_ID < 0){
+                    startActivity(new Intent(activity, SignInActivity.class));
+                }else {
+                    Toast.makeText(activity,R.string.syncing,Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -31,15 +31,16 @@ public class SignInActivity extends BaseActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(Const.ACTION_SIGN_FAIL.equals(action)){
-                Toast.makeText(SignInActivity.this,R.string.sign_in_fail,Toast.LENGTH_SHORT).show();
+            if (Const.ACTION_SIGN_FAIL.equals(action)) {
+                Toast.makeText(SignInActivity.this, R.string.sign_in_fail, Toast.LENGTH_SHORT).show();
                 enableUi();
-            }else if(Const.ACTION_SIGN_SUCCESS.equals(action)){
-                Toast.makeText(SignInActivity.this,R.string.sign_in_success,Toast.LENGTH_SHORT).show();
+            } else if (Const.ACTION_SIGN_SUCCESS.equals(action)) {
+                Const.USER_ID = intent.getIntExtra("user_id", -1);
+                Toast.makeText(SignInActivity.this, R.string.sign_in_success, Toast.LENGTH_SHORT).show();
                 SignInActivity.this.finish();
-                SharedPreferences preferences = getSharedPreferences(Const.SHARED_PREFERENCES_NAME,Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences(Const.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("user_id",intent.getIntExtra("user_id",0));
+                editor.putInt(Const.SHARED_FILED_USER_ID, Const.USER_ID);
                 editor.commit();
             }
         }

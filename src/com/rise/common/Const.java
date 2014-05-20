@@ -8,6 +8,8 @@ import com.base.common.Screen;
  */
 public class Const {
 
+    public static int USER_ID = -1;
+
     public static final String PATH = FileUtils.getSDRoot()+"hummer_rise/";
 
 	public static int SCREEN_WIDTH;
@@ -24,5 +26,7 @@ public class Const {
 
 
     public static final String SHARED_PREFERENCES_NAME = "com.rise";
+    public static final String SHARED_FILED_USER_ID = "user_id";
+
 
 }

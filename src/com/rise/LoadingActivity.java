@@ -1,7 +1,9 @@
 package com.rise;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.animation.AnimationUtils;
 
 import com.base.L;
 import com.base.orm.QueryHelper;
+import com.rise.common.Const;
 import com.rise.component.BaseActivity;
 import com.rise.db.DBHelper;
 import com.rise.db.SQL;
@@ -25,6 +28,8 @@ public class LoadingActivity extends BaseActivity implements SQL.OnSqlLoadFinish
         setContentView(R.layout.activity_loading);
         SQL.setOnSqlLoadFinish(this);
         new LoadTask().execute();
+        SharedPreferences share = getSharedPreferences(Const.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        Const.USER_ID = share.getInt(Const.SHARED_FILED_USER_ID, -1);
     }
 
     @Override
