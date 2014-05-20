@@ -9,5 +9,6 @@ public class Urls {
     public static final String TEST_URL = "http://192.168.0.103:8000/r/api/";
 
     public static final String SIGN_IN = "sign_in/";
+    public static final String SYNC_UP_ITEM = "sync_up_item/";
 
 }

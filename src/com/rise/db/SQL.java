@@ -21,6 +21,8 @@ public class SQL {
     public static String ADD_NOTE_ONLY_ITEM;
     public static String UPDATE_ITEM_BY_ID;
     public static String DELETE_ITEM_BY_ID;
+    public static String COUNT_SYNC;
+    public static String FIND_NOT_SYNC_ITEMS;
 
     public interface OnSqlLoadFinish {
         void onSqlLoadFinish();
@@ -45,6 +47,8 @@ public class SQL {
         ADD_NOTE_ONLY_ITEM = LoadSQL.readSql(context,R.raw.add_note_only_item);
         UPDATE_ITEM_BY_ID = LoadSQL.readSql(context,R.raw.update_item_by_id);
         DELETE_ITEM_BY_ID = LoadSQL.readSql(context,R.raw.delete_item_by_id);
+        COUNT_SYNC = LoadSQL.readSql(context,R.raw.count_sync);
+        FIND_NOT_SYNC_ITEMS = LoadSQL.readSql(context,R.raw.find_not_sync_items);
 
         if(onSqlLoadFinish != null) onSqlLoadFinish.onSqlLoadFinish();
     }

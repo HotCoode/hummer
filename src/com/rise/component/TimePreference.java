@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.base.common.StringUtils;
@@ -38,6 +40,7 @@ public class TimePreference extends DialogPreference {
 
         setPositiveButtonText(R.string.set);
         setNegativeButtonText(R.string.cancel);
+
     }
 
     @Override
@@ -51,6 +54,18 @@ public class TimePreference extends DialogPreference {
         picker = new TimePicker(getContext());
         picker.setIs24HourView(true);
         picker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);
+
+//        picker.setFocusable(true);
+//        picker.setFocusableInTouchMode(true);
+//        int childCount = picker.getChildCount();
+//
+//        InputMethodManager im = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        im.hideSoftInputFromWindow(picker.getWindowToken(), 0);
+//        for(int i = 0;i<childCount;i++){
+//            if(picker.getChildAt(i) instanceof EditText){
+//
+//            }
+//        }
         return (picker);
     }
 

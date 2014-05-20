@@ -1,0 +1,1 @@
+select count(*)+(SELECT count(*) from notes where sync='0') from items where sync='0'
