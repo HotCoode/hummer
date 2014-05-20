@@ -1,12 +1,19 @@
 package com.rise;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.rise.common.Const;
 import com.rise.component.BaseActivity;
 import com.rise.component.Sign;
 
@@ -20,6 +27,24 @@ public class SignInActivity extends BaseActivity {
     private String name;
     private String pass;
 
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(Const.ACTION_SIGN_FAIL.equals(action)){
+                Toast.makeText(SignInActivity.this,R.string.sign_in_fail,Toast.LENGTH_SHORT).show();
+                enableUi();
+            }else if(Const.ACTION_SIGN_SUCCESS.equals(action)){
+                Toast.makeText(SignInActivity.this,R.string.sign_in_success,Toast.LENGTH_SHORT).show();
+                SignInActivity.this.finish();
+                SharedPreferences preferences = getSharedPreferences(Const.SHARED_PREFERENCES_NAME,Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("user_id",intent.getIntExtra("user_id",0));
+                editor.commit();
+            }
+        }
+    };
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -28,6 +53,11 @@ public class SignInActivity extends BaseActivity {
         setContentView(R.layout.activity_sign_in);
 
         initView();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Const.ACTION_SIGN_FAIL);
+        filter.addAction(Const.ACTION_SIGN_SUCCESS);
+        registerReceiver(receiver,filter);
 
     }
 
@@ -72,5 +102,18 @@ public class SignInActivity extends BaseActivity {
         passView.setEnabled(false);
         signInBtn.setEnabled(false);
         signInBtn.setText(R.string.verifying);
+    }
+
+    public void enableUi(){
+        nameView.setEnabled(true);
+        passView.setEnabled(true);
+        signInBtn.setEnabled(true);
+        signInBtn.setText(R.string.sign_in_space);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 }

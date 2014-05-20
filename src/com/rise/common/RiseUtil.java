@@ -1,5 +1,8 @@
 package com.rise.common;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.base.common.DateUtils;
 import com.rise.R;
 import com.rise.bean.NotesItem;
@@ -129,6 +132,10 @@ public class RiseUtil {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
         return calendar.get(Calendar.YEAR);
+    }
+
+    public static void requestFailToast(Context context){
+        Toast.makeText(context,R.string.net_request_fail,Toast.LENGTH_SHORT).show();
     }
 
 }
