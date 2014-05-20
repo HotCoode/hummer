@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.CheckBoxPreference;
 import android.preference.DialogPreference;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,14 @@ public class TimePreference extends DialogPreference {
     private TimePicker picker = null;
 
     public static int getHour(String time) {
+        if(TextUtils.isEmpty(time)) return 0;
         String[] pieces = time.split(":");
-
         return StringUtils.toInt(pieces[0],0);
     }
 
     public static int getMinute(String time) {
+        if(TextUtils.isEmpty(time)) return 0;
         String[] pieces = time.split(":");
-
         return StringUtils.toInt(pieces[1],0);
     }
 
@@ -49,6 +50,7 @@ public class TimePreference extends DialogPreference {
     protected View onCreateDialogView() {
         picker = new TimePicker(getContext());
         picker.setIs24HourView(true);
+        picker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS);
         return (picker);
     }
 
