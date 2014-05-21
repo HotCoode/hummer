@@ -23,6 +23,7 @@ public class SQL {
     public static String DELETE_ITEM_BY_ID;
     public static String COUNT_SYNC;
     public static String FIND_NOT_SYNC_ITEMS;
+    public static String FIND_NOT_SYNC_NOTES;
 
     public interface OnSqlLoadFinish {
         void onSqlLoadFinish();
@@ -39,7 +40,7 @@ public class SQL {
         CREATE_ITEMS = LoadSQL.readSql(context, R.raw.items);
         CREATE_NOTES = LoadSQL.readSql(context, R.raw.notes);
         FIND_ITEMS_BY_STATUS = LoadSQL.readSql(context,R.raw.find_items_by_status);
-        PUT_NEW_NOTE = LoadSQL.readSql(context,R.raw.put_new_note);
+        PUT_NEW_NOTE = LoadSQL.readSql(context,R.raw.add_new_note);
 	    FIND_NOTES_BY_TYPE = LoadSQL.readSql(context,R.raw.find_notes_by_type);
         ADD_ITEM = LoadSQL.readSql(context,R.raw.add_item);
         DELETE_NOTE_BY_ID = LoadSQL.readSql(context,R.raw.delete_note_by_id);
@@ -49,6 +50,7 @@ public class SQL {
         DELETE_ITEM_BY_ID = LoadSQL.readSql(context,R.raw.delete_item_by_id);
         COUNT_SYNC = LoadSQL.readSql(context,R.raw.count_sync);
         FIND_NOT_SYNC_ITEMS = LoadSQL.readSql(context,R.raw.find_not_sync_items);
+        FIND_NOT_SYNC_NOTES = LoadSQL.readSql(context,R.raw.find_not_sync_notes);
 
         if(onSqlLoadFinish != null) onSqlLoadFinish.onSqlLoadFinish();
     }

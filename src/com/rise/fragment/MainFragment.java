@@ -29,9 +29,11 @@ import com.base.orm.QueryHelper;
 import com.rise.ItemsManageActivity;
 import com.rise.R;
 import com.rise.SignInActivity;
+import com.rise.SyncService;
 import com.rise.adapter.MainListAdapter;
 import com.rise.bean.Item;
 import com.rise.common.Const;
+import com.rise.component.Sync;
 import com.rise.db.SQL;
 import com.rise.db.SqlConst;
 import com.rise.view.BoxView;
@@ -245,6 +247,8 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                     startActivity(new Intent(activity, SignInActivity.class));
                 }else {
                     Toast.makeText(activity,R.string.syncing,Toast.LENGTH_SHORT).show();
+//                    new Sync().up();
+                    activity.startService(new Intent(activity,SyncService.class));
                 }
                 break;
         }

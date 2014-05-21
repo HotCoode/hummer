@@ -11,6 +11,8 @@ import com.rise.common.Const;
 import com.rise.component.DoneDiscardActivity;
 import com.rise.db.SQL;
 
+import java.util.UUID;
+
 /**
  * Created by kai.wang on 2/18/14.
  */
@@ -19,6 +21,7 @@ public class EditItemActivity extends DoneDiscardActivity {
     private EditText itemText;
 
     private String itemId;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_item);
@@ -29,7 +32,7 @@ public class EditItemActivity extends DoneDiscardActivity {
 
         itemText = (EditText) findViewById(R.id.new_item_text);
 
-        if(itemId != null && content != null){
+        if (itemId != null && content != null) {
             itemText.setText(content);
         }
     }
@@ -46,11 +49,11 @@ public class EditItemActivity extends DoneDiscardActivity {
                     sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
                 } else {
                     // create mode
-                    QueryHelper.update(SQL.ADD_ITEM, new String[]{text, System.currentTimeMillis() + ""}, null);
+                    QueryHelper.update(SQL.ADD_ITEM, new String[]{UUID.randomUUID().toString(), text, System.currentTimeMillis() + ""}, null);
                     Toast.makeText(EditItemActivity.this, R.string.add_success, Toast.LENGTH_SHORT).show();
                     sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
                 }
-                AppUtils.doneActivityClose(itemText,EditItemActivity.this);
+                AppUtils.doneActivityClose(itemText, EditItemActivity.this);
             }
         }
     }

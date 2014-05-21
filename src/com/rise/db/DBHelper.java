@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static int DB_VERSION = 8;
+    private static int DB_VERSION = 12;
 
     private static String DATABASE_PATH = Const.PATH;
     private static String DATABASE_FILENAME = "database.db";
@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     private void updateTables(SQLiteDatabase db){
-        List<String> sqls = LoadSQL.readSqls(context, R.raw.drop_tables);
+        List<String> sqls = LoadSQL.readSqls(context, R.raw.update_tables);
         for(String sql : sqls){
             db.execSQL(sql);
         }

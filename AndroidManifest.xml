@@ -45,5 +45,6 @@
 				<data android:mimeType="vnd.android.cursor.item/calendar-alert" />
 			</intent-filter>
 		</receiver>
+		<service android:name=".SyncService" />
 	</application>
 </manifest>

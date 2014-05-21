@@ -1,5 +1,7 @@
 package com.rise.component;
 
+import android.content.Context;
+import android.os.Handler;
 import android.provider.ContactsContract;
 
 import com.base.L;
@@ -11,6 +13,7 @@ import com.rise.bean.NotesItem;
 import com.rise.common.Const;
 import com.rise.db.SQL;
 import com.rise.http.AsyncHttp;
+import com.rise.http.SyncJsonHandler;
 import com.rise.http.Urls;
 
 import org.apache.http.Header;
@@ -23,16 +26,14 @@ import java.util.List;
  */
 public class Sync {
 
-    // 同步总条数
-    private int SYNC_COUNT;
-    // 同步位置（已经同步了多少条）
-    private int SYNC_INDEX = 0;
-
-    private List<Item> items;
-    private List<NotesItem> notes;
-
     public OnSyncListener onSyncListener;
     public OnProgressChangeListener onProgressChangeListener;
+
+    private Context context;
+
+    public Sync(Context context){
+        this.context = context;
+    }
 
     public interface OnSyncListener {
         void onSyncUpSuccess();
@@ -46,62 +47,71 @@ public class Sync {
         void onSyncUpProgressChange(int index);
     }
 
-    public void up() {
+    public void count(final Handler handler, final int handlerMsg){
         // count 所有未同步数据
         QueryHelper.findCount(SQL.COUNT_SYNC, new String[]{}, new QueryHelper.NumberCallBack() {
             @Override
             public void onFinish(Number num) {
-                SYNC_COUNT = num.intValue();
                 if (onProgressChangeListener != null)
-                    onProgressChangeListener.onGetSyncUpCount(SYNC_COUNT);
+                    onProgressChangeListener.onGetSyncUpCount(num.intValue());
+                handler.obtainMessage(handlerMsg,num.intValue()).sendToTarget();
             }
         });
-        // 上传ITEM
-        syncUpItems();
-
-        // TODO 上传NOTE
     }
 
-    public void down() {
-    }
-
-    private void syncUpItems() {
+    public void getItems(final Handler handler, final int handlerMsg){
         QueryHelper.findBeans(Item.class, SQL.FIND_NOT_SYNC_ITEMS, new String[]{}, new QueryHelper.FindBeansCallBack<Item>() {
             @Override
             public void onFinish(List<Item> items) {
-                if (items != null && items.size() != 0){
-                    Sync.this.items = items;
-                    syncUpRequest(items.get(0));
-                }
+                handler.obtainMessage(handlerMsg,items).sendToTarget();
             }
         });
     }
 
-    private void syncUpRequest(Item item) {
-        SYNC_INDEX ++;
+    public void getNotes(final Handler handler, final int handlerMsg){
+        QueryHelper.findBeans(NotesItem.class, SQL.FIND_NOT_SYNC_NOTES, new String[]{}, new QueryHelper.FindBeansCallBack<NotesItem>() {
+            @Override
+            public void onFinish(List<NotesItem> notes) {
+                handler.obtainMessage(handlerMsg,notes).sendToTarget();
+            }
+        });
+    }
+
+    public void down(final Handler handler, final int handlerMsg) {
+        // TODO
+    }
+
+
+    public void upItem(Item item, final Handler handler, final int handlerMsg) {
         RequestParams params = new RequestParams();
         params.add("user_id", Const.USER_ID+"");
         params.add("uuid",item.getId());
         params.add("content",item.getContent());
         params.add("status",item.getStatus());
         params.add("create_at",item.getTime());
-        AsyncHttp.post(Urls.SYNC_UP_ITEM, params, new JsonHttpResponseHandler() {
+        AsyncHttp.post(Urls.SYNC_UP_ITEM, params, new SyncJsonHandler(context) {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                items.remove(0);
-//                if (items.size() == 0) {
-//                    return;
-//                }
-//                syncUpRequest(items.get(0));
-                if(onProgressChangeListener != null){
-                    onProgressChangeListener.onSyncUpProgressChange(SYNC_INDEX);
-                }
+                // TODO 更新数据库状态
                 L.i(response);
+                handler.sendEmptyMessage(handlerMsg);
             }
+        });
+    }
 
+    public void upNote(NotesItem note, final Handler handler, final int handlerMsg) {
+        RequestParams params = new RequestParams();
+        params.add("user_id", Const.USER_ID+"");
+        params.add("uuid",note.getId());
+        params.add("item_id",note.getItemId());
+        params.add("status",note.getStatus()+"");
+        params.add("create_at",note.getTime()+"");
+        AsyncHttp.post(Urls.SYNC_UP_NOTE, params, new SyncJsonHandler(context) {
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // TODO 更新数据库状态
+                L.i(response);
+                handler.sendEmptyMessage(handlerMsg);
             }
         });
     }

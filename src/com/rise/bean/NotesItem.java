@@ -6,17 +6,19 @@ package com.rise.bean;
  */
 public class NotesItem {
 
-	private Long id;
+	private String id;
+    private String itemId;
 	private String month;
 	private String day;
 	private String content;
 	private Long  time;
+    private Long status = 1L;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -51,4 +53,20 @@ public class NotesItem {
 	public void setTime(Long time) {
 		this.time = time;
 	}
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
 }

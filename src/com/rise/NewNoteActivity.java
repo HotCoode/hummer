@@ -14,6 +14,8 @@ import com.rise.component.DoneDiscardActivity;
 import com.rise.db.SQL;
 import com.rise.db.SqlConst;
 
+import java.util.UUID;
+
 /**
  * Created by kai.wang on 3/14/14.
  */
@@ -52,7 +54,7 @@ public class NewNoteActivity extends DoneDiscardActivity {
         if (itemText.getText() != null) {
             String text = itemText.getText().toString();
             if (!"".equals(text)) {
-                QueryHelper.insert(SQL.ADD_NOTE_ONLY_ITEM, new String[]{text, System.currentTimeMillis() + "", SqlConst.ITEM_STATUS_NOTE_ONLY}, new QueryHelper.InsertCallBack() {
+                QueryHelper.insert(SQL.ADD_NOTE_ONLY_ITEM, new String[]{UUID.randomUUID().toString(),text, System.currentTimeMillis() + "", SqlConst.ITEM_STATUS_NOTE_ONLY}, new QueryHelper.InsertCallBack() {
                     @Override
                     public void onFinish(int id) {
                         if (id != 0) {

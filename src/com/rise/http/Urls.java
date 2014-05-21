@@ -10,5 +10,5 @@ public class Urls {
 
     public static final String SIGN_IN = "sign_in/";
     public static final String SYNC_UP_ITEM = "sync_up_item/";
-
+    public static final String SYNC_UP_NOTE = "sync_up_note/";
 }

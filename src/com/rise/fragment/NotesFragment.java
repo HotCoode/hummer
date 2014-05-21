@@ -129,7 +129,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-        final long noteId = items.get(position).getItem().getId();
+        final String noteId = items.get(position).getItem().getId();
         String content = items.get(position).getItem().getContent();
 
         if(DateUtils.isToday(items.get(position).getItem().getTime())){
