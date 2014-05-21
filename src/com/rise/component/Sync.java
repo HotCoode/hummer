@@ -17,6 +17,7 @@ import com.rise.http.SyncJsonHandler;
 import com.rise.http.Urls;
 
 import org.apache.http.Header;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -82,7 +83,7 @@ public class Sync {
     }
 
 
-    public void upItem(Item item, final Handler handler, final int handlerMsg) {
+    public void upItem(final Item item, final Handler handler, final int handlerMsg) {
         RequestParams params = new RequestParams();
         params.add("user_id", Const.USER_ID+"");
         params.add("uuid",item.getId());
@@ -93,23 +94,26 @@ public class Sync {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // TODO 更新数据库状态
-                L.i(response);
+                QueryHelper.update(SQL.UPDATE_ITEM_SYNC_STATUS_BY_ID,new String[]{item.getId()},null);
+                L.i("onSuccess"+response);
                 handler.sendEmptyMessage(handlerMsg);
             }
         });
     }
 
-    public void upNote(NotesItem note, final Handler handler, final int handlerMsg) {
+    public void upNote(final NotesItem note, final Handler handler, final int handlerMsg) {
         RequestParams params = new RequestParams();
-        params.add("user_id", Const.USER_ID+"");
-        params.add("uuid",note.getId());
-        params.add("item_id",note.getItemId());
-        params.add("status",note.getStatus()+"");
-        params.add("create_at",note.getTime()+"");
+        params.add("user_id", Const.USER_ID + "");
+        params.add("uuid", note.getId());
+        params.add("item_id", note.getItemId());
+        params.add("status", note.getStatus() + "");
+        params.add("create_at", note.getTime() + "");
+        params.add("type", note.getType() + "");
         AsyncHttp.post(Urls.SYNC_UP_NOTE, params, new SyncJsonHandler(context) {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // TODO 更新数据库状态
+                QueryHelper.update(SQL.UPDATE_NOTE_SYNC_STATUS_BY_ID,new String[]{note.getId()},null);
                 L.i(response);
                 handler.sendEmptyMessage(handlerMsg);
             }

@@ -24,6 +24,8 @@ public class SQL {
     public static String COUNT_SYNC;
     public static String FIND_NOT_SYNC_ITEMS;
     public static String FIND_NOT_SYNC_NOTES;
+    public static String UPDATE_ITEM_SYNC_STATUS_BY_ID;
+    public static String UPDATE_NOTE_SYNC_STATUS_BY_ID;
 
     public interface OnSqlLoadFinish {
         void onSqlLoadFinish();
@@ -51,6 +53,8 @@ public class SQL {
         COUNT_SYNC = LoadSQL.readSql(context,R.raw.count_sync);
         FIND_NOT_SYNC_ITEMS = LoadSQL.readSql(context,R.raw.find_not_sync_items);
         FIND_NOT_SYNC_NOTES = LoadSQL.readSql(context,R.raw.find_not_sync_notes);
+        UPDATE_ITEM_SYNC_STATUS_BY_ID = LoadSQL.readSql(context,R.raw.update_item_sync_status_by_id);
+        UPDATE_NOTE_SYNC_STATUS_BY_ID = LoadSQL.readSql(context,R.raw.update_note_sync_status_by_id);
 
         if(onSqlLoadFinish != null) onSqlLoadFinish.onSqlLoadFinish();
     }

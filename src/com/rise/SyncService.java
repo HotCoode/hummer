@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.widget.Toast;
 
 import com.rise.bean.Item;
 import com.rise.bean.NotesItem;
@@ -45,6 +46,7 @@ public class SyncService extends Service {
                     } else {
                         // 已经上传完毕
                         // 下载
+                        Toast.makeText(SyncService.this,R.string.synced,Toast.LENGTH_SHORT).show();
                         uploadFinishThenDownload();
                     }
                     break;
@@ -64,6 +66,7 @@ public class SyncService extends Service {
                     } else {
                         // 已经上传完毕
                         // 下载
+                        Toast.makeText(SyncService.this,R.string.sync_success,Toast.LENGTH_SHORT).show();
                         uploadFinishThenDownload();
                     }
                     break;
@@ -75,11 +78,12 @@ public class SyncService extends Service {
                     }
                     break;
                 case SYNC_UP_NOTE_FINISH:
-                    if(notes.size() != 0){
+                    if (notes.size() != 0) {
                         upNote();
-                    }else{
+                    } else {
                         // 已经上传完毕
                         // 下载
+                        Toast.makeText(SyncService.this, R.string.sync_success, Toast.LENGTH_SHORT).show();
                         uploadFinishThenDownload();
                     }
                     break;
@@ -115,7 +119,9 @@ public class SyncService extends Service {
      * 已经上传完毕,开始下载
      */
     private void uploadFinishThenDownload(){
-        sync.down(handler,SYNC_DOWN_FINISH);
+        stopSelf();
+        // TODO down
+//        sync.down(handler,SYNC_DOWN_FINISH);
     }
 
     @Override

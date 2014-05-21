@@ -1,0 +1,1 @@
+update items set sync=1 where id=?

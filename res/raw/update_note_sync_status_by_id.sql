@@ -1,0 +1,1 @@
+update notes set sync=1 where id=?

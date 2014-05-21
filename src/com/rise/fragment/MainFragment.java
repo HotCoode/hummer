@@ -39,6 +39,7 @@ import com.rise.db.SqlConst;
 import com.rise.view.BoxView;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by kai.wang on 2/11/14.
@@ -170,7 +171,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 type = SqlConst.NOTE_TYPE_LOW_INCOME_SHORT_HALF_LIFE;
                 break;
         }
-        QueryHelper.update(SQL.PUT_NEW_NOTE, new String[]{itemId, type, System.currentTimeMillis() + ""}, null);
+        QueryHelper.update(SQL.PUT_NEW_NOTE, new String[]{UUID.randomUUID().toString(),itemId, type, System.currentTimeMillis() + ""}, null);
     }
 
     /**

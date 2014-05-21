@@ -13,6 +13,7 @@ public class NotesItem {
 	private String content;
 	private Long  time;
     private Long status = 1L;
+    private Long type;
 
 	public String getId() {
 		return id;
@@ -68,5 +69,13 @@ public class NotesItem {
 
     public void setStatus(Long status) {
         this.status = status;
+    }
+
+    public Long getType() {
+        return type;
+    }
+
+    public void setType(Long type) {
+        this.type = type;
     }
 }
