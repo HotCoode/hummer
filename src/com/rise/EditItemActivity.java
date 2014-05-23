@@ -44,7 +44,7 @@ public class EditItemActivity extends DoneDiscardActivity {
             if (!"".equals(text)) {
                 // edit mode
                 if (itemId != null) {
-                    QueryHelper.update(SQL.UPDATE_ITEM_BY_ID, new String[]{text, itemId}, null);
+                    QueryHelper.update(SQL.UPDATE_ITEM_BY_ID, new String[]{text, System.currentTimeMillis()+"",itemId}, null);
                     Toast.makeText(EditItemActivity.this, R.string.edit_success, Toast.LENGTH_SHORT).show();
                     sendBroadcast(new Intent(Const.ACTION_ITEM_UPDATE));
                 } else {

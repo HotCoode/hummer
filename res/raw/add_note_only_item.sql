@@ -1,1 +1,1 @@
-insert into items (id,content,time,status) values (id,?,?,?);
+insert into items (id,content,time,status) values (?,?,?,?);

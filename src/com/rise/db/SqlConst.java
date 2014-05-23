@@ -10,6 +10,10 @@ public class SqlConst {
     public static final String ITEM_STATUS_INVALID = "0";
     /** 直接添加note */
     public static final String ITEM_STATUS_NOTE_ONLY = "2";
+    /** note正常 */
+    public static final String NOTE_STATUS_AVAILABLE = "1";
+    /** note已刪除 */
+    public static final String NOTE_STATUS_INVALID = "0";
 
 
     /** 高收益-长半衰期 */
@@ -21,12 +25,8 @@ public class SqlConst {
     /** 低收益-短半衰期 */
     public static final String NOTE_TYPE_LOW_INCOME_SHORT_HALF_LIFE = "4";
 
-    /** note同步 */
-    public static final String NOTE_SYNC_OK = "1";
-    /** note沒同步 */
-    public static final String NOTE_SYNC_NONE = "0";
-    /** note正常 */
-    public static final String NOTE_STATUS_AVAILABLE = "1";
-    /** note已刪除 */
-    public static final String NOTE_STATUS_INVALID = "0";
+    /** 同步 */
+    public static final String SYNC_OK = "1";
+    /** 沒同步 */
+    public static final String SYNC_NONE = "0";
 }

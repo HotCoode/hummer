@@ -1,1 +1,1 @@
-delete from notes where id=?
+update notes set status=0,time=?  where id=?

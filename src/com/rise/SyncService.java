@@ -1,14 +1,19 @@
 package com.rise;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.widget.Toast;
 
+import com.base.L;
 import com.rise.bean.Item;
 import com.rise.bean.NotesItem;
+import com.rise.common.Const;
 import com.rise.component.Sync;
 
 import java.util.List;
@@ -29,11 +34,18 @@ public class SyncService extends Service {
     private final int SYNC_UP_NOTE_FINISH = 104;
     private final int SYNC_DOWN_FINISH = 105;
 
-
-
-
-
     private Sync sync;
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(Const.ACTION_APP_EXIT.equals(action)){
+                L.i("SyncService stopSelf");
+                SyncService.this.stopSelf();
+            }
+        }
+    };
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
@@ -101,6 +113,11 @@ public class SyncService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        Toast.makeText(this,R.string.syncing,Toast.LENGTH_SHORT).show();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Const.ACTION_APP_EXIT);
+        registerReceiver(receiver,filter);
+
         sync = new Sync(this);
         sync.count(handler,COUNT_FINISH);
     }
@@ -127,5 +144,11 @@ public class SyncService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 }

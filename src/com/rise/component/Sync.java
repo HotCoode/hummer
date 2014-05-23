@@ -1,10 +1,14 @@
 package com.rise.component;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Handler;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 
 import com.base.L;
+import com.base.common.StringUtils;
 import com.base.orm.QueryHelper;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -161,4 +165,57 @@ public class Sync {
             }
         });
     }
+
+    private class SaveSyncDownDataThread extends Thread{
+        private List<Item> items = new ArrayList<Item>();
+        private List<NotesItem> notes = new ArrayList<NotesItem>();
+
+        public SaveSyncDownDataThread(List<Item> items, List<NotesItem> notes){
+            this.items = items;
+            this.notes = notes;
+        }
+
+        @Override
+        public void run() {
+            if(items.size() != 0){
+                for(Item item : items){
+                    Cursor cursor = QueryHelper.getDb().rawQuery("select id,time from items where id=?", new String[]{item.getId()});
+                    cursor.moveToNext();
+                    String id = cursor.getString(0);
+                    String time = cursor.getString(1);
+                    if(!TextUtils.isEmpty(id)){
+                        // 服务器的数据比本地的新
+                        if(StringUtils.toInt(item.getTime()) > StringUtils.toInt(time)){
+                            ContentValues values = new ContentValues();
+                            values.put("content",item.getContent());
+                            values.put("time",item.getTime());
+                            values.put("status",item.getStatus());
+                            QueryHelper.getDb().update("items",values,"id=?",new String[]{id});
+                        }
+                    }
+                }
+            }
+
+            if(notes.size() != 0){
+                for(NotesItem note : notes){
+                    Cursor cursor = QueryHelper.getDb().rawQuery("select id,time from notes where id=?", new String[]{note.getId()});
+                    cursor.moveToNext();
+                    String id = cursor.getString(0);
+                    String time = cursor.getString(1);
+                    if(!TextUtils.isEmpty(id)){
+                        // 服务器的数据比本地的新
+                        if(StringUtils.toInt(note.getTime()) > StringUtils.toInt(time)){
+                            ContentValues values = new ContentValues();
+                            values.put("status",note.getStatus());
+                            values.put("type",note.getType());
+                            values.put("item_id",note.getItemId());
+                            values.put("time",note.getTime());
+                            QueryHelper.getDb().update("notes",values,"id=?",new String[]{id});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

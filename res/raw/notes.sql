@@ -1,6 +1,6 @@
 CREATE TABLE notes (
-id  TEXT PRIMARY KEY NOT NULL,
-item_id  INTEGER,
+id TEXT PRIMARY KEY NOT NULL,
+item_id  TEXT,
 type  TEXT,
 time  TEXT,
 status  TEXT DEFAULT 1,

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.base.orm.QueryHelper;
@@ -56,9 +57,9 @@ public class NewNoteActivity extends DoneDiscardActivity {
             if (!"".equals(text)) {
                 QueryHelper.insert(SQL.ADD_NOTE_ONLY_ITEM, new String[]{UUID.randomUUID().toString(),text, System.currentTimeMillis() + "", SqlConst.ITEM_STATUS_NOTE_ONLY}, new QueryHelper.InsertCallBack() {
                     @Override
-                    public void onFinish(int id) {
-                        if (id != 0) {
-                            QueryHelper.update(SQL.PUT_NEW_NOTE, new String[]{id + "", type, System.currentTimeMillis() + ""}, null);
+                    public void onFinish(String itemId) {
+                        if (!TextUtils.isEmpty(itemId)) {
+                            QueryHelper.update(SQL.PUT_NEW_NOTE, new String[]{UUID.randomUUID().toString(),itemId, type, System.currentTimeMillis() + ""}, null);
                             handler.sendEmptyMessage(INSERT_NOTE_FINISH);
                         }
                     }

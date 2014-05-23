@@ -148,7 +148,6 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
             return true;
         }else if(keyCode != KeyEvent.KEYCODE_MENU){
             finish();
-            AppUtils.exit();
             return true;
         }
         return super.onKeyDown(keyCode,event);
@@ -157,7 +156,10 @@ public class MainActivity extends BaseActivity implements ListView.OnItemClickLi
     @Override
     protected void onDestroy() {
         L.i("MainActivity : onDestroy");
+        Intent intent = new Intent(Const.ACTION_APP_EXIT);
+        sendBroadcast(intent);
         super.onDestroy();
+//        AppUtils.exit();
     }
 
     /**

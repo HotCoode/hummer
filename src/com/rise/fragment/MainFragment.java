@@ -26,6 +26,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.base.orm.QueryHelper;
+import com.github.johnpersano.supertoasts.SuperActivityToast;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 import com.rise.ItemsManageActivity;
 import com.rise.R;
 import com.rise.SignInActivity;
@@ -244,11 +247,9 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 startActivity(new Intent(activity, ItemsManageActivity.class));
                 break;
             case R.id.menu_sync:
-                if(Const.USER_ID < 0){
+                if(Const.USER_ID <= 0){
                     startActivity(new Intent(activity, SignInActivity.class));
                 }else {
-                    Toast.makeText(activity,R.string.syncing,Toast.LENGTH_SHORT).show();
-//                    new Sync().up();
                     activity.startService(new Intent(activity,SyncService.class));
                 }
                 break;

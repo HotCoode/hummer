@@ -24,23 +24,23 @@ public class SyncJsonHandler extends JsonHttpResponseHandler {
 
     @Override
     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-        onFailure(responseString);
-        Toast.makeText(context, R.string.sync_fail,Toast.LENGTH_SHORT).show();
+        onFailure(throwable,responseString);
         // TODO 发送同步失败广播
     }
 
 
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-        onFailure(errorResponse);
+        onFailure(throwable,errorResponse);
     }
 
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-        onFailure(errorResponse);
+        onFailure(throwable,errorResponse);
     }
 
-    private void onFailure(Object response){
-        L.i("onFailure,response:"+response);
+    private void onFailure(Throwable throwable,Object response){
+        L.i("onFailure,response:"+response+",throwable:"+throwable);
+        Toast.makeText(context, R.string.sync_fail,Toast.LENGTH_SHORT).show();
     }
 }

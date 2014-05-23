@@ -225,7 +225,7 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
             Item item = items.get(position);
             items.remove(position);
             String itemId = item.getId();
-            QueryHelper.update(SQL.DELETE_ITEM_BY_ID,new String[]{itemId},null);
+            QueryHelper.update(SQL.DELETE_ITEM_BY_ID,new String[]{System.currentTimeMillis()+"",itemId},null);
         }
         Toast.makeText(ItemsManageActivity.this,R.string.delete_success,Toast.LENGTH_SHORT).show();
         mode.finish();

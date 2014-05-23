@@ -21,6 +21,8 @@ public class Const {
     public static String ACTION_SIGN_SUCCESS = "com.rise.sign.success";
     public static String ACTION_SIGN_FAIL = "com.rise.sign.fail";
 
+    public static String ACTION_APP_EXIT = "com.rise.app.exit";
+
     public static String PREFERENCE_KEY_REMINDER_TIME = "reminder_time";
     public static String PREFERENCE_KEY_REMINDER = "reminder";
 

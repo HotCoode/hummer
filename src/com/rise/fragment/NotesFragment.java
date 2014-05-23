@@ -138,7 +138,7 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
                 @Override
                 public void onClick(View v) {
                     dialog.cancel();
-                    QueryHelper.update(SQL.DELETE_NOTE_BY_ID,new String[]{noteId + ""},new QueryHelper.UpdateCallBack() {
+                    QueryHelper.update(SQL.DELETE_NOTE_BY_ID,new String[]{System.currentTimeMillis()+"",noteId + ""},new QueryHelper.UpdateCallBack() {
                         @Override
                         public void onFinish() {
                             items.clear();
