@@ -1,1 +1,1 @@
-update items set status=0,time=?  where id=?
+update items set status=0,time=?,sync=0  where id=?

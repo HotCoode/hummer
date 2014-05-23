@@ -1,1 +1,1 @@
-update notes set status=0,time=?  where id=?
+update notes set status=0,time=?,sync=0  where id=?

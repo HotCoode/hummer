@@ -23,6 +23,9 @@ public class Const {
 
     public static String ACTION_APP_EXIT = "com.rise.app.exit";
 
+    public static String ACTION_SYNC_SUCCESS = "com.rise.sync.success";
+    public static String ACTION_SYNC_FAIL = "com.rise.sync.fail";
+
     public static String PREFERENCE_KEY_REMINDER_TIME = "reminder_time";
     public static String PREFERENCE_KEY_REMINDER = "reminder";
 

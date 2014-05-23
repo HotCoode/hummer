@@ -16,6 +16,7 @@ import com.rise.bean.Item;
 import com.rise.bean.NotesItem;
 import com.rise.common.Const;
 import com.rise.db.SQL;
+import com.rise.db.SqlConst;
 import com.rise.http.AsyncHttp;
 import com.rise.http.SyncJsonHandler;
 import com.rise.http.Urls;
@@ -90,6 +91,7 @@ public class Sync {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
+                    L.i(response);
                     int code = response.getInt("code");
                     if(code == 200){
                         List<Item> items = new ArrayList<Item>();
@@ -103,7 +105,7 @@ public class Sync {
                                 item.setContent(itemJson.getString("content"));
                                 item.setId(itemJson.getString("uuid"));
                                 item.setStatus(itemJson.getString("status"));
-                                item.setTime(itemJson.getString("create_at"));
+                                item.setTime(itemJson.getString("time"));
                                 items.add(item);
                             }
                         }
@@ -112,14 +114,15 @@ public class Sync {
                             for(int i = 0; i< noteArray.length();i++){
                                 JSONObject noteJson = noteArray.getJSONObject(i);
                                 NotesItem note = new NotesItem();
-                                note.setContent(noteJson.getString("content"));
+                                note.setItemId(noteJson.getString("item_id"));
                                 note.setId(noteJson.getString("uuid"));
                                 note.setStatus(noteJson.getLong("status"));
-                                note.setTime(noteJson.getLong("create_at"));
+                                note.setType(noteJson.getLong("type"));
+                                note.setTime(noteJson.getLong("time"));
                                 notes.add(note);
                             }
                         }
-//                        handler.
+                        new SaveSyncDownDataThread(items,notes,handler,handlerMsg).start();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -135,7 +138,7 @@ public class Sync {
         params.add("uuid",item.getId());
         params.add("content",item.getContent());
         params.add("status",item.getStatus());
-        params.add("create_at",item.getTime());
+        params.add("time",item.getTime());
         AsyncHttp.post(Urls.SYNC_UP_ITEM, params, new SyncJsonHandler(context) {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -153,7 +156,7 @@ public class Sync {
         params.add("uuid", note.getId());
         params.add("item_id", note.getItemId());
         params.add("status", note.getStatus() + "");
-        params.add("create_at", note.getTime() + "");
+        params.add("time", note.getTime() + "");
         params.add("type", note.getType() + "");
         AsyncHttp.post(Urls.SYNC_UP_NOTE, params, new SyncJsonHandler(context) {
             @Override
@@ -169,10 +172,14 @@ public class Sync {
     private class SaveSyncDownDataThread extends Thread{
         private List<Item> items = new ArrayList<Item>();
         private List<NotesItem> notes = new ArrayList<NotesItem>();
+        private Handler handler;
+        private int handlerMsg;
 
-        public SaveSyncDownDataThread(List<Item> items, List<NotesItem> notes){
+        public SaveSyncDownDataThread(List<Item> items, List<NotesItem> notes,Handler handler, final int handlerMsg){
             this.items = items;
             this.notes = notes;
+            this.handler = handler;
+            this.handlerMsg = handlerMsg;
         }
 
         @Override
@@ -180,18 +187,28 @@ public class Sync {
             if(items.size() != 0){
                 for(Item item : items){
                     Cursor cursor = QueryHelper.getDb().rawQuery("select id,time from items where id=?", new String[]{item.getId()});
-                    cursor.moveToNext();
-                    String id = cursor.getString(0);
-                    String time = cursor.getString(1);
-                    if(!TextUtils.isEmpty(id)){
-                        // 服务器的数据比本地的新
-                        if(StringUtils.toInt(item.getTime()) > StringUtils.toInt(time)){
-                            ContentValues values = new ContentValues();
-                            values.put("content",item.getContent());
-                            values.put("time",item.getTime());
-                            values.put("status",item.getStatus());
-                            QueryHelper.getDb().update("items",values,"id=?",new String[]{id});
+                    if(cursor.moveToNext()){
+                        String id = cursor.getString(0);
+                        String time = cursor.getString(1);
+                        if(!TextUtils.isEmpty(id)){
+                            // 服务器的数据比本地的新
+                            if(StringUtils.toLong(item.getTime()) > StringUtils.toLong(time)){
+                                ContentValues values = new ContentValues();
+                                values.put("content",item.getContent());
+                                values.put("time",item.getTime());
+                                values.put("status",item.getStatus());
+                                QueryHelper.getDb().update("items",values,"id=?",new String[]{id});
+                            }
                         }
+                    }else{
+                        // 本地没有服务器的数据
+                        ContentValues values = new ContentValues();
+                        values.put("id",item.getId());
+                        values.put("content",item.getContent());
+                        values.put("time",item.getTime());
+                        values.put("status",item.getStatus());
+                        values.put("sync", SqlConst.SYNC_OK);
+                        QueryHelper.getDb().insert("items",null,values);
                     }
                 }
             }
@@ -199,22 +216,33 @@ public class Sync {
             if(notes.size() != 0){
                 for(NotesItem note : notes){
                     Cursor cursor = QueryHelper.getDb().rawQuery("select id,time from notes where id=?", new String[]{note.getId()});
-                    cursor.moveToNext();
-                    String id = cursor.getString(0);
-                    String time = cursor.getString(1);
-                    if(!TextUtils.isEmpty(id)){
-                        // 服务器的数据比本地的新
-                        if(StringUtils.toInt(note.getTime()) > StringUtils.toInt(time)){
-                            ContentValues values = new ContentValues();
-                            values.put("status",note.getStatus());
-                            values.put("type",note.getType());
-                            values.put("item_id",note.getItemId());
-                            values.put("time",note.getTime());
-                            QueryHelper.getDb().update("notes",values,"id=?",new String[]{id});
+                    if(cursor.moveToNext()){
+                        String id = cursor.getString(0);
+                        String time = cursor.getString(1);
+                        if(!TextUtils.isEmpty(id)){
+                            // 服务器的数据比本地的新
+                            if(note.getTime() > StringUtils.toLong(time)){
+                                ContentValues values = new ContentValues();
+                                values.put("status",note.getStatus());
+                                values.put("type",note.getType());
+                                values.put("item_id",note.getItemId());
+                                values.put("time",note.getTime());
+                                QueryHelper.getDb().update("notes",values,"id=?",new String[]{id});
+                            }
                         }
+                    }else{
+                        ContentValues values = new ContentValues();
+                        values.put("id",note.getId());
+                        values.put("status",note.getStatus());
+                        values.put("type",note.getType());
+                        values.put("item_id",note.getItemId());
+                        values.put("time",note.getTime());
+                        values.put("sync", SqlConst.SYNC_OK);
+                        QueryHelper.getDb().insert("notes",null,values);
                     }
                 }
             }
+            handler.sendEmptyMessage(handlerMsg);
         }
     }
 

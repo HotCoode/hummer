@@ -41,6 +41,8 @@ import com.rise.db.SQL;
 import com.rise.db.SqlConst;
 import com.rise.view.BoxView;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -64,11 +66,14 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
     private final int ITEM_LOAD_FINISH = 100;
 
+    private List<Item> items = new ArrayList<Item>();
+
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
             if(msg.what == ITEM_LOAD_FINISH){
-                mainListView.setAdapter(mainListAdapter);
+                items.addAll((Collection<? extends Item>) msg.obj);
+                mainListAdapter.notifyDataSetChanged();
             }
             return false;
         }
@@ -78,7 +83,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(Const.ACTION_ITEM_UPDATE.equals(action)){
+            if(Const.ACTION_ITEM_UPDATE.equals(action) || Const.ACTION_SYNC_SUCCESS.equals(action)){
                 loadData();
             }
         }
@@ -98,6 +103,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Const.ACTION_ITEM_UPDATE);
+        intentFilter.addAction(Const.ACTION_SYNC_SUCCESS);
         activity.registerReceiver(broadcastReceiver, intentFilter);
 
         return container;
@@ -130,6 +136,8 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
         circleQuick = activity.getResources().getDrawable(R.drawable.circle_quick);
         circleBad = activity.getResources().getDrawable(R.drawable.circle_bad);
 
+        mainListAdapter = new MainListAdapter(activity, items);
+        mainListView.setAdapter(mainListAdapter);
     }
 
     @Override
@@ -200,6 +208,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
      * 加載數據
      */
     private void loadData() {
+        items.clear();
         QueryHelper.findBeans(
                 Item.class,
                 SQL.FIND_ITEMS_BY_STATUS,
@@ -207,8 +216,7 @@ public class MainFragment extends Fragment implements BaseFragment, BoxView.BoxL
                 new QueryHelper.FindBeansCallBack<Item>() {
                     @Override
                     public void onFinish(List<Item> beans) {
-                        mainListAdapter = new MainListAdapter(activity, beans);
-                        handler.sendEmptyMessage(ITEM_LOAD_FINISH);
+                        handler.obtainMessage(ITEM_LOAD_FINISH,beans).sendToTarget();
                     }
                 });
     }

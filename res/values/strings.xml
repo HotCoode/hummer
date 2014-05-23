@@ -59,6 +59,7 @@
 	<string name="sign_in_fail">用户名或密码错误</string>
 	<string name="syncing">同步中</string>
 	<string name="sync_fail">同步失败，请重试</string>
+	<string name="sync_up_finish_start_to_download">上传成功，开始下载</string>
 	<string name="sync_success">同步成功</string>
 	<string name="synced">所有数据都已经同步</string>
 </resources>

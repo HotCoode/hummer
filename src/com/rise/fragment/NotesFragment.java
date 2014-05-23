@@ -1,7 +1,10 @@
 package com.rise.fragment;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +28,7 @@ import com.rise.R;
 import com.rise.adapter.NotesItemAdapter;
 import com.rise.bean.NotesItem;
 import com.rise.bean.NotesItemOrder;
+import com.rise.common.Const;
 import com.rise.common.RiseUtil;
 import com.rise.component.SimpleDialog;
 import com.rise.db.SQL;
@@ -61,6 +65,16 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 		}
 	});
 
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(Const.ACTION_SYNC_SUCCESS.equals(action)){
+                loadData();
+            }
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -70,6 +84,10 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
 
 	    injectViews(container);
 //        setBackground();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Const.ACTION_SYNC_SUCCESS);
+        getActivity().registerReceiver(broadcastReceiver,filter);
 
 	    return container;
     }
@@ -179,6 +197,12 @@ public class NotesFragment extends Fragment implements BaseFragment,ListView.OnI
     public void onStart() {
         super.onStart();
         loadData();
+    }
+
+    @Override
+    public void onDetach() {
+        getActivity().unregisterReceiver(broadcastReceiver);
+        super.onDetach();
     }
 
 }

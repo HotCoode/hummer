@@ -221,11 +221,15 @@ public class ItemsManageActivity extends BaseActivity implements AdapterView.OnI
 
     private void deleteItems(ActionMode mode){
         if(selectedItems.size() == 0) return;
+        List<Item> tmpItems = new ArrayList<Item>();
         for (int position : selectedItems){
             Item item = items.get(position);
-            items.remove(position);
+            tmpItems.add(item);
             String itemId = item.getId();
             QueryHelper.update(SQL.DELETE_ITEM_BY_ID,new String[]{System.currentTimeMillis()+"",itemId},null);
+        }
+        for(Item item : tmpItems){
+            items.remove(item);
         }
         Toast.makeText(ItemsManageActivity.this,R.string.delete_success,Toast.LENGTH_SHORT).show();
         mode.finish();

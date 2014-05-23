@@ -40,7 +40,7 @@ public class SyncService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(Const.ACTION_APP_EXIT.equals(action)){
+            if(Const.ACTION_APP_EXIT.equals(action) || Const.ACTION_SYNC_FAIL.equals(action)){
                 L.i("SyncService stopSelf");
                 SyncService.this.stopSelf();
             }
@@ -58,7 +58,6 @@ public class SyncService extends Service {
                     } else {
                         // 已经上传完毕
                         // 下载
-                        Toast.makeText(SyncService.this,R.string.synced,Toast.LENGTH_SHORT).show();
                         uploadFinishThenDownload();
                     }
                     break;
@@ -78,7 +77,6 @@ public class SyncService extends Service {
                     } else {
                         // 已经上传完毕
                         // 下载
-                        Toast.makeText(SyncService.this,R.string.sync_success,Toast.LENGTH_SHORT).show();
                         uploadFinishThenDownload();
                     }
                     break;
@@ -95,13 +93,11 @@ public class SyncService extends Service {
                     } else {
                         // 已经上传完毕
                         // 下载
-                        Toast.makeText(SyncService.this, R.string.sync_success, Toast.LENGTH_SHORT).show();
                         uploadFinishThenDownload();
                     }
                     break;
                 case SYNC_DOWN_FINISH:
-                    // todo 更新数据库
-                    // todo 同步完毕
+                    syncFinish();
                     break;
             }
 
@@ -136,9 +132,14 @@ public class SyncService extends Service {
      * 已经上传完毕,开始下载
      */
     private void uploadFinishThenDownload(){
+        Toast.makeText(SyncService.this, R.string.sync_up_finish_start_to_download, Toast.LENGTH_SHORT).show();
+        sync.down(handler,SYNC_DOWN_FINISH);
+    }
+
+    private void syncFinish(){
+        sendBroadcast(new Intent(Const.ACTION_SYNC_SUCCESS));
         stopSelf();
-        // TODO down
-//        sync.down(handler,SYNC_DOWN_FINISH);
+        Toast.makeText(SyncService.this, R.string.sync_success, Toast.LENGTH_SHORT).show();
     }
 
     @Override
