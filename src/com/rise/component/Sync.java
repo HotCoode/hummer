@@ -18,8 +18,10 @@ import com.rise.http.Urls;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,8 +80,48 @@ public class Sync {
         });
     }
 
+    // TODO
     public void down(final Handler handler, final int handlerMsg) {
-        // TODO
+        AsyncHttp.post(Urls.SYNC_DOWN+Const.USER_ID+"/", null, new SyncJsonHandler(context) {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    int code = response.getInt("code");
+                    if(code == 200){
+                        List<Item> items = new ArrayList<Item>();
+                        List<NotesItem> notes = new ArrayList<NotesItem>();
+                        JSONArray itemArray = response.getJSONArray("items");
+                        JSONArray noteArray = response.getJSONArray("notes");
+                        if(itemArray != null){
+                            for(int i = 0; i< itemArray.length();i++){
+                                JSONObject itemJson = itemArray.getJSONObject(i);
+                                Item item = new Item();
+                                item.setContent(itemJson.getString("content"));
+                                item.setId(itemJson.getString("uuid"));
+                                item.setStatus(itemJson.getString("status"));
+                                item.setTime(itemJson.getString("create_at"));
+                                items.add(item);
+                            }
+                        }
+
+                        if(noteArray != null){
+                            for(int i = 0; i< noteArray.length();i++){
+                                JSONObject noteJson = noteArray.getJSONObject(i);
+                                NotesItem note = new NotesItem();
+                                note.setContent(noteJson.getString("content"));
+                                note.setId(noteJson.getString("uuid"));
+                                note.setStatus(noteJson.getLong("status"));
+                                note.setTime(noteJson.getLong("create_at"));
+                                notes.add(note);
+                            }
+                        }
+//                        handler.
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 

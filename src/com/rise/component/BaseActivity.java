@@ -31,9 +31,9 @@ public class BaseActivity extends ActionBarActivity {
     @Override
     public void finish(){
         super.finish();
-        if(!(this instanceof MainActivity || this instanceof LoadingActivity)){
-            overridePendingTransition(0, R.anim.exit);
-        }
+//        if(!(this instanceof MainActivity || this instanceof LoadingActivity)){
+//            overridePendingTransition(0, R.anim.exit);
+//        }
     }
 
     @Override
