@@ -42,6 +42,7 @@ public class SignInActivity extends BaseActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt(Const.SHARED_FILED_USER_ID, Const.USER_ID);
                 editor.commit();
+                startService(new Intent(SignInActivity.this,SyncService.class));
             }
         }
     };
