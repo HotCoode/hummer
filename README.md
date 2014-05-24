@@ -16,8 +16,8 @@ dependent on
 
 ##develop
 --------------
-###tables
+###tables (is very simple)
 ####client
 ![client](https://raw.github.com/kai-wang-john/hummer/master/doc/table_client.png)
 ####server
-![client](https://raw.github.com/kai-wang-john/hummer/master/doc/table_server.png)
+![server](https://raw.github.com/kai-wang-john/hummer/master/doc/table_server.png)
