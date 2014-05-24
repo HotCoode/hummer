@@ -13,6 +13,9 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 import com.base.L;
 import com.rise.common.Const;
 import com.rise.component.TimePreference;
@@ -34,13 +37,15 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
 
-        addPreferencesFromResource(R.layout.activity_setting);
+        addPreferencesFromResource(R.layout.prefreence_setting);
+        setContentView(R.layout.activity_setting);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
 
-        getListView().setBackgroundResource(R.color.theme_lighter);
-
+        if(Const.USER_ID > 0){
+            findViewById(R.id.sign_out_btn).setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -77,6 +82,17 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
                 }
             }
         }
+    }
+
+    // sign out button click
+    public void signOut(View view){
+        Const.USER_ID = -1;
+        SharedPreferences preferences = getSharedPreferences(Const.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(Const.SHARED_FILED_USER_ID, Const.USER_ID);
+        editor.commit();
+        finish();
+        Toast.makeText(this,R.string.sign_out_success,Toast.LENGTH_SHORT).show();
     }
 
     private void startAlarm(int hour, int minute) {

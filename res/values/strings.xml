@@ -62,4 +62,6 @@
 	<string name="sync_up_finish_start_to_download">上传成功，开始下载</string>
 	<string name="sync_success">同步成功</string>
 	<string name="synced">所有数据都已经同步</string>
+    <string name="sign_out">登出</string>
+    <string name="sign_out_success">登出成功</string>
 </resources>

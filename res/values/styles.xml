@@ -157,8 +157,15 @@
         <item name="android:textColor">@color/theme_darker</item>
     </style>
 
-    <style name="sign_button">
-        <item name="android:background">@drawable/button</item>
+    <style name="button_sign">
+        <item name="android:background">@drawable/button_normal</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="button_warning">
+        <item name="android:background">@drawable/button_warning</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
