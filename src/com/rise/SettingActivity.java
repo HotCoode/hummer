@@ -14,7 +14,6 @@ import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import com.base.L;
 import com.rise.common.Const;
@@ -54,7 +53,7 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 finish();
-                overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out);
+//                overridePendingTransition(R.anim.slide_open_up_in, R.anim.slide_open_down_out);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -137,6 +136,5 @@ public class SettingActivity extends PreferenceActivity implements SharedPrefere
     @Override
     public void finish(){
         super.finish();
-        overridePendingTransition(0, R.anim.exit);
     }
 }

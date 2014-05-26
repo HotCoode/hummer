@@ -56,6 +56,5 @@ public class AppUtils {
 
     public static void finish(Activity activity){
         activity.finish();
-        activity.overridePendingTransition(0,R.anim.exit);
     }
 }

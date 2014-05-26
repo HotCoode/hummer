@@ -51,6 +51,5 @@ public abstract class DoneDiscardActivity extends ActionBarActivity {
     @Override
     public void finish(){
         super.finish();
-        overridePendingTransition(0, R.anim.exit);
     }
 }
