@@ -18,10 +18,3 @@ dependent on
 这只是一个纠正不良习惯的工具，如果任何事都计划着去做，生活会失去很多乐趣，所以当你认为有一些坏习惯已经影响了正常生活那请使用<Strong>Done</Strong>吧，祝你尽快改掉坏习惯。
 
 
-##develop
---------------
-###tables (is very simple)
-####client
-![client](https://raw.github.com/kai-wang-john/hummer/master/doc/table_client.png)
-####server
-![server](https://raw.github.com/kai-wang-john/hummer/master/doc/table_server.png)
