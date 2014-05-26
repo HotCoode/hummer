@@ -16,6 +16,7 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+		<item name="android:windowAnimationStyle">@style/activity_switch_style</item>
     </style>
 
 	<style name="Actionbar" parent="@android:style/Widget.Holo.Light.ActionBar">
@@ -25,6 +26,13 @@
 
 	<style name="Actionbar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
 		<item name="android:textColor">@color/theme_lighter</item>
+	</style>
+	
+	<style name="activity_switch_style">
+		<item name="android:activityOpenEnterAnimation">@anim/slide_up_in</item>
+		<item name="android:activityOpenExitAnimation">@anim/slide_down_out</item>
+		<item name="android:activityCloseEnterAnimation">@anim/slide_up_in</item>
+		<item name="android:activityCloseExitAnimation">@anim/slide_down_out</item>
 	</style>
 
 	<style name="PreferencesTheme" parent="AppTheme">

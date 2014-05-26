@@ -32,7 +32,7 @@ public class BaseActivity extends ActionBarActivity {
     public void finish(){
         super.finish();
 //        if(!(this instanceof MainActivity || this instanceof LoadingActivity)){
-//            overridePendingTransition(0, R.anim.exit);
+//            overridePendingTransition(R.anim.slide_up_in, R.anim.slide_down_out);
 //        }
     }
 
