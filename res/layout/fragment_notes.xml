@@ -18,9 +18,9 @@
 
 	<View
 		android:id="@+id/indicator"
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:layout_gravity="bottom"
+		android:layout_width="2dp"
+		android:layout_height="match_parent"
+		android:layout_gravity="right"
 		/>
 
 </FrameLayout>
